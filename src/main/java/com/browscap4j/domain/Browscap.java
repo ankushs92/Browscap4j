@@ -20,7 +20,7 @@ public final class Browscap {
 	private static boolean allLoaded;
 
 	private ResourceBuilder resourceBuilder;
-	private static Map<String, String> regexNamePatternsMap;
+	private static Map<String, String> regexToNamePatternsMap;
 	private static Map<String, BrowserCapabilities> cache;
 
 	public Browscap(final File csvFile) {
@@ -30,7 +30,7 @@ public final class Browscap {
 			resourceBuilder = new ResourceBuilder(csvFile);
 			logger.info("Loading data ");
 
-			regexNamePatternsMap = resourceBuilder.getRegexNamePatternsMap();
+			regexToNamePatternsMap = resourceBuilder.getRegexNamePatternsMap();
 			cache = resourceBuilder.getNamePatternsToBrowserCapabilitiesMap();
 
 			logger.info("Finished loading data");
@@ -45,7 +45,7 @@ public final class Browscap {
 		PreConditions.checkNull(userAgent, "Cannot pass a null UserAgent String ! ");
 		// Java 8 Magic !
 		logger.debug("Attempting to find BrowserCapabilities for User Agent String {}", userAgent);
-		final String namePattern = regexNamePatternsMap
+		final String namePattern = regexToNamePatternsMap
 					.entrySet()
 					.parallelStream()
 					.filter(entry -> userAgent.matches(entry.getValue()))
