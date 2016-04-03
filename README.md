@@ -10,7 +10,7 @@ File csvFile = new File(PATH_TO_BROWSCAP_CSV);
 Browscap browscap = new Browscap(csvFile);
 ```
 
-Once the data is loaded from the file into memory , any subsequent invocation of the above code **would not** load the data again. 
+Once the data is loaded from the file into memory , any subsequent invocation of the above code **would not** re-load the data . 
 
 Next,just fetch the data for a User agent String ,like so :
 
@@ -35,9 +35,12 @@ However , if anyone wants certain fields included , just say so and it will be d
 **Important** 
 Browscap4j does not cache the results that it returns.The developer using Browscap4j is adviced to use their own Caching solution.
 
-**Performance**
+#Performance
 Performance testing was done on Macbook Pro,8 GM Ram , i5 2nd gen with SSD.
 Performance is pretty damn decent! The best case for resolving a user agent is about 200 ms ,the worst being 500 ms.
 
-**Testing**
 
+#Testing
+This part is a bit tricky. With the guys at Browscap updating the csv file every now and then ,it is impossible for the tests written for a particular version of the file to be valid for the next version.The Browscap csv file used for the tests was released somewhere around October 2015.
+ 
+Run the code and match the results by going [here](http://browscap.org/ua-lookup) .
