@@ -32,13 +32,13 @@ public final class ResourceBuilder {
 		// The NamePatterns should be first sorted based on ascending order of
 		// length.
 		return records
-				.stream()
-				.collect(Collectors.toMap(record -> record[0], record -> RegexResolver.toRegex(record[0])))
-				.entrySet()
-				.stream()
-				.sorted((Entry<String, String> entry1, Entry<String, String> entry2) -> 
-							Integer.compare(entry1.getKey().length(), entry2.getKey().length()))
-				.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()));
+			.stream()
+			.collect(Collectors.toMap(record -> record[0], record -> RegexResolver.toRegex(record[0])))
+			.entrySet()
+			.stream()
+			.sorted((Entry<String, String> entry1, Entry<String, String> entry2) -> 
+						Integer.compare(entry1.getKey().length(), entry2.getKey().length()))
+			.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()));
 	}
 
 	public Map<String, BrowserCapabilities> getNamePatternsToBrowserCapabilitiesMap() {
@@ -51,22 +51,23 @@ public final class ResourceBuilder {
 
 		return records.stream()
 				.collect(Collectors.toMap(record -> record[0], // Key
-				record -> {
-					final String namePattern = record[0];
-					final String browser = record[5];
-					final String deviceName = record[38];
-					final String deviceType = record[40];
-					final String deviceCodeName = record[42];
-					final String deviceBrandName = record[43];
-					final String platform = record[13];
-					final String platformMaker = record[17];
-					final Boolean isMobile = BooleanUtils.toBoolean(record[32]);
-					final Boolean isTablet = BooleanUtils.toBoolean(record[33]);
-					return new BrowserCapabilities.Builder().browser(browser).deviceCodeName(deviceCodeName)
-							.deviceName(deviceName).deviceBrandName(deviceBrandName).deviceType(deviceType)
-							.platform(platform).platformMaker(platformMaker).isTablet(isTablet).isMobile(isMobile)
-							.build();
-				}));
+					record -> {
+						final String namePattern = record[0];
+						final String browser = record[5];
+						final String deviceName = record[38];
+						final String deviceType = record[40];
+						final String deviceCodeName = record[42];
+						final String deviceBrandName = record[43];
+						final String platform = record[13];
+						final String platformMaker = record[17];
+						final Boolean isMobile = BooleanUtils.toBoolean(record[32]);
+						final Boolean isTablet = BooleanUtils.toBoolean(record[33]);
+						
+						return new BrowserCapabilities.Builder().browser(browser).deviceCodeName(deviceCodeName)
+								.deviceName(deviceName).deviceBrandName(deviceBrandName).deviceType(deviceType)
+								.platform(platform).platformMaker(platformMaker).isTablet(isTablet).isMobile(isMobile)
+								.build();
+					}));
 	}
 
 }
