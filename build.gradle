@@ -1,0 +1,47 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+ 
+sourceCompatibility = 1.8
+version = '1.0'
+
+jar {
+    baseName = "Browscap4j"
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                   'Implementation-Version': version
+    }
+}
+ 
+repositories {
+    mavenCentral()
+}
+ 
+dependencies { 	
+  compile('org.apache.commons:commons-lang3:3.4')
+  compile('com.opencsv:opencsv:3.7')
+  compile('ch.qos.logback:logback-classic:1.1.4')
+  compile('ch.qos.logback:logback-core:1.1.4')
+  compile('org.slf4j:slf4j-api:1.7.18')
+  testCompile('org.spockframework:spock-core:1.0-groovy-2.4')
+
+}
+ 
+test {
+    systemProperties 'property': 'value'
+}
+
+eclipse { 
+  classpath {
+     containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+     containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+  }
+}
+
+ 
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}

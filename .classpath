@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="GROOVY_DSL_SUPPORT" exported="true"/>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry sourcepath="/Users/Ankush/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.4/b49dafc9cfef24c356827f322e773e7c26725dd2/commons-lang3-3.4-sources.jar" kind="lib" path="/Users/Ankush/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.4/5fe28b9518e58819180a43a850fbc0dd24b7c050/commons-lang3-3.4.jar"/>
+	<classpathentry sourcepath="/Users/Ankush/.gradle/caches/modules-2/files-2.1/com.opencsv/opencsv/3.7/4e2cee4d91fdf443a5fe11fba23ecd9a89f8bba7/opencsv-3.7-sources.jar" kind="lib" path="/Users/Ankush/.gradle/caches/modules-2/files-2.1/com.opencsv/opencsv/3.7/d5416b3a41618422e12337c2d3b6152f0cd4d311/opencsv-3.7.jar"/>
+	<classpathentry sourcepath="/Users/Ankush/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.4/4ad06dee7a77d328a9d5776466817e9effef9d17/logback-classic-1.1.4-sources.jar" kind="lib" path="/Users/Ankush/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.4/2fd6bd6ccfc68a3547ac9de83198b0043b9d7ae0/logback-classic-1.1.4.jar"/>
+	<classpathentry sourcepath="/Users/Ankush/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.4/2fa651b36cd8ad916573bb6c48289a4e1bf32c58/logback-core-1.1.4-sources.jar" kind="lib" path="/Users/Ankush/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.4/2747d21a725fc1efa2d3b073ccd12782117c0ef6/logback-core-1.1.4.jar"/>
+	<classpathentry sourcepath="/Users/Ankush/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.18/a84644a9e9c6ed158b0754aa4af53dc3b7844524/slf4j-api-1.7.18-sources.jar" kind="lib" path="/Users/Ankush/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.18/b631d286463ced7cc42ee2171fe3beaed2836823/slf4j-api-1.7.18.jar"/>
+	<classpathentry sourcepath="/Users/Ankush/.gradle/caches/modules-2/files-2.1/org.spockframework/spock-core/1.0-groovy-2.4/db9597087c5e4afc2ef795c8ae89e32eddd019a6/spock-core-1.0-groovy-2.4-sources.jar" kind="lib" path="/Users/Ankush/.gradle/caches/modules-2/files-2.1/org.spockframework/spock-core/1.0-groovy-2.4/ceaa8b69f274ed3de24da3e6a6c86f673b426d1a/spock-core-1.0-groovy-2.4.jar"/>
+	<classpathentry sourcepath="/Users/Ankush/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-all/2.4.1/e9da581b03a94acef97004906caba37bcfa59c5d/groovy-all-2.4.1-sources.jar" kind="lib" path="/Users/Ankush/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-all/2.4.1/a9ca9c9de09361ec2a18d2c058d2524fbd8eae0c/groovy-all-2.4.1.jar"/>
+	<classpathentry sourcepath="/Users/Ankush/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/a6c32b40bf3d76eca54e3c601e5d1470c86fcdfa/junit-4.12-sources.jar" kind="lib" path="/Users/Ankush/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar"/>
+	<classpathentry sourcepath="/Users/Ankush/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar" kind="lib" path="/Users/Ankush/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"/>
+</classpath>
