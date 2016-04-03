@@ -36,7 +36,6 @@ public final class Browscap {
 			logger.info("Finished loading data");
 			allLoaded = true;
 		}
-
 		else {
 			logger.debug("Data has already been loaded!");
 		}
@@ -46,7 +45,8 @@ public final class Browscap {
 		PreConditions.checkNull(userAgent, "Cannot pass a null UserAgent String ! ");
 		// Java 8 Magic !
 		logger.debug("Attempting to find BrowserCapabilities for User Agent String {}", userAgent);
-		final String namePattern = regexNamePatternsMap.entrySet()
+		final String namePattern = regexNamePatternsMap
+					.entrySet()
 					.parallelStream()
 					.filter(entry -> userAgent.matches(entry.getValue()))
 					.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()))
