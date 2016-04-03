@@ -60,7 +60,7 @@ public final class Browscap {
 		if (browserCapabilities == null) {
 			logger.debug("No Browsercapabilities found for user agent string {} ", userAgent);
 		} else {
-			logger.debug("BrowserCapabilities {} found for user agent string {} ", browserCapabilities, userAgent);
+//			logger.debug("BrowserCapabilities {} found for user agent string {} ", browserCapabilities, userAgent);
 
 		}
 		return browserCapabilities;

@@ -37,8 +37,8 @@ Browscap4j does not cache the results that it returns.The developer using Browsc
 
 #Performance
 Performance testing was done on Macbook Pro,8 GM Ram , i5 2nd gen with SSD.
-Performance is pretty damn decent! The best case for resolving a user agent is about 200 ms ,the worst being 500 ms.
-
+Performance is pretty damn decent!Once you warm up the JVM for some time, the best case for resolving a user agent is about 200 ms ,the worst being 500 ms.
+However,most Strings are resolved around the 250 ms mark.
 
 #Testing
 This part is a bit tricky. With the guys at Browscap updating the csv file every now and then ,it is impossible for the tests written for a particular version of the file to be valid for the next version.The Browscap csv file used for the tests was released somewhere around October 2015.
