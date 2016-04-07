@@ -7,6 +7,12 @@ public class PreConditions {
 		}
 	}
 	
+	public static  void checkEmptyString(final String str , final String errorMsg){
+		if(!Strings.hasText(str)){
+			throw new IllegalArgumentException(errorMsg);
+		}
+	}
+	
 	public static  void checkExpression(final boolean expression , final String errorMsg){
 		if(expression){
 			throw new IllegalArgumentException(errorMsg);

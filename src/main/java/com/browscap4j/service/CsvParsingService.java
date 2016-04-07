@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.browscap4j.domain.Browscap;
-import com.browscap4j.domain.BrowserCapabilities;
 import com.opencsv.CSVReader;
 
 public final class CsvParsingService implements ParsingService {
@@ -31,4 +29,5 @@ public final class CsvParsingService implements ParsingService {
 				  .filter(record -> record.length > 43 )
 				  .collect(Collectors.toList());
 	}
+	
 }

@@ -67,7 +67,6 @@ public final class ResourceBuilder {
 								.deviceName(deviceName).deviceBrandName(deviceBrandName).deviceType(deviceType)
 								.platform(platform).platformMaker(platformMaker).isTablet(isTablet).isMobile(isMobile)
 								.build();
-					}));
+				}));
 	}
-
 }

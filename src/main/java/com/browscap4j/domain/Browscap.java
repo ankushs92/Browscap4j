@@ -15,15 +15,15 @@ import com.browscap4j.utils.PreConditions;
 public final class Browscap {
 
 	private static final Logger logger = LoggerFactory.getLogger(Browscap.class);
-
 	private final File csvFile;
 	private static boolean allLoaded;
-
+	
 	private ResourceBuilder resourceBuilder;
 	private static Map<String, String> regexToNamePatternsMap;
 	private static Map<String, BrowserCapabilities> cache;
 
 	public Browscap(final File csvFile) {
+		
 		PreConditions.checkExpression(!csvFile.exists(), "The csvFile does not exist");
 		this.csvFile = csvFile;
 		if (!allLoaded) {
@@ -45,6 +45,7 @@ public final class Browscap {
 		PreConditions.checkNull(userAgent, "Cannot pass a null UserAgent String ! ");
 		// Java 8 Magic !
 		logger.debug("Attempting to find BrowserCapabilities for User Agent String {}", userAgent);
+		System.out.println(regexToNamePatternsMap.size());
 		final String namePattern = regexToNamePatternsMap
 					.entrySet()
 					.parallelStream()
@@ -52,7 +53,7 @@ public final class Browscap {
 					.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()))
 					.keySet()
 					.stream()
-					.max((String n1, String n2) -> {
+					.max(( String n1, String n2 ) -> {
 						return Integer.compare(n1.length(), n2.length());
 					})
 					.get();
@@ -60,8 +61,7 @@ public final class Browscap {
 		if (browserCapabilities == null) {
 			logger.debug("No Browsercapabilities found for user agent string {} ", userAgent);
 		} else {
-//			logger.debug("BrowserCapabilities {} found for user agent string {} ", browserCapabilities, userAgent);
-
+			logger.debug("BrowserCapabilities {} found for user agent string {} ", browserCapabilities, userAgent);
 		}
 		return browserCapabilities;
 	}
