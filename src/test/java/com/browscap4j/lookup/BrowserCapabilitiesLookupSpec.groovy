@@ -203,6 +203,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 			
 		when:
 		def browserCapabilities = browscap.lookup(ua)
+		println browserCapabilities
 	   
 	   then:
 		   browserCapabilities.browser=='IE'

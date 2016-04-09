@@ -6,6 +6,7 @@ public final class BrowserCapabilities {
 	private final String browser;
 	private final String deviceName;
 	private final String deviceType;
+
 	private final String deviceCodeName;
 	private final String deviceBrandName;
 	private final String platform;
@@ -36,7 +37,7 @@ public final class BrowserCapabilities {
 		private  boolean isMobile;
 		private  boolean isTablet;
 		
-		public Builder browser(final String browser){
+	   public Builder browser(final String browser){
 			this.browser = browser;
 			return this;
 		}
@@ -124,5 +125,5 @@ public final class BrowserCapabilities {
 				+ platform + ", platformMaker=" + platformMaker + ", isMobile=" + isMobile + ", isTablet=" + isTablet
 				+ "]";
 	}
-
+	
 }

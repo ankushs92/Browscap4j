@@ -26,4 +26,8 @@ public final class RegexResolver {
 		final String pattern = patternBuilder.toString();
 		return pattern;
 	}
+	public static void main(String[] args) {
+		System.out.println("Mozilla/4.0 (compatible*; MSIE 7.0*; *Windows NT 6.0*Mozilla/4.0 (compatible*; MSIE 6.0*"
+				.equals("Mozilla/4.0 (compatible*; MSIE 7.0*; *Windows NT 6.0*Mozilla/4.0 (compatible*; MSIE 6.0*"));
+	}
 }

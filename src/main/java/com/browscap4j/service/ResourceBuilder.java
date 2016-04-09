@@ -2,6 +2,7 @@ package com.browscap4j.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -33,12 +34,14 @@ public final class ResourceBuilder {
 		// length.
 		return records
 			.stream()
-			.collect(Collectors.toMap(record -> record[0], record -> RegexResolver.toRegex(record[0])))
-			.entrySet()
-			.stream()
-			.sorted((Entry<String, String> entry1, Entry<String, String> entry2) -> 
-						Integer.compare(entry1.getKey().length(), entry2.getKey().length()))
-			.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()));
+			.sorted((String[] record1,String[] record2)->{
+				return - Integer.compare(record1[0].length(), record2[0].length());
+			})
+			.collect(Collectors.toMap(record -> record[0], record -> RegexResolver.toRegex(record[0]),
+					(n1,n2)->{
+						throw new IllegalStateException(String.format("Duplicate key %s", n1));
+					},
+					LinkedHashMap::new));
 	}
 
 	public Map<String, BrowserCapabilities> getNamePatternsToBrowserCapabilitiesMap() {
@@ -68,5 +71,6 @@ public final class ResourceBuilder {
 								.platform(platform).platformMaker(platformMaker).isTablet(isTablet).isMobile(isMobile)
 								.build();
 				}));
+				
 	}
 }

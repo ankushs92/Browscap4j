@@ -1,9 +1,9 @@
 package com.browscap4j.domain;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -45,18 +45,13 @@ public final class Browscap {
 		PreConditions.checkNull(userAgent, "Cannot pass a null UserAgent String ! ");
 		// Java 8 Magic !
 		logger.debug("Attempting to find BrowserCapabilities for User Agent String {}", userAgent);
-		System.out.println(regexToNamePatternsMap.size());
 		final String namePattern = regexToNamePatternsMap
-					.entrySet()
-					.parallelStream()
-					.filter(entry -> userAgent.matches(entry.getValue()))
-					.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()))
-					.keySet()
-					.stream()
-					.max(( String n1, String n2 ) -> {
-						return Integer.compare(n1.length(), n2.length());
-					})
-					.get();
+				.entrySet()
+				.parallelStream()
+				.filter(entry -> userAgent.matches(entry.getValue()))
+				.findFirst()
+				.get()
+				.getKey();
 		final BrowserCapabilities browserCapabilities = cache.get(namePattern);
 		if (browserCapabilities == null) {
 			logger.debug("No Browsercapabilities found for user agent string {} ", userAgent);

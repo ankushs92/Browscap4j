@@ -26,7 +26,7 @@ public final class CsvParsingService implements ParsingService {
 		//Different versions of the Csv file have different headers.
 		//We consider that each record is a String array ,where each array contains atleast 43 records.
 		return records.stream()
-				  .filter(record -> record.length > 43 )
+				  .filter( record -> record.length > 43 )
 				  .collect(Collectors.toList());
 	}
 	
