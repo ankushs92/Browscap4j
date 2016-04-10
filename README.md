@@ -44,6 +44,7 @@ However,most Strings are resolved around the 250 ms mark.
 That is a considerable performance improvement ,considering that the same program written using the data structures in Python takes ~ 7-10 sec (best case) to resolve a user agent String.
 
 #Testing
-This part is a bit tricky. With the guys at Browscap updating the csv file every now and then ,it is impossible for the tests written for a particular version of the file to be valid for the next version.The Browscap csv file used for the tests was released somewhere around October 2015.
+This part is a bit tricky. With the guys at Browscap updating the csv file every now and then ,it is impossible for the tests written for a particular version of the file to be valid for the next version.
+The tests have been updated for the latest Browscap csv file as on 10th April 2016.
  
 Run the code and match the results by going [here](http://browscap.org/ua-lookup) .
