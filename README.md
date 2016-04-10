@@ -1,6 +1,8 @@
 # Browscap4j
 A simple to use Java library for the [Browscap project](http://browscap.org/).Uses the `browscap.csv` file , which can be found [here](http://browscap.org/stream?q=BrowsCapCSV) 
 
+**Note: This library and all of the unit tests have been updated for the latest Browscap csv file , as on 10th April,2016**
+
 #Instructions
 **Note : Browscap4j uses Java8** .
 In order to get Browser capabilities, you need to first provide Browscap4j with the path of the csv file, like so :
