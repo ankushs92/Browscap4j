@@ -57,10 +57,10 @@ public final class ResourceBuilder {
 					record -> {
 						final String namePattern = record[0];
 						final String browser = record[5];
-						final String deviceName = record[38];
-						final String deviceType = record[40];
-						final String deviceCodeName = record[42];
-						final String deviceBrandName = record[43];
+						final String deviceName = record[41];
+						final String deviceType = record[43];
+						final String deviceCodeName = record[45];
+						final String deviceBrandName = record[46];
 						final String platform = record[13];
 						final String platformMaker = record[17];
 						final Boolean isMobile = BooleanUtils.toBoolean(record[32]);
