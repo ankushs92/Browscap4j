@@ -21,7 +21,7 @@ String userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/
 
 BrowserCapabilities browserCapabilities = browscap.lookup(userAgent);
 String browser = browserCapabilities.getBrowser();
-String deviceBrandName = browserCapabilities.getDeviceBrandName();
+String deviceBrandName = browserCapabilities.getDeviceBrandName(); 
 String deviceCodeName = browserCapabilities.getDeviceCodeName();
 String deviceName = browserCapabilities.getDeviceName();
 String deviceType = browserCapabilities.getDeviceType();
