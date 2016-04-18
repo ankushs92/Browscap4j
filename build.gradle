@@ -1,4 +1,4 @@
-apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
  
@@ -17,7 +17,10 @@ repositories {
     mavenCentral()
 }
  
-dependencies { 	
+dependencies { 
+	
+  compile('org.codehaus.groovy:groovy-all:2.4.5')
+	
   compile('org.apache.commons:commons-lang3:3.4')
   compile('com.opencsv:opencsv:3.7')
   compile('ch.qos.logback:logback-classic:1.1.4')
@@ -27,6 +30,14 @@ dependencies {
 
 }
  
+sourceSets {
+	main {
+	  java { srcDirs = [] }    // no source dirs for the java compiler
+	  groovy { srcDirs = ["src/main/java", "src/test/groovy"] }  // compile everything in src/ with groovy
+	 }
+  }
+
+
 test {
     systemProperties 'property': 'value'
 }

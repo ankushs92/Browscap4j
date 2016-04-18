@@ -6,6 +6,7 @@ public final class RegexResolver {
 
 	protected static String toRegex(String namePattern) {
 		final StringBuilder patternBuilder = new StringBuilder();
+		patternBuilder.append("^");
 		for (final char c : namePattern.toCharArray()) {
 			switch (c) {
 				case '*':
@@ -23,11 +24,8 @@ public final class RegexResolver {
 					}
 			}
 		}
-		final String pattern = patternBuilder.toString();
+		patternBuilder.append("$");
+		final String pattern = patternBuilder.toString().toLowerCase();
 		return pattern;
-	}
-	public static void main(String[] args) {
-		System.out.println("Mozilla/4.0 (compatible*; MSIE 7.0*; *Windows NT 6.0*Mozilla/4.0 (compatible*; MSIE 6.0*"
-				.equals("Mozilla/4.0 (compatible*; MSIE 7.0*; *Windows NT 6.0*Mozilla/4.0 (compatible*; MSIE 6.0*"));
 	}
 }

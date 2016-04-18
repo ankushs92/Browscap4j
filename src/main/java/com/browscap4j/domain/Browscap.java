@@ -1,8 +1,11 @@
 package com.browscap4j.domain;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +20,7 @@ public final class Browscap {
 	private static boolean allLoaded;
 	
 	private ResourceBuilder resourceBuilder;
-	private static Map<String, String> regexToNamePatternsMap;
+	private static Map<String, Pattern> regexToNamePatternsMap;
 	private static Map<String, BrowserCapabilities> cache;
 
 	public Browscap(final File csvFile) {
@@ -41,21 +44,27 @@ public final class Browscap {
 
 	public BrowserCapabilities lookup(final String userAgent) {
 		PreConditions.checkNull(userAgent, "Cannot pass a null UserAgent String ! ");
-		// Java 8 Magic !
 		logger.debug("Attempting to find BrowserCapabilities for User Agent String {}", userAgent);
-		final String namePattern = regexToNamePatternsMap
+		
+		// Java 8 Magic !
+		final Optional<Entry<String,Pattern>> namePatternRegexEntry = regexToNamePatternsMap
 				.entrySet()
-				.parallelStream()
-				.filter(entry -> userAgent.matches(entry.getValue()))
-				.findFirst()
-				.get()
-				.getKey();
-		final BrowserCapabilities browserCapabilities = cache.get(namePattern);
-		if (browserCapabilities == null) {
+				.parallelStream() 
+				.filter(entry -> {
+					final Matcher matcher  = entry.getValue().matcher(userAgent);
+					return matcher.matches();
+				})
+				.findFirst();
+		
+		if(!namePatternRegexEntry.isPresent()){
 			logger.debug("No Browsercapabilities found for user agent string {} ", userAgent);
-		} else {
-			logger.debug("BrowserCapabilities {} found for user agent string {} ", browserCapabilities, userAgent);
+			return null;
 		}
+			
+		final String namePattern = namePatternRegexEntry.get().getKey();
+		final BrowserCapabilities browserCapabilities = cache.get(namePattern);
+		logger.debug("BrowserCapabilities {} found for user agent string {} ", browserCapabilities, userAgent);
+
 		return browserCapabilities;
 	}
 }

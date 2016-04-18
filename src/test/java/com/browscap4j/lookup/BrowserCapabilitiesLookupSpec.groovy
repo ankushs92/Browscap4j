@@ -1,12 +1,13 @@
 package com.browscap4j.lookup
 
-import com.browscap4j.domain.Browscap
+import com.browscap4j.domain.Browscap 
 
 class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
-	final Browscap browscap =  new Browscap(new File("/Users/Ankush/Downloads/browscap/browscap.csv"))
+	final String PATH_TO_BROWSCAP_FILE="/Users/Ankush/Downloads/browscap/browscap.csv"
+	final Browscap browscap =  new Browscap(new File(PATH_TO_BROWSCAP_FILE))
 
-
+	// Format: Test platform,platformMaker,deviceName,browser
 	def "Test MacOSX ,AppleInc , Macintosh,Chrome"(){
 		given:
 		def ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36"
@@ -168,7 +169,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		then:
 		browserCapabilities.browser=='Android WebView'
-		browserCapabilities.deviceBrandName==''
+		browserCapabilities.deviceBrandName=='Unknown'
 		browserCapabilities.deviceCodeName=='general Mobile Phone'
 		browserCapabilities.deviceName=='general Mobile Phone'
 		browserCapabilities.deviceType=='Mobile Phone'
@@ -203,11 +204,10 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 			
 		when:
 		def browserCapabilities = browscap.lookup(ua)
-		println browserCapabilities
 	   
 	   then:
 		   browserCapabilities.browser=='IE'
-		   browserCapabilities.deviceBrandName==''
+		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
@@ -226,14 +226,14 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   
 	   then:
 		  browserCapabilities.browser=='Default Browser'
-		  browserCapabilities.deviceBrandName==''
-		 browserCapabilities.deviceCodeName==''
-		  browserCapabilities.deviceName==''
-		   browserCapabilities.deviceType==''
+		  browserCapabilities.deviceBrandName=='Unknown'
+		 browserCapabilities.deviceCodeName=='Unknown'
+		  browserCapabilities.deviceName=='Unknown'
+		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform==''
-		   browserCapabilities.platformMaker==''
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
 		}
 
 	def "Test WinXP,Microsoft Corporation,Windows Desktop,Chrome"(){
@@ -245,7 +245,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   
 	   then:
 		   browserCapabilities.browser=='Chrome'
-		   browserCapabilities.deviceBrandName==''
+		   browserCapabilities.deviceBrandName=='Unknown'
 		    browserCapabilities.deviceCodeName=='Windows Desktop'
 		  browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
@@ -264,7 +264,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   
 	   then:
 		   browserCapabilities.browser=='IE'
-		   browserCapabilities.deviceBrandName==''
+		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
@@ -273,5 +273,311 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.platform=='Win2000'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		}
+	
+	// Format: Test platform,platformMaker,deviceName,browser
+	
+	def "Test unknown,unknown,general Desktop,w3m "(){
+		given:
+		def ua="w3m/0.1.9"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
 
+	   then:
+		   browserCapabilities.browser=='w3m'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='general Desktop'
+		   browserCapabilities.deviceName=='general Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+
+	}
+	
+	def "WinXP,Microsoft Corporation ,Windows Desktop ,Mozilla"(){
+		given:
+		def ua="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1pre) Gecko/20090629 Vonkeror/1.0"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Mozilla'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Windows Desktop'
+		   browserCapabilities.deviceName=='Windows Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='WinXP'
+		   browserCapabilities.platformMaker=='Microsoft Corporation'
+	}
+	
+	def "MacOSX,Apple Inc,Macintosh,TenFourFox"(){
+		given:
+		def ua="Mozilla/5.0 (Macintosh; PPC Mac OS X 10.5; rv:10.0.2) Gecko/20120216 Firefox/10.0.2 TenFourFox/7450"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='TenFourFox'
+		   browserCapabilities.deviceBrandName=='Apple'
+		   browserCapabilities.deviceCodeName=='Macintosh'
+		   browserCapabilities.deviceName=='Macintosh'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='MacOSX'
+		   browserCapabilities.platformMaker=='Apple Inc'
+	}
+	
+	def "WinVista,Microsoft Corporation,Windows Desktop,IE"(){
+		given:
+		def ua="Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; TencentTraveler 4.0; Trident/4.0; SLCC1; Media Center PC 5.0; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30618)"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='IE'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Windows Desktop'
+		   browserCapabilities.deviceName=='Windows Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='WinVista'
+		   browserCapabilities.platformMaker=='Microsoft Corporation'
+	}
+	
+	def "WinXP,Microsoft Corporation,Windows Desktop,SeaMonkey"(){
+		given:
+		def ua="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070809 Sylera/3.0.18 SeaMonkey/1.1.4"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='SeaMonkey'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Windows Desktop'
+		   browserCapabilities.deviceName=='Windows Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='WinXP'
+		   browserCapabilities.platformMaker=='Microsoft Corporation'
+	}
+	
+	def "Win7,Microsoft Corporation,Windows Desktop,Firefox"(){
+		given:
+		def ua="Mozilla/5.0 (Windows; U; Windows NT 6.1; x64; fr; rv:1.9.1.1) Gecko/20090722 Firefox/3.5.1 Orca/1.2 build 2"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Firefox'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Windows Desktop'
+		   browserCapabilities.deviceName=='Windows Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Win7'
+		   browserCapabilities.platformMaker=='Microsoft Corporation'
+	}
+	
+	def "Win98,Microsoft Corporation,Windows Desktop,Opera"(){
+		given:
+		def ua="Opera/4.02 (Windows 98; U) [en]"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Opera'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Windows Desktop'
+		   browserCapabilities.deviceName=='Windows Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Win98'
+		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		
+	}	
+	
+	def "Linux,Linux Foundation,Linux Desktop,Netscape"(){
+		given:
+		def ua="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.0.2) Gecko/20021120 Netscape/7.01"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Netscape'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Linux Desktop'
+		   browserCapabilities.deviceName=='Linux Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Linux'
+		   browserCapabilities.platformMaker=='Linux Foundation'
+	}
+	
+	def "WinVista,Microsoft Corporation,Windows Desktop,Maxthon"(){
+		given:
+		def ua="Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; MyIE2; SLCC1; .NET CLR 2.0.50727; Media Center PC 5.0)"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Maxthon'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Windows Desktop'
+		   browserCapabilities.deviceName=='Windows Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='WinVista'
+		   browserCapabilities.platformMaker=='Microsoft Corporation'
+	}
+	
+	def "Linux,Linux Foundation,general Desktop,Lynx"(){
+		given:
+		def ua="Lynx/2.8.6dev.11 libwww-FM/2.14"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Lynx'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='general Desktop'
+		   browserCapabilities.deviceName=='general Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Linux'
+		   browserCapabilities.platformMaker=='Linux Foundation'
+	}
+	def "Unknown,Unknown,Unknown,General Crawlers"(){
+		given:
+		def ua="HotJava/1.1.2 FCS"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='General Crawlers'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Unknown'
+		   browserCapabilities.deviceName=='Unknown'
+		   browserCapabilities.deviceType=='Unknown'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+	}
+	
+	def "Unknown,Unknown,Unknown,IE Offline Browser"(){
+		given:
+		def ua=" Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0; YComp 5.0.2.6; MSIECrawler)"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='IE Offline Browser'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Unknown'
+		   browserCapabilities.deviceName=='Unknown'
+		   browserCapabilities.deviceType=='Unknown'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+	}
+	
+	def "Amiga OS,Amiga,Unknown,Amiga"(){
+		given:
+		def ua="AmigaVoyager/3.2 (AmigaOS/MC680x0)"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Amiga'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Unknown'
+		   browserCapabilities.deviceName=='Unknown'
+		   browserCapabilities.deviceType=='Unknown'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Amiga OS'
+		   browserCapabilities.platformMaker=='Amiga'
+	}
+	
+	def"Unknown,Unknown,Unknown,Google Bot"(){
+		given:
+		def ua="Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Google Bot'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Unknown'
+		   browserCapabilities.deviceName=='Unknown'
+		   browserCapabilities.deviceType=='Unknown'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+	}
+	
+	def "Unknown,Unknown,general Desktop,YaCy Bot"(){
+		given:
+		def ua="yacybot (x86 Windows XP 5.1; java 1.6.0_12; Europe/de) http://yacy.net/bot.html"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='YaCy Bot'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='general Desktop'
+		   browserCapabilities.deviceName=='general Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+	}
+	def "Unknown,Unknown,Unknown,Yahoo! Slurp"(){
+		given:
+		def ua="Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Yahoo! Slurp'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Unknown'
+		   browserCapabilities.deviceName=='Unknown'
+		   browserCapabilities.deviceType=='Unknown'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+	}
+	
 }
