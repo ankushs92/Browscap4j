@@ -4,7 +4,7 @@ import com.browscap4j.domain.Browscap
 
 class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
-	final String PATH_TO_BROWSCAP_FILE="/Users/Ankush/Downloads/browscap/browscap.csv"
+	final String PATH_TO_BROWSCAP_FILE="/Users/Ankush/Downloads/browscap/new/browscap.csv"
 	final Browscap browscap =  new Browscap(new File(PATH_TO_BROWSCAP_FILE))
 
 	// Format: Test platform,platformMaker,deviceName,browser
@@ -198,7 +198,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.platformMaker=='Google Inc'
 	}
 	
-	def "Test WinVista,Microsoft Corporation,Windows Desktop,IE"(){
+	def "Test WinVista,Microsoft Corporation,Windows Desktop,Acoo Browser"(){
 		given:
 		def ua="Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; Acoo Browser; GTB5; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) ; InfoPath.1; .NET CLR 3.5.30729; .NET CLR 3.0.30618)"
 			
@@ -206,7 +206,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		def browserCapabilities = browscap.lookup(ua)
 	   
 	   then:
-		   browserCapabilities.browser=='IE'
+		   browserCapabilities.browser=='Acoo Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
@@ -296,7 +296,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	}
 	
-	def "WinXP,Microsoft Corporation ,Windows Desktop ,Mozilla"(){
+	def "Unknown,Unknown ,Unknown ,Default Browser"(){
 		given:
 		def ua="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1pre) Gecko/20090629 Vonkeror/1.0"
 			
@@ -304,15 +304,15 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		def browserCapabilities = browscap.lookup(ua)
 
 	   then:
-		   browserCapabilities.browser=='Mozilla'
+		   browserCapabilities.browser=='Default Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
-		   browserCapabilities.deviceCodeName=='Windows Desktop'
-		   browserCapabilities.deviceName=='Windows Desktop'
-		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.deviceCodeName=='Unknown'
+		   browserCapabilities.deviceName=='Unknown'
+		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='WinXP'
-		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
 	}
 	
 	def "MacOSX,Apple Inc,Macintosh,TenFourFox"(){
@@ -505,7 +505,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.platformMaker=='Unknown'
 	}
 	
-	def "Amiga OS,Amiga,Unknown,Amiga"(){
+	def "Amiga OS,Commodore International,Amiga,Voyager"(){
 		given:
 		def ua="AmigaVoyager/3.2 (AmigaOS/MC680x0)"
 			
@@ -513,15 +513,15 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		def browserCapabilities = browscap.lookup(ua)
 
 	   then:
-		   browserCapabilities.browser=='Amiga'
-		   browserCapabilities.deviceBrandName=='Unknown'
-		   browserCapabilities.deviceCodeName=='Unknown'
-		   browserCapabilities.deviceName=='Unknown'
-		   browserCapabilities.deviceType=='Unknown'
+		   browserCapabilities.browser=='Voyager'
+		   browserCapabilities.deviceBrandName=='Commodore'
+		   browserCapabilities.deviceCodeName=='Amiga'
+		   browserCapabilities.deviceName=='Amiga'
+		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Amiga OS'
-		   browserCapabilities.platformMaker=='Amiga'
+		   browserCapabilities.platformMaker=='Commodore International'
 	}
 	
 	def"Unknown,Unknown,Unknown,Google Bot"(){
@@ -580,4 +580,44 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.platformMaker=='Unknown'
 	}
 	
+	
+	def "Android,Google Inc,general Mobile Phone,Miui Browser"(){
+		given:
+		def ua="Mozilla/5.0 (Linux; U; Android 4.3; en-us; HM 1SW Build/JLS36C) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 XiaoMi/MiuiBrowser/1.0"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Miui Browser'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='general Mobile Phone'
+		   browserCapabilities.deviceName=='general Mobile Phone'
+		   browserCapabilities.deviceType=='Mobile Phone'
+		   browserCapabilities.isMobile==true
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Android'
+		   browserCapabilities.platformMaker=='Google Inc'
+	}
+	
+	def "Android,Google Inc,C6903,Chrome"(){
+		
+		given:
+		def ua="Mozilla/5.0 (Linux; Android 4.3; C6903 Build/14.2.A.1.136) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.59 Mobile Safari/537.36"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Chrome'
+		   browserCapabilities.deviceBrandName=='Sony'
+		   browserCapabilities.deviceCodeName=='C6903'
+		   browserCapabilities.deviceName=='Xperia Z1'
+		   browserCapabilities.deviceType=='Mobile Phone'
+		   browserCapabilities.isMobile==true
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Android'
+		   browserCapabilities.platformMaker=='Google Inc'
+		
+	}
 }
