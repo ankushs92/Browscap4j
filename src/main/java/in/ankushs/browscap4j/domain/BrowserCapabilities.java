@@ -1,6 +1,12 @@
-package com.browscap4j.domain;
+package in.ankushs.browscap4j.domain;
 
 import org.apache.commons.lang3.BooleanUtils;
+/**
+ * Core object that represents the capabilities of an user agent.
+ * 
+ * @author Ankush Sharma
+ *
+ */
 
 public final class BrowserCapabilities {
 	private final String browser;
@@ -13,7 +19,7 @@ public final class BrowserCapabilities {
 	private final String platformMaker;
 	private final boolean isMobile;
 	private final boolean isTablet;
-	
+
 	public BrowserCapabilities(final Builder builder){
 		this.browser = builder.browser;
 		this.deviceBrandName = builder.deviceBrandName;
@@ -26,7 +32,7 @@ public final class BrowserCapabilities {
 		this.platformMaker = builder.platformMaker;
 	}
 
-	public static class Builder{
+   public static class Builder{
 		private  String browser;
 		private  String deviceName;
 		private  String deviceType;

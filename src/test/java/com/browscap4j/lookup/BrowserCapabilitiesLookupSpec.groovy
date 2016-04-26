@@ -1,6 +1,6 @@
 package com.browscap4j.lookup
 
-import com.browscap4j.domain.Browscap 
+import in.ankushs.browscap4j.domain.Browscap;; 
 
 class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
@@ -619,5 +619,43 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.platform=='Android'
 		   browserCapabilities.platformMaker=='Google Inc'
 		
+	}
+	
+	def "Android,Google Inc,B8000-H,Android"(){
+		given:
+		def ua="Mozilla/5.0 (Linux; U; Android 4.2.2; de-de; Lenovo B8000-H/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.2.2 Mobile Safari/534.30"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Android'
+		   browserCapabilities.deviceBrandName=='Lenovo'
+		   browserCapabilities.deviceCodeName=='B8000-H'
+		   browserCapabilities.deviceName=='Yoga Tablet 10 3G'
+		   browserCapabilities.deviceType=='Tablet'
+		   browserCapabilities.isMobile==true
+		   browserCapabilities.isTablet==true
+		   browserCapabilities.platform=='Android'
+		   browserCapabilities.platformMaker=='Google Inc'
+	}
+	
+	def "Unknown,Unknown,general Mobile Device,Nokia"(){
+		given:
+		def ua="NokiaN97/21.1.107 (SymbianOS/9.4; Series60/5.0 Mozilla/5.0; Profile/MIDP-2.1 Configuration/CLDC-1.1) AppleWebkit/525 (KHTML, like Gecko) BrowserNG/7.1.4"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Nokia'
+		   browserCapabilities.deviceBrandName=='Nokia'
+		   browserCapabilities.deviceCodeName=='general Mobile Device'
+		   browserCapabilities.deviceName=='general Mobile Device'
+		   browserCapabilities.deviceType=='Mobile Phone'
+		   browserCapabilities.isMobile==true
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
 	}
 }

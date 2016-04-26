@@ -1,4 +1,4 @@
-package com.browscap4j.service;
+package in.ankushs.browscap4j.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,9 +13,14 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.browscap4j.domain.BrowserCapabilities;
-import com.browscap4j.utils.Strings;
-
+import in.ankushs.browscap4j.domain.BrowserCapabilities;
+import in.ankushs.browscap4j.utils.Strings;
+/**
+ * 
+ * Builds and loads the browscap.csv file into appropriate data structures .
+ * @author Ankush Sharma
+ *
+ */
 public final class ResourceBuilder {
 	private static final Logger logger = LoggerFactory.getLogger(ResourceBuilder.class);
 	private final File file;
@@ -27,6 +32,12 @@ public final class ResourceBuilder {
 		this.file = file;
 	}
 
+	/**
+	 * Creates a <a href="https://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashMap.html">LinkedHashMap</a>
+	 * with name pattern as key and its regex representation in the form of a <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">Pattern</a>
+	 * object as value.
+	 * @return a LinkedHashMap with name pattern as key and regex as Pattern object as  value
+	 */
 	public Map<String, Pattern> getRegexNamePatternsMap() {
 		List<String[]> records = null;
 		try {
@@ -47,7 +58,12 @@ public final class ResourceBuilder {
 					},
 					LinkedHashMap::new));
 	}
-
+	
+	/**
+	 * Creates a  <a href="https://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html">HashMap</a>
+	 * with name pattern as key and browser capabilities as a BrowserCapabilities object as value.
+	 * @return a HashMap with name pattern as key and BrowserCapabilities as value
+	 */
 	public Map<String, BrowserCapabilities> getNamePatternsToBrowserCapabilitiesMap() {
 		List<String[]> records = null;
 		try {
