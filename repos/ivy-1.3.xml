@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
-  <info organisation="in.ankushs" module="Browscap" revision="1.3" status="integration" publication="20160426153834">
+  <info organisation="in.ankushs" module="browscap" revision="1.3" status="integration" publication="20160503151810">
     <description/>
   </info>
   <configurations>
