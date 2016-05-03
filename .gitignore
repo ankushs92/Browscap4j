@@ -1,6 +1,10 @@
 # Directories #
 /build/
 bin/
+repos/
+/repos/
+doc/
+/doc/
 .gradle/
 /bin/
 target/
