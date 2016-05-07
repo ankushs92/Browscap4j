@@ -83,12 +83,13 @@ public final class ResourceBuilder {
 						final String deviceBrandName = Strings.hasText(record[46]) ? record[46] : UNKNOWN;
 						final String platform = Strings.hasText( record[13]) ?  record[13] : UNKNOWN;
 						final String platformMaker = Strings.hasText( record[17]) ?  record[17] : UNKNOWN;
+						final String platformVersion = Strings.hasText(record[14]) ? record[14] : UNKNOWN;  
 						final Boolean isMobile = BooleanUtils.toBoolean(record[32]);
 						final Boolean isTablet = BooleanUtils.toBoolean(record[33]);
 						
 						return new BrowserCapabilities.Builder().browser(browser).deviceCodeName(deviceCodeName)
 								.deviceName(deviceName).deviceBrandName(deviceBrandName).deviceType(deviceType)
-								.platform(platform).platformMaker(platformMaker).isTablet(isTablet).isMobile(isMobile)
+								.platform(platform).platformMaker(platformMaker).platformVersion(platformVersion).isTablet(isTablet).isMobile(isMobile)
 								.build();
 				}));
 				

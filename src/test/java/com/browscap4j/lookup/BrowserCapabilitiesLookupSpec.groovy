@@ -25,6 +25,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isTablet==false
 		browserCapabilities.platform=='MacOSX'
 		browserCapabilities.platformMaker=='Apple Inc'
+		browserCapabilities.platformVersion=='10.10'
 	}
 
 
@@ -44,7 +45,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==true
 		browserCapabilities.platform=='Android'
-		browserCapabilities.platformMaker=='Google Inc'
+		browserCapabilities.platformMaker=='Google Inc'	
+	    browserCapabilities.platformVersion=='Unknown'
+
 	}
 
 	def "Test iOS,Apple Inc,iPad,Safari"(){
@@ -64,6 +67,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isTablet==true
 		browserCapabilities.platform=='iOS'
 		browserCapabilities.platformMaker=='Apple Inc'
+	   browserCapabilities.platformVersion=='7.0'
+
 	}
 
 	def "Test iOS,Apple Inc,iPhone,Safari"(){
@@ -82,6 +87,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isTablet==false
 		browserCapabilities.platform=='iOS'
 		browserCapabilities.platformMaker=='Apple Inc'
+	   browserCapabilities.platformVersion=='7.0'
 	}
 
 	def "Test Android,Google Inc,Galaxy S4,Chrome"(){
@@ -101,6 +107,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isTablet==false
 		browserCapabilities.platform=='Android'
 		browserCapabilities.platformMaker=='Google Inc'
+		browserCapabilities.platformVersion=='4.2'
 	}
 
 	def "Test Android,Google Inc,Galaxy Note II,Android"(){
@@ -120,6 +127,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isTablet==false
 		browserCapabilities.platform=='Android'
 		browserCapabilities.platformMaker=='Google Inc'
+		browserCapabilities.platformVersion=='4.1'		
 	}
 
 	def "Test MeeGo,Linux Foundation,N9,Nokia Browser"(){
@@ -139,6 +147,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isTablet==false
 		browserCapabilities.platform=='MeeGo'
 		browserCapabilities.platformMaker=='Linux Foundation'
+		browserCapabilities.platformVersion=='Unknown'
+		
 	}
 
 	def "Test WinPhone8,Microsoft Corporation,Lumia 520,IEMobile"(){
@@ -158,6 +168,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isTablet==false
 		browserCapabilities.platform=='WinPhone8'
 		browserCapabilities.platformMaker=='Microsoft Corporation'
+		browserCapabilities.platformVersion=='8.0'
+		
 	}
 
 	def "Test Android,Google Inc,general Mobile Phone,Android WebView"(){
@@ -177,6 +189,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isTablet==false
 		browserCapabilities.platform=='Android'
 		browserCapabilities.platformMaker=='Google Inc'
+		browserCapabilities.platformVersion=='4.4'
 	}
 
 	def "Test Android,Google Inc,Nexus 10,Chrome"(){
@@ -196,6 +209,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isTablet==true
 		browserCapabilities.platform=='Android'
 		browserCapabilities.platformMaker=='Google Inc'
+		browserCapabilities.platformVersion=='4.3'
+		
 	}
 	
 	def "Test WinVista,Microsoft Corporation,Windows Desktop,Acoo Browser"(){
@@ -215,6 +230,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='WinVista'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='6.0'
+		   
 		}
 
 	def "Test Unknown,Unknown,Unknown,Unknown"(){
@@ -234,6 +251,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
 		}
 
 	def "Test WinXP,Microsoft Corporation,Windows Desktop,Chrome"(){
@@ -253,6 +272,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='WinXP'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='5.1'
+		   
 		}
 	
 	def "Test Win2000,Microsoft Corporation,Windows Desktop,IE"(){
@@ -272,6 +293,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Win2000'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='5.0'
+		   
 		}
 	
 	// Format: Test platform,platformMaker,deviceName,browser
@@ -293,7 +316,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
-
+		   browserCapabilities.platformVersion=='Unknown'
+		   
 	}
 	
 	def "Unknown,Unknown ,Unknown ,Default Browser"(){
@@ -313,6 +337,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
 	}
 	
 	def "MacOSX,Apple Inc,Macintosh,TenFourFox"(){
@@ -332,6 +358,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='MacOSX'
 		   browserCapabilities.platformMaker=='Apple Inc'
+		   browserCapabilities.platformVersion=='10.5'
+		   
 	}
 	
 	def "WinVista,Microsoft Corporation,Windows Desktop,IE"(){
@@ -351,6 +379,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='WinVista'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='6.0'
+		   
 	}
 	
 	def "WinXP,Microsoft Corporation,Windows Desktop,SeaMonkey"(){
@@ -370,6 +400,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='WinXP'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='5.1'
+		   
 	}
 	
 	def "Win7,Microsoft Corporation,Windows Desktop,Firefox"(){
@@ -389,6 +421,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Win7'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='6.1'
+		   
 	}
 	
 	def "Win98,Microsoft Corporation,Windows Desktop,Opera"(){
@@ -408,7 +442,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Win98'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
-		
+		   browserCapabilities.platformVersion=='98'
+		   
 	}	
 	
 	def "Linux,Linux Foundation,Linux Desktop,Netscape"(){
@@ -428,6 +463,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Linux'
 		   browserCapabilities.platformMaker=='Linux Foundation'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
 	}
 	
 	def "WinVista,Microsoft Corporation,Windows Desktop,Maxthon"(){
@@ -447,6 +484,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='WinVista'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='6.0'
+		   
 	}
 	
 	def "Linux,Linux Foundation,general Desktop,Lynx"(){
@@ -466,6 +505,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Linux'
 		   browserCapabilities.platformMaker=='Linux Foundation'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
 	}
 	def "Unknown,Unknown,Unknown,General Crawlers"(){
 		given:
@@ -484,25 +525,29 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
 	}
 	
-	def "Unknown,Unknown,Unknown,IE Offline Browser"(){
+	def "Unknown,Unknown,Unknown,IE"(){
 		given:
-		def ua=" Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0; YComp 5.0.2.6; MSIECrawler)"
+		def ua="Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0; YComp 5.0.2.6; MSIECrawler)"
 			
 		when:
 		def browserCapabilities = browscap.lookup(ua)
 
 	   then:
-		   browserCapabilities.browser=='IE Offline Browser'
+		   browserCapabilities.browser=='IE'
 		   browserCapabilities.deviceBrandName=='Unknown'
-		   browserCapabilities.deviceCodeName=='Unknown'
-		   browserCapabilities.deviceName=='Unknown'
-		   browserCapabilities.deviceType=='Unknown'
+		   browserCapabilities.deviceCodeName=='Windows Desktop'
+		   browserCapabilities.deviceName=='Windows Desktop'
+		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Unknown'
-		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platform=='Win2000'
+		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='5.0'
+		   
 	}
 	
 	def "Amiga OS,Commodore International,Amiga,Voyager"(){
@@ -522,6 +567,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Amiga OS'
 		   browserCapabilities.platformMaker=='Commodore International'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
 	}
 	
 	def"Unknown,Unknown,Unknown,Google Bot"(){
@@ -541,6 +588,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
 	}
 	
 	def "Unknown,Unknown,general Desktop,YaCy Bot"(){
@@ -560,7 +609,11 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
 	}
+	
+	
 	def "Unknown,Unknown,Unknown,Yahoo! Slurp"(){
 		given:
 		def ua="Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)"
@@ -578,6 +631,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
 	}
 	
 	
@@ -598,6 +653,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Android'
 		   browserCapabilities.platformMaker=='Google Inc'
+		   browserCapabilities.platformVersion=='4.3'
+		   
 	}
 	
 	def "Android,Google Inc,C6903,Chrome"(){
@@ -618,7 +675,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Android'
 		   browserCapabilities.platformMaker=='Google Inc'
-		
+		   browserCapabilities.platformVersion=='4.3'
+		   
 	}
 	
 	def "Android,Google Inc,B8000-H,Android"(){
@@ -638,24 +696,32 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==true
 		   browserCapabilities.platform=='Android'
 		   browserCapabilities.platformMaker=='Google Inc'
+		   browserCapabilities.platformVersion=='4.2'
+		   
 	}
 	
-	def "Unknown,Unknown,general Mobile Device,Nokia"(){
+	def "iOS,Apple Inc,iPhone,Safari"(){
 		given:
-		def ua="NokiaN97/21.1.107 (SymbianOS/9.4; Series60/5.0 Mozilla/5.0; Profile/MIDP-2.1 Configuration/CLDC-1.1) AppleWebkit/525 (KHTML, like Gecko) BrowserNG/7.1.4"
+		def ua="Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
 			
 		when:
 		def browserCapabilities = browscap.lookup(ua)
 
 	   then:
-		   browserCapabilities.browser=='Nokia'
-		   browserCapabilities.deviceBrandName=='Nokia'
-		   browserCapabilities.deviceCodeName=='general Mobile Device'
-		   browserCapabilities.deviceName=='general Mobile Device'
+		   browserCapabilities.browser=='Safari'
+		   browserCapabilities.deviceBrandName=='Apple'
+		   browserCapabilities.deviceCodeName=='iPhone'
+		   browserCapabilities.deviceName=='iPhone'
 		   browserCapabilities.deviceType=='Mobile Phone'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Unknown'
-		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platform=='iOS'
+		   browserCapabilities.platformMaker=='Apple Inc'
+		   browserCapabilities.platformVersion=='6.0'
+		   
 	}
+	
+	
+	
+	
 }

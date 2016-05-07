@@ -17,6 +17,7 @@ public final class BrowserCapabilities {
 	private final String deviceBrandName;
 	private final String platform;
 	private final String platformMaker;
+	private final String platformVersion;
 	private final boolean isMobile;
 	private final boolean isTablet;
 
@@ -30,6 +31,7 @@ public final class BrowserCapabilities {
 		this.isTablet = builder.isTablet;
 		this.platform = builder.platform;
 		this.platformMaker = builder.platformMaker;
+		this.platformVersion = builder.platformVersion;
 	}
 
    public static class Builder{
@@ -40,6 +42,7 @@ public final class BrowserCapabilities {
 		private  String deviceBrandName;
 		private  String platform;
 		private  String platformMaker;
+		private  String platformVersion;
 		private  boolean isMobile;
 		private  boolean isTablet;
 		
@@ -53,6 +56,10 @@ public final class BrowserCapabilities {
 		}
 		public Builder deviceType(final String deviceType){
 			this.deviceType = deviceType;
+			return this;
+		}
+		public Builder platformVersion(final String platformVersion){
+			this.platformVersion = platformVersion;
 			return this;
 		}
 		public Builder deviceCodeName(final String deviceCodeName){
@@ -120,6 +127,10 @@ public final class BrowserCapabilities {
 		return isMobile;
 	}
 
+	public String getPlatformVersion() {
+		return platformVersion;
+	}
+
 	public boolean isTablet() {
 		return isTablet;
 	}
@@ -128,8 +139,8 @@ public final class BrowserCapabilities {
 	public String toString() {
 		return "BrowserCapabilities [browser=" + browser + ", deviceName=" + deviceName + ", deviceType=" + deviceType
 				+ ", deviceCodeName=" + deviceCodeName + ", deviceBrandName=" + deviceBrandName + ", platform="
-				+ platform + ", platformMaker=" + platformMaker + ", isMobile=" + isMobile + ", isTablet=" + isTablet
-				+ "]";
+				+ platform + ", platformMaker=" + platformMaker + ", platformVersion=" + platformVersion + ", isMobile="
+				+ isMobile + ", isTablet=" + isTablet + "]";
 	}
 	
 }
