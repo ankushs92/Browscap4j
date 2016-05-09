@@ -20,7 +20,7 @@ import in.ankushs.browscap4j.utils.PreConditions;
 public final class Browscap {
 
 	private static final Logger logger = LoggerFactory.getLogger(Browscap.class);
-	
+	private static final String UNKNOWN = "Unknown";
 	/*
 	 * The browscap.csv file 
 	 * */
@@ -74,7 +74,7 @@ public final class Browscap {
 	
 	
 	/**
-	 * The main API .
+	 * The main API method .
 	 * Return the capabilities of a user agent.
 	 * @param userAgent the user agent being queried.
 	 * @return null if no capabilities found for {@code userAgent} ,and a loaded BrowserCapabilities object otherwise.
@@ -82,7 +82,17 @@ public final class Browscap {
 	public BrowserCapabilities lookup(final String userAgent) {
 		PreConditions.checkNull(userAgent, "Cannot pass a null UserAgent String ! ");
 		logger.debug("Attempting to find BrowserCapabilities for User Agent String {}", userAgent);
-		
+	    BrowserCapabilities browserCapabilities = resolve(userAgent);
+		if(browserCapabilities == null){
+			browserCapabilities = new BrowserCapabilities.Builder()
+										.browser(UNKNOWN).deviceBrandName(UNKNOWN).deviceCodeName(UNKNOWN)
+										.deviceName(UNKNOWN).deviceType(UNKNOWN).isMobile(false).isTablet(false)
+										.platform(UNKNOWN).platformMaker(UNKNOWN).platformVersion(UNKNOWN).build();
+		}
+		return browserCapabilities;
+	}
+	
+	private BrowserCapabilities resolve(final String userAgent){
 		// Java 8 Magic !
 		final Optional<Entry<String,Pattern>> namePatternRegexEntry = regexToNamePatternsMap
 				.entrySet()
@@ -99,7 +109,7 @@ public final class Browscap {
 		}
 			
 		final String namePattern = namePatternRegexEntry.get().getKey();
-		final BrowserCapabilities browserCapabilities = cache.get(namePattern);
+	    final BrowserCapabilities browserCapabilities = cache.get(namePattern);
 		logger.debug("BrowserCapabilities {} found for user agent string {} ", browserCapabilities, userAgent);
 
 		return browserCapabilities;

@@ -12,7 +12,6 @@ public final class BrowserCapabilities {
 	private final String browser;
 	private final String deviceName;
 	private final String deviceType;
-
 	private final String deviceCodeName;
 	private final String deviceBrandName;
 	private final String platform;
