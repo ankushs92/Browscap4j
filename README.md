@@ -98,4 +98,3 @@ The tests have been updated for the latest Browscap csv file as on 25th April 20
  
 Run the code and match the results by going [here](http://browscap.org/ua-lookup) .
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ankushs92/browscap4j/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
