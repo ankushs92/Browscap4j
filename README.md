@@ -86,6 +86,9 @@ However , if anyone wants certain fields included , just say so and it will be d
 **Important** 
 Browscap4j does not cache the results that it returns.The developer using Browscap4j is adviced to use their own Caching solution.
 
+**Integrating with Spring Boot**
+I have written a detailed blog post on how to use browscap4j with Spring Boot. You can read the tutorial [here](http://ankushs92.github.io/libraries/2016/05/12/browscap4j.html) and get the Spring-Boot-browscap4j app [here](https://github.com/ankushs92/Spring-Boot-browscap4j) .
+
 #Performance
 Performance testing was done on Macbook Pro,8 GM Ram , i5 2nd gen with SSD.
 Performance is pretty damn decent!Once you warm up the JVM for some time, the best case for resolving a user agent is about 20 ms ,the worst being 130-140 ms.
