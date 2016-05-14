@@ -721,7 +721,219 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   
 	}
 	
+	def "Win7,Microsoft Corporation,Windows Desktop,360 Secure Browser"(){
+		given:
+		def ua="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1 QIHU 360SE"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='360 Secure Browser'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Windows Desktop'
+		   browserCapabilities.deviceName=='Windows Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Win7'
+		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='6.1'
+		   
+	}
+	
+	def "Unknown,Unknown,3DS,NetFront NX"(){
+		given:
+		def ua="Mozilla/5.0 (Nintendo 3DS; U; ; en) Version/1.7552.EU"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='NetFront NX'
+		   browserCapabilities.deviceBrandName=='Nintendo'
+		   browserCapabilities.deviceCodeName=='3DS'
+		   browserCapabilities.deviceName=='3DS'
+		   browserCapabilities.deviceType=='Console'
+		   browserCapabilities.isMobile==true
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
+	}
+	
+	def "Syllable,Syllable Project,general Desktop,ABrowse"(){
+		given:
+		def ua="Mozilla/5.0 (compatible; ABrowse 0.4; Syllable)"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='ABrowse'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='general Desktop'
+		   browserCapabilities.deviceName=='general Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Syllable'
+		   browserCapabilities.platformMaker=='Syllable Project'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
+	}
+	
+	def "Unknown,Unknown,general Desktop,Amaya"(){
+		given:
+		def ua="amaya/11.1 libwww/5.4.0"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Amaya'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='general Desktop'
+		   browserCapabilities.deviceName=='general Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
+	}
 	
 	
+	def "WinXP,Microsoft Corporation,Windows Desktop,Avant"(){
+		given:
+		def ua="Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; JyxoToolbar1.0; Embedded Web Browser from: http://bsalsa.com/; Avant Browser; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022; .NET CLR 1.1.4322)"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Avant'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Windows Desktop'
+		   browserCapabilities.deviceName=='Windows Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='WinXP'
+		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='5.1'
+		   
+	}
+
+	def "WinNT,Microsoft Corporation,Windows Desktop,Beonex Communicator"(){
+		given:
+		def ua="Mozilla/5.0 (Windows; U; WinNT; en; rv:1.0.2) Gecko/20030311 Beonex/0.8.2-stable"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Beonex Communicator'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Windows Desktop'
+		   browserCapabilities.deviceName=='Windows Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='WinNT'
+		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
+	}
+	
+	def "Linux Smartphone OS,Linux Foundation,general Mobile Phone,Bolt"(){
+		given:
+		def ua="Mozilla/5.0 (X11; 78; CentOS; US-en) AppleWebKit/527+ (KHTML, like Gecko) Bolt/0.862 Version/3.0 Safari/523.15"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Bolt'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='general Mobile Phone'
+		   browserCapabilities.deviceName=='general Mobile Phone'
+		   browserCapabilities.deviceType=='Mobile Phone'
+		   browserCapabilities.isMobile==true
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Linux Smartphone OS'
+		   browserCapabilities.platformMaker=='Linux Foundation'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
+	}
+	
+	//8
+	def "Linux Smartphone OS,Linux Foundation,general Mobile Phone,BrowseX"(){
+		given:
+		def ua="Mozilla/4.61 [en] (X11; U; ) - BrowseX (2.0.0 Windows)"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='BrowseX'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Unknown'
+		   browserCapabilities.deviceName=='Unknown'
+		   browserCapabilities.deviceType=='Unknown'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
+	}
+	
+	//8
+	def "MacOSX,Apple Inc,Macintosh,Camino"(){
+		given:
+		def ua="Mozilla/5.0 (Macintosh; PPC Mac OS X 10.5; rv:2.0.1) Gecko/20100101 Firefox/4.0.1 Camino/2.2.1"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Camino'
+		   browserCapabilities.deviceBrandName=='Apple'
+		   browserCapabilities.deviceCodeName=='Macintosh'
+		   browserCapabilities.deviceName=='Macintosh'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='MacOSX'
+		   browserCapabilities.platformMaker=='Apple Inc'
+		   browserCapabilities.platformVersion=='10.5'
+		   
+	}
+	
+	
+	//8
+	def "MacPPC,Apple Inc,Macintosh,Classilla"(){
+		given:
+		def ua="Mozilla/5.0 (Macintosh; U; PPC; en-US; mimic; rv:9.3.0) Clecko/20120101 Classilla/CFM"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Classilla'
+		   browserCapabilities.deviceBrandName=='Apple'
+		   browserCapabilities.deviceCodeName=='Macintosh'
+		   browserCapabilities.deviceName=='Macintosh'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='MacPPC'
+		   browserCapabilities.platformMaker=='Apple Inc'
+		   browserCapabilities.platformVersion=='Unknown'
+		   
+	}
 	
 }
