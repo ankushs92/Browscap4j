@@ -933,7 +933,126 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.platform=='MacPPC'
 		   browserCapabilities.platformMaker=='Apple Inc'
 		   browserCapabilities.platformVersion=='Unknown'
-		   
 	}
 	
+	def "Unknown,Unknown,Unknown,YOURLS"(){
+		given:
+		def ua="YOURLS v1.5.1 +http://yourls.org/ (running on http://drms.be)"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='YOURLS'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Unknown'
+		   browserCapabilities.deviceName=='Unknown'
+		   browserCapabilities.deviceType=='Unknown'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+	}
+	
+	def "Unknown,Unknown,Unknown,Yahoo Link Preview"(){
+		given:
+		def ua="Mozilla/5.0 (compatible; Yahoo Link Preview; https://help.yahoo.com/kb/mail/yahoo-link-preview-SLN23615.html)"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Yahoo Link Preview'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Unknown'
+		   browserCapabilities.deviceName=='Unknown'
+		   browserCapabilities.deviceType=='Unknown'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+	}
+	
+	def "Unknown,Unknown,general Mobile Device,Nokia"(){
+		given:
+		def ua="Nokia SyncML HTTP Client"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Nokia'
+		   browserCapabilities.deviceBrandName=='Nokia'
+		   browserCapabilities.deviceCodeName=='general Mobile Device'
+		   browserCapabilities.deviceName=='general Mobile Device'
+		   browserCapabilities.deviceType=='Mobile Phone'
+		   browserCapabilities.isMobile==true
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.platformMaker=='Unknown'
+		   browserCapabilities.platformVersion=='Unknown'
+	}
+	
+	def "Linux,Linux Foundation,Linux Desktop,gvfs"(){
+		given:
+		def ua="gvfs/0.2.3"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='gvfs'
+		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.deviceCodeName=='Linux Desktop'
+		   browserCapabilities.deviceName=='Linux Desktop'
+		   browserCapabilities.deviceType=='Desktop'
+		   browserCapabilities.isMobile==false
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='Linux'
+		   browserCapabilities.platformMaker=='Linux Foundation'
+		   browserCapabilities.platformVersion=='Unknown'
+	}
+	
+	def "iOS,Apple Inc,general Mobile Device,Reeder"(){
+		given:
+		def ua="Reeder/1.0.1 CFNetwork/467.12 Darwin/10.3.1"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Reeder'
+		   browserCapabilities.deviceBrandName=='Apple'
+		   browserCapabilities.deviceCodeName=='general Mobile Device'
+		   browserCapabilities.deviceName=='general Mobile Device'
+		   browserCapabilities.deviceType=='Mobile Device'
+		   browserCapabilities.isMobile==true
+		   browserCapabilities.isTablet==false
+		   browserCapabilities.platform=='iOS'
+		   browserCapabilities.platformMaker=='Apple Inc'
+		   browserCapabilities.platformVersion=='3.2'
+	}
+	
+	def "iOS,Apple Inc,iPad,Facebook App"(){
+		given:
+		def ua="Mozilla/5.0 (iPad; CPU OS 6_0_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10A523 [FBAN/FBIOS;FBAV/6.0.1;FBBV/180945;FBDV/iPad2,1;FBMD/iPad;FBSN/iPhone OS;FBSV/6.0.1;FBSS/1; FBCR/;FBID/tablet;FBLC/en_US;FBOP/1]"
+			
+		when:
+		def browserCapabilities = browscap.lookup(ua)
+
+	   then:
+		   browserCapabilities.browser=='Facebook App'
+		   browserCapabilities.deviceBrandName=='Apple'
+		   browserCapabilities.deviceCodeName=='iPad'
+		   browserCapabilities.deviceName=='iPad'
+		   browserCapabilities.deviceType=='Tablet'
+		   browserCapabilities.isMobile==true
+		   browserCapabilities.isTablet==true
+		   browserCapabilities.platform=='iOS'
+		   browserCapabilities.platformMaker=='Apple Inc'
+		   browserCapabilities.platformVersion=='6.0'
+	}
+
 }
