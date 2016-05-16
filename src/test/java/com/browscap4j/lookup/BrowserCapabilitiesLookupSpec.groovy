@@ -1054,5 +1054,4 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.platformMaker=='Apple Inc'
 		   browserCapabilities.platformVersion=='6.0'
 	}
-
 }

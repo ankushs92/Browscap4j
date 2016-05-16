@@ -101,3 +101,11 @@ The tests have been updated for the latest Browscap csv file as on 25th April 20
  
 Run the code and match the results by going [here](http://browscap.org/ua-lookup) .
 
+#Supported By
+
+![yourkit!](https://www.yourkit.com/images/yklogo.png "yourkit")
+
+
+YourKit supports open source projects with its full-featured Java Profiler.
+YourKit, LLC is the creator of [YourKit Java Profiler](https://www.yourkit.com/java/profiler/index.jsp) and [YourKit .NET Profiler](https://www.yourkit.com/.net/profiler/index.jsp),innovative and intelligent tools for profiling Java and .NET applications.
+
