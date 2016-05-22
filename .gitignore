@@ -11,9 +11,16 @@ target/
  
 # OS Files #
 .DS_Store
- 
+
+# idea files #
+.idea*
+
 *.class
- 
+browscap.csv
+gradle/wrapper
+gradlew.bat
+gradlew
+
 # Package Files #
 *.jar
 *.war
