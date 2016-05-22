@@ -12,7 +12,7 @@ With maven :
 <dependency>
 	<groupId>in.ankushs</groupId>
 	<artifactId>browscap4j</artifactId>
-	<version>1.4.1</version>
+	<version>1.4.2</version>
 </dependency>
 
 ```
@@ -21,11 +21,11 @@ Or gradle:
 
 ```groovy
 
-compile('in.ankushs:browscap4j:1.4.1')
+compile('in.ankushs:browscap4j:1.4.2')
 
 ```
 
-The Javadocs for the latest release can be found [here](http://www.javadoc.io/doc/in.ankushs/browscap4j/1.4.1)
+The Javadocs for the latest release can be found [here](http://www.javadoc.io/doc/in.ankushs/browscap4j/1.4.2)
 
 #Instructions
 **Note : Browscap4j uses Java8** .

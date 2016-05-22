@@ -8,7 +8,7 @@ apply plugin: 'signing'
 sourceCompatibility = 1.8
 group ="in.ankushs"
 archivesBaseName = "browscap4j"
-version = '1.4.1'
+version = '1.4.2'
 
 jar {
     baseName = "browscap4j"
