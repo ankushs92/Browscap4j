@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,7 +41,7 @@ public final class Browscap {
 	 * Name patterns(from the browscap.csv file) as key and already computed
 	 * regex's as Pattern objects as value .
 	 */
-	private static Map<String, Pattern> regexToNamePatternsMap;
+	private static Map<String, Pattern> namePatternToRegexMap;
 
 	/*
 	 * Name patterns(from the browscap.csv file) as key and its capabilities in
@@ -65,7 +67,7 @@ public final class Browscap {
 			resourceBuilder = new ResourceBuilder(csvFile);
 			logger.info("Loading data ");
 
-			regexToNamePatternsMap = resourceBuilder.getRegexNamePatternsMap();
+			namePatternToRegexMap = resourceBuilder.getRegexNamePatternsMap();
 			cache = resourceBuilder.getNamePatternsToBrowserCapabilitiesMap();
 
 			logger.info("Finished loading data");
@@ -97,7 +99,7 @@ public final class Browscap {
 
 	private BrowserCapabilities resolve(final String userAgent) {
 		// Java 8 Magic !
-		final Optional<Entry<String, Pattern>> namePatternRegexEntry = regexToNamePatternsMap
+		final Optional<Entry<String, Pattern>> namePatternRegexEntry = namePatternToRegexMap
 				.entrySet()
 				.parallelStream()
 				.filter(entry -> {

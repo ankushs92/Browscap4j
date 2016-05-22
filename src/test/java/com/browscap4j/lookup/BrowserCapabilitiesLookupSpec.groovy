@@ -17,12 +17,18 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		then:
 		browserCapabilities.browser=='Chrome'
+		browserCapabilities.browserType=='Browser'
 		browserCapabilities.deviceBrandName=='Apple'
 		browserCapabilities.deviceCodeName=='Macintosh'
 		browserCapabilities.deviceName=='Macintosh'
 		browserCapabilities.deviceType=='Desktop'
 		browserCapabilities.isMobile==false
 		browserCapabilities.isTablet==false
+		browserCapabilities.isBot()==false
+		browserCapabilities.isWindows()==false
+		browserCapabilities.isAndroid()==false
+		browserCapabilities.isiOS()==false
+
 		browserCapabilities.platform=='MacOSX'
 		browserCapabilities.platformMaker=='Apple Inc'
 		browserCapabilities.platformVersion=='10.10'
@@ -38,12 +44,18 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		then:
 		browserCapabilities.browser=='Silk'
+		browserCapabilities.browserType=='Browser'
 		browserCapabilities.deviceBrandName=='Amazon'
 		browserCapabilities.deviceCodeName=='KFAPWI'
 		browserCapabilities.deviceName=='Kindle Fire HDX 8.9'
 		browserCapabilities.deviceType=='Tablet'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==true
+		browserCapabilities.isBot()==false
+		browserCapabilities.isWindows()==false
+		browserCapabilities.isAndroid()==true
+		browserCapabilities.isiOS()==false
+
 		browserCapabilities.platform=='Android'
 		browserCapabilities.platformMaker=='Google Inc'	
 	    browserCapabilities.platformVersion=='Unknown'
@@ -59,12 +71,19 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		then:
 		browserCapabilities.browser=='Safari'
+		browserCapabilities.browserType=='Browser'
+
 		browserCapabilities.deviceBrandName=='Apple'
 		browserCapabilities.deviceCodeName=='iPad'
 		browserCapabilities.deviceName=='iPad'
 		browserCapabilities.deviceType=='Tablet'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==true
+		browserCapabilities.isBot()==false
+		browserCapabilities.isWindows()==false
+		browserCapabilities.isAndroid()==false
+		browserCapabilities.isiOS()==true
+
 		browserCapabilities.platform=='iOS'
 		browserCapabilities.platformMaker=='Apple Inc'
 	   browserCapabilities.platformVersion=='7.0'
@@ -79,12 +98,18 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		then:
 		browserCapabilities.browser=='Safari'
+		browserCapabilities.browserType=='Browser'
 		browserCapabilities.deviceBrandName=='Apple'
 		browserCapabilities.deviceCodeName=='iPhone'
 		browserCapabilities.deviceName=='iPhone'
 		browserCapabilities.deviceType=='Mobile Phone'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
+		browserCapabilities.isBot()==false
+		browserCapabilities.isWindows()==false
+		browserCapabilities.isAndroid()==false
+		browserCapabilities.isiOS()==true
+
 		browserCapabilities.platform=='iOS'
 		browserCapabilities.platformMaker=='Apple Inc'
 	   browserCapabilities.platformVersion=='7.0'
@@ -99,12 +124,18 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		then:
 		browserCapabilities.browser=='Chrome'
+		browserCapabilities.browserType=='Browser'
 		browserCapabilities.deviceBrandName=='Samsung'
 		browserCapabilities.deviceCodeName=='GT-I9505'
 		browserCapabilities.deviceName=='Galaxy S4'
 		browserCapabilities.deviceType=='Mobile Phone'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
+		browserCapabilities.isBot()==false
+		browserCapabilities.isWindows()==false
+		browserCapabilities.isAndroid()==true
+		browserCapabilities.isiOS()==false
+
 		browserCapabilities.platform=='Android'
 		browserCapabilities.platformMaker=='Google Inc'
 		browserCapabilities.platformVersion=='4.2'
@@ -119,12 +150,18 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		then:
 		browserCapabilities.browser=='Android'
+		browserCapabilities.browserType=='Browser'
 		browserCapabilities.deviceBrandName=='Samsung'
 		browserCapabilities.deviceCodeName=='GT-N7100'
 		browserCapabilities.deviceName=='Galaxy Note II'
 		browserCapabilities.deviceType=='Mobile Phone'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
+		browserCapabilities.isBot()==false
+		browserCapabilities.isWindows()==false
+		browserCapabilities.isAndroid()==true
+		browserCapabilities.isiOS()==false
+
 		browserCapabilities.platform=='Android'
 		browserCapabilities.platformMaker=='Google Inc'
 		browserCapabilities.platformVersion=='4.1'		
@@ -139,12 +176,19 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		then:
 		browserCapabilities.browser=='Nokia Browser'
+		browserCapabilities.browserType=='Browser'
 		browserCapabilities.deviceBrandName=='Nokia'
 		browserCapabilities.deviceCodeName=='N9'
 		browserCapabilities.deviceName=='N9'
 		browserCapabilities.deviceType=='Mobile Phone'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
+
+		browserCapabilities.isBot()==false
+		browserCapabilities.isWindows()==false
+		browserCapabilities.isAndroid()==false
+		browserCapabilities.isiOS()==false
+
 		browserCapabilities.platform=='MeeGo'
 		browserCapabilities.platformMaker=='Linux Foundation'
 		browserCapabilities.platformVersion=='Unknown'
@@ -160,12 +204,19 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		then:
 		browserCapabilities.browser=='IEMobile'
+		browserCapabilities.browserType=='Browser'
 		browserCapabilities.deviceBrandName=='Nokia'
 		browserCapabilities.deviceCodeName=='Lumia 520'
 		browserCapabilities.deviceName=='Lumia 520'
 		browserCapabilities.deviceType=='Mobile Phone'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
+
+		browserCapabilities.isBot()==false
+		browserCapabilities.isWindows()==true
+		browserCapabilities.isAndroid()==false
+		browserCapabilities.isiOS()==false
+
 		browserCapabilities.platform=='WinPhone8'
 		browserCapabilities.platformMaker=='Microsoft Corporation'
 		browserCapabilities.platformVersion=='8.0'
@@ -181,12 +232,18 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		then:
 		browserCapabilities.browser=='Android WebView'
+		browserCapabilities.browserType=='Browser'
 		browserCapabilities.deviceBrandName=='Unknown'
 		browserCapabilities.deviceCodeName=='general Mobile Phone'
 		browserCapabilities.deviceName=='general Mobile Phone'
 		browserCapabilities.deviceType=='Mobile Phone'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
+		browserCapabilities.isBot()==false
+		browserCapabilities.isWindows()==false
+		browserCapabilities.isAndroid()==true
+		browserCapabilities.isiOS()==false
+
 		browserCapabilities.platform=='Android'
 		browserCapabilities.platformMaker=='Google Inc'
 		browserCapabilities.platformVersion=='4.4'
@@ -201,12 +258,18 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		then:
 		browserCapabilities.browser=='Chrome'
+		browserCapabilities.browserType=='Browser'
 		browserCapabilities.deviceBrandName=='Google'
 		browserCapabilities.deviceCodeName=='Nexus 10'
 		browserCapabilities.deviceName=='Nexus 10'
 		browserCapabilities.deviceType=='Tablet'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==true
+		browserCapabilities.isBot()==false
+		browserCapabilities.isWindows()==false
+		browserCapabilities.isAndroid()==true
+		browserCapabilities.isiOS()==false
+
 		browserCapabilities.platform=='Android'
 		browserCapabilities.platformMaker=='Google Inc'
 		browserCapabilities.platformVersion=='4.3'
@@ -222,13 +285,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   
 	   then:
 		   browserCapabilities.browser=='Acoo Browser'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='WinVista'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='WinVista'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='6.0'
 		   
@@ -243,13 +313,19 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   
 	   then:
 		  browserCapabilities.browser=='Default Browser'
+	   		browserCapabilities.browserType=='Unknown'
 		  browserCapabilities.deviceBrandName=='Unknown'
 		 browserCapabilities.deviceCodeName=='Unknown'
 		  browserCapabilities.deviceName=='Unknown'
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Unknown'
+	   browserCapabilities.isBot()==false
+	   browserCapabilities.isWindows()==false
+	   browserCapabilities.isAndroid()==false
+	   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -264,13 +340,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   
 	   then:
 		   browserCapabilities.browser=='Chrome'
+	   browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		    browserCapabilities.deviceCodeName=='Windows Desktop'
 		  browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='WinXP'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='WinXP'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='5.1'
 		   
@@ -285,13 +368,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   
 	   then:
 		   browserCapabilities.browser=='IE'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Win2000'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Win2000'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='5.0'
 		   
@@ -308,13 +398,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='w3m'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='general Desktop'
 		   browserCapabilities.deviceName=='general Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Unknown'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -329,13 +426,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Default Browser'
+	   		browserCapabilities.browserType=='Unknown'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Unknown'
 		   browserCapabilities.deviceName=='Unknown'
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Unknown'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -350,13 +454,21 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='TenFourFox'
-		   browserCapabilities.deviceBrandName=='Apple'
+	  	 browserCapabilities.browserType=='Browser'
+
+	   browserCapabilities.deviceBrandName=='Apple'
 		   browserCapabilities.deviceCodeName=='Macintosh'
 		   browserCapabilities.deviceName=='Macintosh'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='MacOSX'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='MacOSX'
 		   browserCapabilities.platformMaker=='Apple Inc'
 		   browserCapabilities.platformVersion=='10.5'
 		   
@@ -371,13 +483,21 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='IE'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='WinVista'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+
+	   browserCapabilities.platform=='WinVista'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='6.0'
 		   
@@ -392,13 +512,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='SeaMonkey'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='WinXP'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='WinXP'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='5.1'
 		   
@@ -413,13 +540,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Firefox'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Win7'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Win7'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='6.1'
 		   
@@ -434,13 +568,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Opera'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Win98'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Win98'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='98'
 		   
@@ -455,13 +596,21 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Netscape'
+	      browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Linux Desktop'
 		   browserCapabilities.deviceName=='Linux Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Linux'
+
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Linux'
 		   browserCapabilities.platformMaker=='Linux Foundation'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -476,13 +625,21 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Maxthon'
+	   		browserCapabilities.browserType=='Browser'
+
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='WinVista'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='WinVista'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='6.0'
 		   
@@ -497,13 +654,19 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Lynx'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='general Desktop'
 		   browserCapabilities.deviceName=='general Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Linux'
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Linux'
 		   browserCapabilities.platformMaker=='Linux Foundation'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -517,19 +680,25 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='General Crawlers'
+	   		browserCapabilities.browserType=='Bot/Crawler'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Unknown'
 		   browserCapabilities.deviceName=='Unknown'
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.isBot()==true
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
 	}
 	
-	def "Unknown,Unknown,Unknown,IE"(){
+	def "Win2000,Microsoft Corporation,Windows Desktop,IE"(){
 		given:
 		def ua="Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0; YComp 5.0.2.6; MSIECrawler)"
 			
@@ -538,13 +707,21 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='IE'
-		   browserCapabilities.deviceBrandName=='Unknown'
+	   browserCapabilities.browserType=='Browser'
+
+	   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Win2000'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Win2000'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='5.0'
 		   
@@ -559,13 +736,19 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Voyager'
+	   browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Commodore'
 		   browserCapabilities.deviceCodeName=='Amiga'
 		   browserCapabilities.deviceName=='Amiga'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Amiga OS'
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Amiga OS'
 		   browserCapabilities.platformMaker=='Commodore International'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -580,12 +763,18 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Google Bot'
-		   browserCapabilities.deviceBrandName=='Unknown'
+	   browserCapabilities.browserType=='Bot/Crawler'
+
+	   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Unknown'
 		   browserCapabilities.deviceName=='Unknown'
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isBot()==true
+	   browserCapabilities.isWindows()==false
+	   browserCapabilities.isAndroid()==false
+	   browserCapabilities.isiOS()==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
@@ -601,13 +790,21 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='YaCy Bot'
-		   browserCapabilities.deviceBrandName=='Unknown'
+	  		 browserCapabilities.browserType=='Bot/Crawler'
+
+	   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='general Desktop'
 		   browserCapabilities.deviceName=='general Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Unknown'
+
+	   browserCapabilities.isBot()==true
+	   browserCapabilities.isWindows()==false
+	   browserCapabilities.isAndroid()==false
+	   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -623,13 +820,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Yahoo! Slurp'
+	   browserCapabilities.browserType=='Bot/Crawler'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Unknown'
 		   browserCapabilities.deviceName=='Unknown'
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Unknown'
+
+		   browserCapabilities.isBot()==true
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -645,13 +849,21 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Miui Browser'
-		   browserCapabilities.deviceBrandName=='Unknown'
+		   browserCapabilities.browserType=='Browser'
+
+	   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='general Mobile Phone'
 		   browserCapabilities.deviceName=='general Mobile Phone'
 		   browserCapabilities.deviceType=='Mobile Phone'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Android'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==true
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Android'
 		   browserCapabilities.platformMaker=='Google Inc'
 		   browserCapabilities.platformVersion=='4.3'
 		   
@@ -667,13 +879,21 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Chrome'
-		   browserCapabilities.deviceBrandName=='Sony'
+		   browserCapabilities.browserType=='Browser'
+
+	   browserCapabilities.deviceBrandName=='Sony'
 		   browserCapabilities.deviceCodeName=='C6903'
 		   browserCapabilities.deviceName=='Xperia Z1'
 		   browserCapabilities.deviceType=='Mobile Phone'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Android'
+
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==true
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Android'
 		   browserCapabilities.platformMaker=='Google Inc'
 		   browserCapabilities.platformVersion=='4.3'
 		   
@@ -688,13 +908,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Android'
-		   browserCapabilities.deviceBrandName=='Lenovo'
+	  		 browserCapabilities.browserType=='Browser'
+
+	   browserCapabilities.deviceBrandName=='Lenovo'
 		   browserCapabilities.deviceCodeName=='B8000-H'
 		   browserCapabilities.deviceName=='Yoga Tablet 10 3G'
 		   browserCapabilities.deviceType=='Tablet'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==true
-		   browserCapabilities.platform=='Android'
+	   browserCapabilities.isBot()==false
+	   browserCapabilities.isWindows()==false
+	   browserCapabilities.isAndroid()==true
+	   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Android'
 		   browserCapabilities.platformMaker=='Google Inc'
 		   browserCapabilities.platformVersion=='4.2'
 		   
@@ -709,13 +936,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Safari'
-		   browserCapabilities.deviceBrandName=='Apple'
+	 	  browserCapabilities.browserType=='Browser'
+
+	 	  browserCapabilities.deviceBrandName=='Apple'
 		   browserCapabilities.deviceCodeName=='iPhone'
 		   browserCapabilities.deviceName=='iPhone'
 		   browserCapabilities.deviceType=='Mobile Phone'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='iOS'
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==true
+
+	   browserCapabilities.platform=='iOS'
 		   browserCapabilities.platformMaker=='Apple Inc'
 		   browserCapabilities.platformVersion=='6.0'
 		   
@@ -730,13 +964,19 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='360 Secure Browser'
+	  		 browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Win7'
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Win7'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='6.1'
 		   
@@ -751,13 +991,19 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='NetFront NX'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Nintendo'
 		   browserCapabilities.deviceCodeName=='3DS'
 		   browserCapabilities.deviceName=='3DS'
 		   browserCapabilities.deviceType=='Console'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   		browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -772,13 +1018,20 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='ABrowse'
-		   browserCapabilities.deviceBrandName=='Unknown'
+	  	 browserCapabilities.browserType=='Browser'
+
+	   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='general Desktop'
 		   browserCapabilities.deviceName=='general Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Syllable'
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Syllable'
 		   browserCapabilities.platformMaker=='Syllable Project'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -794,12 +1047,18 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   then:
 		   browserCapabilities.browser=='Amaya'
 		   browserCapabilities.deviceBrandName=='Unknown'
+	   		browserCapabilities.browserType=='Application'
 		   browserCapabilities.deviceCodeName=='general Desktop'
 		   browserCapabilities.deviceName=='general Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Unknown'
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -815,13 +1074,19 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Avant'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='WinXP'
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='WinXP'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='5.1'
 		   
@@ -836,13 +1101,19 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Beonex Communicator'
+	   		browserCapabilities.browserType=='Application'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='WinNT'
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==true
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.platform=='WinNT'
 		   browserCapabilities.platformMaker=='Microsoft Corporation'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -857,13 +1128,18 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Bolt'
+	   		browserCapabilities.browserType=='Unknown'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='general Mobile Phone'
 		   browserCapabilities.deviceName=='general Mobile Phone'
 		   browserCapabilities.deviceType=='Mobile Phone'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.platform=='Linux Smartphone OS'
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+	   browserCapabilities.platform=='Linux Smartphone OS'
 		   browserCapabilities.platformMaker=='Linux Foundation'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
@@ -879,12 +1155,17 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='BrowseX'
-		   browserCapabilities.deviceBrandName=='Unknown'
+	 	  browserCapabilities.browserType=='Bot/Crawler'
+	 	  browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Unknown'
 		   browserCapabilities.deviceName=='Unknown'
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+		   browserCapabilities.isBot()==true
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
@@ -901,11 +1182,17 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Camino'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Apple'
 		   browserCapabilities.deviceCodeName=='Macintosh'
 		   browserCapabilities.deviceName=='Macintosh'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+	   		browserCapabilities.isiOS()==false
+	   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='MacOSX'
 		   browserCapabilities.platformMaker=='Apple Inc'
@@ -924,12 +1211,18 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Classilla'
+	  	 browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Apple'
 		   browserCapabilities.deviceCodeName=='Macintosh'
 		   browserCapabilities.deviceName=='Macintosh'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
-		   browserCapabilities.isTablet==false
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+
+	   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='MacPPC'
 		   browserCapabilities.platformMaker=='Apple Inc'
 		   browserCapabilities.platformVersion=='Unknown'
@@ -945,11 +1238,17 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   then:
 		   browserCapabilities.browser=='YOURLS'
 		   browserCapabilities.deviceBrandName=='Unknown'
-		   browserCapabilities.deviceCodeName=='Unknown'
+		   browserCapabilities.browserType=='Bot/Crawler'
+
+	   browserCapabilities.deviceCodeName=='Unknown'
 		   browserCapabilities.deviceName=='Unknown'
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
-		   browserCapabilities.isTablet==false
+		   browserCapabilities.isBot()==true
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+	   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
@@ -965,10 +1264,15 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   then:
 		   browserCapabilities.browser=='Yahoo Link Preview'
 		   browserCapabilities.deviceBrandName=='Unknown'
+	   	   browserCapabilities.browserType=='Bot/Crawler'
 		   browserCapabilities.deviceCodeName=='Unknown'
 		   browserCapabilities.deviceName=='Unknown'
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
+		   browserCapabilities.isBot()==true
+			browserCapabilities.isWindows()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
@@ -984,12 +1288,19 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Nokia'
+	   	browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Nokia'
 		   browserCapabilities.deviceCodeName=='general Mobile Device'
 		   browserCapabilities.deviceName=='general Mobile Device'
 		   browserCapabilities.deviceType=='Mobile Phone'
 		   browserCapabilities.isMobile==true
-		   browserCapabilities.isTablet==false
+	   		browserCapabilities.isAndroid()==false
+		   browserCapabilities.isAndroid()==false
+		   browserCapabilities.isiOS()==false
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isWindows()==false
+
+	  	 browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
 		   browserCapabilities.platformMaker=='Unknown'
 		   browserCapabilities.platformVersion=='Unknown'
@@ -1005,11 +1316,16 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   then:
 		   browserCapabilities.browser=='gvfs'
 		   browserCapabilities.deviceBrandName=='Unknown'
+	   browserCapabilities.browserType=='Tool'
 		   browserCapabilities.deviceCodeName=='Linux Desktop'
 		   browserCapabilities.deviceName=='Linux Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   		browserCapabilities.isiOS()==false
+	   browserCapabilities.isWindows()==false
+	   browserCapabilities.isAndroid()==false
+	   	browserCapabilities.isBot()==false
 		   browserCapabilities.platform=='Linux'
 		   browserCapabilities.platformMaker=='Linux Foundation'
 		   browserCapabilities.platformVersion=='Unknown'
@@ -1024,12 +1340,17 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Reeder'
+	   		browserCapabilities.browserType=='Application'
 		   browserCapabilities.deviceBrandName=='Apple'
 		   browserCapabilities.deviceCodeName=='general Mobile Device'
 		   browserCapabilities.deviceName=='general Mobile Device'
 		   browserCapabilities.deviceType=='Mobile Device'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==false
+	   		browserCapabilities.isAndroid()==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isBot()==false
+		   browserCapabilities.isiOS() == true
 		   browserCapabilities.platform=='iOS'
 		   browserCapabilities.platformMaker=='Apple Inc'
 		   browserCapabilities.platformVersion=='3.2'
@@ -1044,12 +1365,17 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Facebook App'
+	   		browserCapabilities.browserType=='Application'
 		   browserCapabilities.deviceBrandName=='Apple'
 		   browserCapabilities.deviceCodeName=='iPad'
 		   browserCapabilities.deviceName=='iPad'
 		   browserCapabilities.deviceType=='Tablet'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==true
+	   		browserCapabilities.isBot()==false
+		   browserCapabilities.isAndroid() ==false
+		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isiOS()==true
 		   browserCapabilities.platform=='iOS'
 		   browserCapabilities.platformMaker=='Apple Inc'
 		   browserCapabilities.platformVersion=='6.0'

@@ -83,6 +83,15 @@ isTablet ::: false
 You are probably wondering why there are only 10 fields ,when there are around 45 or more in the csv file. Well , the simple answer is that the csv file contains way too much data for a user agent, most of which the author thinks is not needed for most projects.Add to that the headache of parsing so many fields. 
 However , if anyone wants certain fields included , just say so and it will be done!.
 
+Some extra conveneance methods :
+
+```java
+boolean isWindows = browserCapabilities.isWindows();
+boolean isiOS = browserCapabilities.isiOS();
+boolean isAndroid = browserCapabilities.isAndroid();
+boolean isBot = browserCapabilities.isBot(); //Bot or crawler
+```
+
 **Important** 
 Browscap4j does not cache the results that it returns.The developer using Browscap4j is adviced to use their own Caching solution.
 

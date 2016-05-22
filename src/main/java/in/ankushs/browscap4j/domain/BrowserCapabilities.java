@@ -11,6 +11,7 @@ import org.apache.commons.lang3.BooleanUtils;
 public final class BrowserCapabilities {
 	private final String browser;
 	private final String deviceName;
+	private final String browserType;
 	private final String deviceType;
 	private final String deviceCodeName;
 	private final String deviceBrandName;
@@ -22,6 +23,7 @@ public final class BrowserCapabilities {
 
 	public BrowserCapabilities(final Builder builder){
 		this.browser = builder.browser;
+		this.browserType = builder.browserType;
 		this.deviceBrandName = builder.deviceBrandName;
 		this.deviceCodeName = builder.deviceCodeName;
 		this.deviceName = builder.deviceName;
@@ -35,6 +37,7 @@ public final class BrowserCapabilities {
 
    public static class Builder{
 		private  String browser;
+	    private  String browserType;
 		private  String deviceName;
 		private  String deviceType;
 		private  String deviceCodeName;
@@ -49,6 +52,12 @@ public final class BrowserCapabilities {
 			this.browser = browser;
 			return this;
 		}
+
+	   public Builder browserType(final String browserType){
+		   this.browserType = browserType;
+		   return this;
+	   }
+
 		public Builder deviceName(final String deviceName){
 			this.deviceName = deviceName;
 			return this;
@@ -122,6 +131,8 @@ public final class BrowserCapabilities {
 		return platformMaker;
 	}
 
+	public String getBrowserType() {return browserType;}
+
 	public boolean isMobile() {
 		return isMobile;
 	}
@@ -134,12 +145,40 @@ public final class BrowserCapabilities {
 		return isTablet;
 	}
 
+
+	public boolean isBot(){
+		return getBrowserType().equals("Bot/Crawler");
+	}
+
+	public boolean isiOS(){
+		return getPlatform().equals("iOS");
+	}
+
+	public boolean isAndroid(){
+		return getPlatform().equals("Android");
+	}
+
+	public boolean isWindows(){
+		//Sometimes the platform is Win8Phone or Win7Phone.
+		//This is rather a crude way of doing it and is done on the basis of observation of how browscap resolves windows user agents.
+		return getPlatform().contains("Win");
+	}
+
 	@Override
 	public String toString() {
-		return "BrowserCapabilities [browser=" + browser + ", deviceName=" + deviceName + ", deviceType=" + deviceType
-				+ ", deviceCodeName=" + deviceCodeName + ", deviceBrandName=" + deviceBrandName + ", platform="
-				+ platform + ", platformMaker=" + platformMaker + ", platformVersion=" + platformVersion + ", isMobile="
-				+ isMobile + ", isTablet=" + isTablet + "]";
+		return "BrowserCapabilities{" +
+				"browser='" + browser + '\'' +
+				", deviceName='" + deviceName + '\'' +
+				", browserType='" + browserType + '\'' +
+				", deviceType='" + deviceType + '\'' +
+				", deviceCodeName='" + deviceCodeName + '\'' +
+				", deviceBrandName='" + deviceBrandName + '\'' +
+				", platform='" + platform + '\'' +
+				", platformMaker='" + platformMaker + '\'' +
+				", platformVersion='" + platformVersion + '\'' +
+				", isMobile=" + isMobile +
+				", isTablet=" + isTablet +
+				'}';
 	}
-	
+
 }

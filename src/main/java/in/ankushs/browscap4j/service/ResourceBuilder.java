@@ -6,8 +6,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.slf4j.Logger;
@@ -16,7 +21,7 @@ import org.slf4j.LoggerFactory;
 import in.ankushs.browscap4j.domain.BrowserCapabilities;
 import in.ankushs.browscap4j.utils.Strings;
 /**
- * 
+ *
  * Builds and loads the browscap.csv file into appropriate data structures .
  * @author Ankush Sharma
  *
@@ -27,7 +32,7 @@ public final class ResourceBuilder {
 	private final ParsingService parsingService = CsvParsingService.getInstance();
 
 	private static final String UNKNOWN ="Unknown";
-	
+
 	public ResourceBuilder(final File file) {
 		this.file = file;
 	}
@@ -46,20 +51,20 @@ public final class ResourceBuilder {
 			logger.error("", ex);
 			throw new RuntimeException(ex);
 		}
-		// The NamePatterns should be first sorted based on ascending order of
-		// length.
-		return records
-			.stream()
-			.sorted((String[] record1,String[] record2)->{
-				return - Integer.compare(record1[0].length(), record2[0].length());
-			})
-			.collect(Collectors.toMap(record -> record[0], record -> Pattern.compile(RegexResolver.toRegex(record[0]),Pattern.CASE_INSENSITIVE),
-					(n1,n2)->{
-						throw new IllegalStateException(String.format("Duplicate key %s", n1));
-					},
-					LinkedHashMap::new));
+
+		return records.parallelStream()
+				// The NamePatterns should be first sorted based on ascending order of
+				// length.
+				.sorted((String[] record1,String[] record2)->{
+					return - Integer.compare(record1[0].length(), record2[0].length());
+				})
+				.collect(Collectors.toMap(record -> record[0], record -> Pattern.compile(RegexResolver.toRegex(record[0]),Pattern.CASE_INSENSITIVE),
+						(n1,n2)->{
+							throw new IllegalStateException(String.format("Duplicate key %s", n1));
+						},
+						LinkedHashMap::new));
 	}
-	
+
 	/**
 	 * Creates a  <a href="https://docs.oracle.com/javase/7/docs/api/java/util/HashMap.html">HashMap</a>
 	 * with name pattern as key and browser capabilities as a BrowserCapabilities object as value.
@@ -73,29 +78,36 @@ public final class ResourceBuilder {
 			logger.error("", ex);
 			throw new RuntimeException(ex);
 		}
-
-		return records.stream()
+		return records
+				.stream()
 				.collect(Collectors.toMap(record -> record[0], // Key
-					record -> {
-						final String namePattern = record[0];
-						final String browser = Strings.hasText(record[5]) ? record[5] : UNKNOWN;
-						final String deviceName = Strings.hasText(record[41]) ? record[41] : UNKNOWN;
-						final String deviceType = Strings.hasText(record[43]) ? record[43] : UNKNOWN;
-						final String deviceCodeName = Strings.hasText(record[45]) ? record[45] : UNKNOWN;
-						final String deviceBrandName = Strings.hasText(record[46]) ? record[46] : UNKNOWN;
-						final String platform = Strings.hasText( record[13]) ?  record[13] : UNKNOWN;
-						final String platformMaker = Strings.hasText( record[17]) ?  record[17] : UNKNOWN;
-						final String platformVersion = Strings.hasText(record[14]) ? record[14] : UNKNOWN;  
-						final boolean isMobile = Boolean.valueOf(record[32]);
-						final boolean isTablet = Boolean.valueOf(record[33]);
-						
-						return new BrowserCapabilities.Builder().browser(browser).deviceCodeName(deviceCodeName)
-								.deviceName(deviceName).deviceBrandName(deviceBrandName).deviceType(deviceType)
-								.platform(platform).platformMaker(platformMaker).platformVersion(platformVersion)
-								.isTablet(isTablet)
-								.isMobile(isMobile)
-								.build();
-				}));
-				
+						record -> {
+							final String namePattern = record[0];
+							final String browser = Strings.hasText(record[5]) ? record[5] : UNKNOWN;
+							final String browserType = Strings.hasText(record[6]) ? record[6]  : UNKNOWN;
+							final String deviceName = Strings.hasText(record[41]) ? record[41] : UNKNOWN;
+							final String deviceType = Strings.hasText(record[43]) ? record[43] : UNKNOWN;
+							final String deviceCodeName = Strings.hasText(record[45]) ? record[45] : UNKNOWN;
+							final String deviceBrandName = Strings.hasText(record[46]) ? record[46] : UNKNOWN;
+							final String platform = Strings.hasText( record[13]) ?  record[13] : UNKNOWN;
+							final String platformMaker = Strings.hasText( record[17]) ?  record[17] : UNKNOWN;
+							final String platformVersion = Strings.hasText(record[14]) ? record[14] : UNKNOWN;
+							final boolean isMobile = Boolean.valueOf(record[32]);
+							final boolean isTablet = Boolean.valueOf(record[33]);
+
+							return new BrowserCapabilities.Builder()
+									.browser(browser)
+									.browserType(browserType)
+									.deviceCodeName(deviceCodeName)
+									.deviceName(deviceName)
+									.deviceBrandName(deviceBrandName)
+									.deviceType(deviceType)
+									.platform(platform)
+									.platformMaker(platformMaker)
+									.platformVersion(platformVersion)
+									.isTablet(isTablet)
+									.isMobile(isMobile)
+									.build();
+						}));
 	}
 }
