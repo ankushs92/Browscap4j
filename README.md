@@ -12,7 +12,7 @@ With maven :
 <dependency>
 	<groupId>in.ankushs</groupId>
 	<artifactId>browscap4j</artifactId>
-	<version>1.4.2</version>
+	<version>1.4.3</version>
 </dependency>
 
 ```
@@ -21,11 +21,11 @@ Or gradle:
 
 ```groovy
 
-compile('in.ankushs:browscap4j:1.4.2')
+compile('in.ankushs:browscap4j:1.4.3')
 
 ```
 
-The Javadocs for the latest release can be found [here](http://www.javadoc.io/doc/in.ankushs/browscap4j/1.4.2)
+The Javadocs for the latest release can be found [here](http://www.javadoc.io/doc/in.ankushs/browscap4j/1.4.3)
 
 #Instructions
 **Note : Browscap4j uses Java8** .
@@ -86,6 +86,7 @@ However , if anyone wants certain fields included , just say so and it will be d
 Some extra conveneance methods :
 
 ```java
+boolean isDesktop = browserCapabilities.isDesktop();
 boolean isWindows = browserCapabilities.isWindows();
 boolean isiOS = browserCapabilities.isiOS();
 boolean isAndroid = browserCapabilities.isAndroid();
