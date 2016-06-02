@@ -13,7 +13,8 @@ Test.java
 .DS_Store
 
 # JetBrain's Idea specific stuff #
-
+#adding gradle.properties
+gradle.properties
 .idea*
 *.iml
 

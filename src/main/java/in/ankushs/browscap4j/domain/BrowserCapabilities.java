@@ -1,5 +1,6 @@
 package in.ankushs.browscap4j.domain;
 
+import in.ankushs.browscap4j.utils.Strings;
 import org.apache.commons.lang3.BooleanUtils;
 /**
  * Core object that represents the capabilities of an user agent.
@@ -145,7 +146,16 @@ public final class BrowserCapabilities {
 		return isTablet;
 	}
 
-
+	public boolean isDesktop(){
+		final String deviceType = getDeviceType();
+		if(!Strings.hasText(deviceType)){
+			return false;
+		}
+		if(deviceType.equals("Desktop")){
+			return true;
+		}
+		return false;
+	}
 	public boolean isBot(){
 		return getBrowserType().equals("Bot/Crawler");
 	}

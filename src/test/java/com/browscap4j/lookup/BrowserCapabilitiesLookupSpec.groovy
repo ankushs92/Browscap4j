@@ -27,6 +27,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isBot()==false
 		browserCapabilities.isWindows()==false
 		browserCapabilities.isAndroid()==false
+		browserCapabilities.isDesktop() == true
 		browserCapabilities.isiOS()==false
 
 		browserCapabilities.platform=='MacOSX'
@@ -52,6 +53,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==true
 		browserCapabilities.isBot()==false
+		browserCapabilities.isDesktop() == false
+
 		browserCapabilities.isWindows()==false
 		browserCapabilities.isAndroid()==true
 		browserCapabilities.isiOS()==false
@@ -78,6 +81,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.deviceName=='iPad'
 		browserCapabilities.deviceType=='Tablet'
 		browserCapabilities.isMobile==true
+		browserCapabilities.isDesktop() == false
+
 		browserCapabilities.isTablet==true
 		browserCapabilities.isBot()==false
 		browserCapabilities.isWindows()==false
@@ -105,6 +110,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.deviceType=='Mobile Phone'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
+		browserCapabilities.isDesktop() == false
+
 		browserCapabilities.isBot()==false
 		browserCapabilities.isWindows()==false
 		browserCapabilities.isAndroid()==false
@@ -132,6 +139,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
 		browserCapabilities.isBot()==false
+		browserCapabilities.isDesktop() == false
+
 		browserCapabilities.isWindows()==false
 		browserCapabilities.isAndroid()==true
 		browserCapabilities.isiOS()==false
@@ -155,6 +164,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.deviceCodeName=='GT-N7100'
 		browserCapabilities.deviceName=='Galaxy Note II'
 		browserCapabilities.deviceType=='Mobile Phone'
+		browserCapabilities.isDesktop() == false
+
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
 		browserCapabilities.isBot()==false
@@ -183,6 +194,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.deviceType=='Mobile Phone'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
+		browserCapabilities.isDesktop() == false
 
 		browserCapabilities.isBot()==false
 		browserCapabilities.isWindows()==false
@@ -211,6 +223,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.deviceType=='Mobile Phone'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
+		browserCapabilities.isDesktop() == false
 
 		browserCapabilities.isBot()==false
 		browserCapabilities.isWindows()==true
@@ -239,6 +252,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.deviceType=='Mobile Phone'
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==false
+		browserCapabilities.isDesktop() == false
+
 		browserCapabilities.isBot()==false
 		browserCapabilities.isWindows()==false
 		browserCapabilities.isAndroid()==true
@@ -266,6 +281,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		browserCapabilities.isMobile==true
 		browserCapabilities.isTablet==true
 		browserCapabilities.isBot()==false
+		browserCapabilities.isDesktop() == false
+
 		browserCapabilities.isWindows()==false
 		browserCapabilities.isAndroid()==true
 		browserCapabilities.isiOS()==false
@@ -292,6 +309,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==true
@@ -321,6 +339,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
 	   browserCapabilities.isBot()==false
+	   browserCapabilities.isDesktop() == false
+
 	   browserCapabilities.isWindows()==false
 	   browserCapabilities.isAndroid()==false
 	   browserCapabilities.isiOS()==false
@@ -346,7 +366,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		  browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
-		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
+
+	   browserCapabilities.isTablet==false
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==true
@@ -375,8 +397,10 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
 
-		   browserCapabilities.isBot()==false
+
+	   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==true
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
@@ -405,6 +429,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
@@ -433,6 +458,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == false
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
@@ -462,6 +488,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
@@ -490,6 +517,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==true
@@ -519,6 +547,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==true
@@ -547,6 +576,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==true
@@ -575,6 +605,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==true
@@ -604,8 +635,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
 
+	   browserCapabilities.isDesktop() == true
 
-		   browserCapabilities.isBot()==false
+	   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
@@ -632,7 +664,10 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
-		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
+
+
+	   browserCapabilities.isTablet==false
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==true
@@ -661,7 +696,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.isBot()==false
+	   browserCapabilities.isDesktop() == true
+
+	   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
@@ -687,7 +724,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.isBot()==true
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isBot()==true
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
@@ -714,7 +753,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
-		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
+
+	   browserCapabilities.isTablet==false
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==true
@@ -743,7 +784,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.isBot()==false
+	   browserCapabilities.isDesktop() == true
+
+	   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
@@ -769,7 +812,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceCodeName=='Unknown'
 		   browserCapabilities.deviceName=='Unknown'
 		   browserCapabilities.deviceType=='Unknown'
-		   browserCapabilities.isMobile==false
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
 	   browserCapabilities.isBot()==true
 	   browserCapabilities.isWindows()==false
@@ -798,6 +843,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
+
 
 	   browserCapabilities.isBot()==true
 	   browserCapabilities.isWindows()==false
@@ -827,6 +874,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == false
 
 		   browserCapabilities.isBot()==true
 		   browserCapabilities.isWindows()==false
@@ -857,6 +905,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Mobile Phone'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == false
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
@@ -887,6 +936,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Mobile Phone'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == false
 
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
@@ -915,7 +965,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceName=='Yoga Tablet 10 3G'
 		   browserCapabilities.deviceType=='Tablet'
 		   browserCapabilities.isMobile==true
-		   browserCapabilities.isTablet==true
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isTablet==true
 	   browserCapabilities.isBot()==false
 	   browserCapabilities.isWindows()==false
 	   browserCapabilities.isAndroid()==true
@@ -943,7 +995,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceName=='iPhone'
 		   browserCapabilities.deviceType=='Mobile Phone'
 		   browserCapabilities.isMobile==true
-		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isTablet==false
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
@@ -970,7 +1024,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
-		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
+
+	   browserCapabilities.isTablet==false
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==true
 		   browserCapabilities.isAndroid()==false
@@ -996,7 +1052,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceCodeName=='3DS'
 		   browserCapabilities.deviceName=='3DS'
 		   browserCapabilities.deviceType=='Console'
-		   browserCapabilities.isMobile==true
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
@@ -1026,7 +1084,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.isBot()==false
+	   browserCapabilities.isDesktop() == true
+
+	   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
@@ -1053,7 +1113,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.isBot()==false
+	   browserCapabilities.isDesktop() == true
+
+	   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
@@ -1080,7 +1142,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceName=='Windows Desktop'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
-		   browserCapabilities.isTablet==false
+	   browserCapabilities.isDesktop() == true
+
+	   browserCapabilities.isTablet==false
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==true
 		   browserCapabilities.isAndroid()==false
@@ -1109,7 +1173,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.isBot()==false
-		   browserCapabilities.isWindows()==true
+	   browserCapabilities.isDesktop() == true
+
+	   browserCapabilities.isWindows()==true
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
 
@@ -1135,7 +1201,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Mobile Phone'
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.isBot()==false
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
@@ -1162,7 +1230,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Unknown'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-		   browserCapabilities.isBot()==true
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isBot()==true
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
@@ -1188,7 +1258,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceName=='Macintosh'
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
-		   browserCapabilities.isBot()==false
+	   browserCapabilities.isDesktop() == true
+
+	   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
 	   		browserCapabilities.isiOS()==false
@@ -1218,7 +1290,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isBot()==false
-		   browserCapabilities.isWindows()==false
+	   browserCapabilities.isDesktop() == true
+
+	   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
 
@@ -1246,7 +1320,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isBot()==true
 		   browserCapabilities.isWindows()==false
-		   browserCapabilities.isAndroid()==false
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
 	   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
@@ -1271,7 +1347,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isBot()==true
 			browserCapabilities.isWindows()==false
-		   browserCapabilities.isAndroid()==false
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
 		   browserCapabilities.isTablet==false
 		   browserCapabilities.platform=='Unknown'
@@ -1296,7 +1374,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isMobile==true
 	   		browserCapabilities.isAndroid()==false
 		   browserCapabilities.isAndroid()==false
-		   browserCapabilities.isiOS()==false
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isiOS()==false
 		   browserCapabilities.isBot()==false
 		   browserCapabilities.isWindows()==false
 
@@ -1324,6 +1404,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 	   		browserCapabilities.isiOS()==false
 	   browserCapabilities.isWindows()==false
+	   browserCapabilities.isDesktop() == true
+
 	   browserCapabilities.isAndroid()==false
 	   	browserCapabilities.isBot()==false
 		   browserCapabilities.platform=='Linux'
@@ -1349,7 +1431,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isTablet==false
 	   		browserCapabilities.isAndroid()==false
 		   browserCapabilities.isWindows()==false
-		   browserCapabilities.isBot()==false
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isBot()==false
 		   browserCapabilities.isiOS() == true
 		   browserCapabilities.platform=='iOS'
 		   browserCapabilities.platformMaker=='Apple Inc'
@@ -1373,7 +1457,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isMobile==true
 		   browserCapabilities.isTablet==true
 	   		browserCapabilities.isBot()==false
-		   browserCapabilities.isAndroid() ==false
+	   browserCapabilities.isDesktop() == false
+
+	   browserCapabilities.isAndroid() ==false
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isiOS()==true
 		   browserCapabilities.platform=='iOS'
