@@ -1,7 +1,6 @@
 package in.ankushs.browscap4j.domain;
 
 import in.ankushs.browscap4j.utils.Strings;
-import org.apache.commons.lang3.BooleanUtils;
 /**
  * Core object that represents the capabilities of an user agent.
  * 

@@ -33,6 +33,7 @@ public final class CsvParsingService implements ParsingService {
 	public List<String[]> getRecords(final File file) throws IOException {
 		final CSVReader csvReader = new CSVReader(new FileReader(file));
 		final List<String[]> records = csvReader.readAll();
+		csvReader.close();
 		//Different versions of the Csv file have different headers.
 		//We consider that each record is a String array ,where each array contains atleast 43 records.
 		return records.stream()

@@ -14,7 +14,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		when:
 		def browserCapabilities = browscap.lookup(ua)
-		def list = []
+		
 		
 		then:
 		browserCapabilities.browser=='Chrome'

@@ -5,16 +5,9 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import org.apache.commons.lang3.BooleanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -82,7 +75,6 @@ public final class ResourceBuilder {
 				.stream()
 				.collect(Collectors.toMap(record -> record[0], // Key
 						record -> {
-							final String namePattern = record[0];
 							final String browser = Strings.hasText(record[5]) ? record[5] : UNKNOWN;
 							final String browserType = Strings.hasText(record[6]) ? record[6]  : UNKNOWN;
 							final String deviceName = Strings.hasText(record[41]) ? record[41] : UNKNOWN;

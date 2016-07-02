@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,10 +22,6 @@ public final class Browscap {
 
 	private static final Logger logger = LoggerFactory.getLogger(Browscap.class);
 	private static final String UNKNOWN = "Unknown";
-	/*
-	 * The browscap.csv file
-	 */
-	private final File csvFile;
 
 	/*
 	 * A flag for indicating whether the browscap.csv file has been loaded into
@@ -62,7 +56,6 @@ public final class Browscap {
 	public Browscap(final File csvFile) {
 
 		PreConditions.checkExpression(!csvFile.exists(), "The csvFile does not exist");
-		this.csvFile = csvFile;
 		if (!allLoaded) {
 			resourceBuilder = new ResourceBuilder(csvFile);
 			logger.info("Loading data ");
@@ -118,5 +111,9 @@ public final class Browscap {
 		logger.debug("BrowserCapabilities {} found for user agent string {} ", browserCapabilities, userAgent);
 
 		return browserCapabilities;
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Here");
 	}
 }
