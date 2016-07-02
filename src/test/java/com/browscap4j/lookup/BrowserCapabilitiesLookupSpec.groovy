@@ -4,7 +4,7 @@ import in.ankushs.browscap4j.domain.Browscap;;
 
 class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
-	final String PATH_TO_BROWSCAP_FILE="/Users/Ankush/Downloads/browscap/new/browscap.csv"
+	final String PATH_TO_BROWSCAP_FILE="/Users/Ankush/Downloads/browscap.csv"
 	final Browscap browscap =  new Browscap(new File(PATH_TO_BROWSCAP_FILE))
 
 	// Format: Test platform,platformMaker,deviceName,browser
@@ -14,7 +14,8 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 		when:
 		def browserCapabilities = browscap.lookup(ua)
-
+		def list = []
+		
 		then:
 		browserCapabilities.browser=='Chrome'
 		browserCapabilities.browserType=='Browser'
@@ -442,7 +443,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   
 	}
 	
-	def "Unknown,Unknown ,Unknown ,Default Browser"(){
+	def "Firefox,Windows Desktop ,Desktop ,WinXP"(){
 		given:
 		def ua="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1pre) Gecko/20090629 Vonkeror/1.0"
 			
@@ -450,24 +451,24 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		def browserCapabilities = browscap.lookup(ua)
 
 	   then:
-		   browserCapabilities.browser=='Default Browser'
-	   		browserCapabilities.browserType=='Unknown'
+		   browserCapabilities.browser=='Firefox'
+	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
-		   browserCapabilities.deviceCodeName=='Unknown'
-		   browserCapabilities.deviceName=='Unknown'
-		   browserCapabilities.deviceType=='Unknown'
+		   browserCapabilities.deviceCodeName=='Windows Desktop'
+		   browserCapabilities.deviceName=='Windows Desktop'
+		   browserCapabilities.deviceType=='Desktop'
 		   browserCapabilities.isMobile==false
 		   browserCapabilities.isTablet==false
-	   browserCapabilities.isDesktop() == false
+	   browserCapabilities.isDesktop() == true
 
 		   browserCapabilities.isBot()==false
-		   browserCapabilities.isWindows()==false
+		   browserCapabilities.isWindows()==true
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
 
-	   browserCapabilities.platform=='Unknown'
-		   browserCapabilities.platformMaker=='Unknown'
-		   browserCapabilities.platformVersion=='Unknown'
+	   browserCapabilities.platform=='WinXP'
+		   browserCapabilities.platformMaker=='Microsoft Corporation'
+		   browserCapabilities.platformVersion=='5.1'
 		   
 	}
 	
