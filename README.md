@@ -1,7 +1,7 @@
 # Browscap4j
 A simple to use Java library for the [Browscap project](http://browscap.org/).Uses the `browscap.csv` file , which can be found [here](http://browscap.org/stream?q=BrowsCapCSV) 
 
-**Note: This library and all of the unit tests have been updated for the latest Browscap csv file , as on 20th June 2016**
+**Note: This library and all of the unit tests have been updated for the latest Browscap csv file (version 6016), as on 4th August,2016**
 
 #Get 
 
@@ -107,7 +107,7 @@ That is a considerable performance improvement ,considering that the same progra
 
 #Testing
 This part is a bit tricky. With the guys at Browscap updating the csv file every now and then ,it is impossible for the tests written for a particular version of the file to be valid for the next version.
-The tests have been updated for the latest Browscap csv file as on 25th April 2016.
+The tests have been updated for the latest Browscap csv file as on 4th August,2016.
  
 Run the code and match the results by going [here](http://browscap.org/ua-lookup) .
 
