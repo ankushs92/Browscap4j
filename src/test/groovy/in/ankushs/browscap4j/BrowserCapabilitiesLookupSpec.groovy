@@ -17,11 +17,12 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 				.getFile()
 		def file = new File(fileLocation)
 
-		def out = new BufferedOutputStream(new FileOutputStream(file))
-		out << new URL(URL).openStream()
-		out.close()
-		log.info("Downloading finished")
-
+		if(file.size() == 0 ){
+			def out = new BufferedOutputStream(new FileOutputStream(file))
+			out << new URL(URL).openStream()
+			out.close()
+			log.info("Downloading finished")
+		}
 		file
 	}
 
