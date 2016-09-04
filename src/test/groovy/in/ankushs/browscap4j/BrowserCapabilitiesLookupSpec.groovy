@@ -26,9 +26,11 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		file
 	}
 
-	Browscap browscap 
+	Browscap browscap
 	def setup(){
+
 		browscap =  new Browscap( downloadBrowscapFile())
+
 	}
 //	final Browscap browscap = new Browscap(new File("/Users/Ankush/Downloads/browscap.csv"))
 	// Format: Test platform,platformMaker,deviceName,browser
@@ -41,7 +43,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		
 		
 		then:
-		browserCapabilities.browser=='Chroe'
+		browserCapabilities.browser=='Chrome'
 		browserCapabilities.browserType=='Browser'
 		browserCapabilities.deviceBrandName=='Apple'
 		browserCapabilities.deviceCodeName=='Macintosh'
