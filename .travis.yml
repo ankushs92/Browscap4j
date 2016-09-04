@@ -2,4 +2,4 @@ language: groovy
 jdk:
   - oraclejdk8
 after_success:
-- ./gradlew jacocoTestReport coveralls
+- gradle jacocoTestReport coveralls
