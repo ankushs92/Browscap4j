@@ -54,7 +54,7 @@ public final class Browscap {
 	 *             if {@code csvFile} does not exist.
 	 */
 	public Browscap(final File csvFile) {
-
+		PreConditions.checkNull(csvFile,"csvFile cannot be null");
 		PreConditions.checkExpression(!csvFile.exists(), "The csvFile does not exist");
 		if (!allLoaded) {
 			resourceBuilder = new ResourceBuilder(csvFile);
@@ -113,7 +113,4 @@ public final class Browscap {
 		return browserCapabilities;
 	}
 
-	public static void main(String[] args) {
-		System.out.println("Here");
-	}
 }
