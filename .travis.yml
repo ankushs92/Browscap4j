@@ -1,3 +1,4 @@
 language: groovy
 jdk:
   - oraclejdk8
+--info

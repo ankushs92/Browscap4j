@@ -14,7 +14,8 @@ class BaseSpec extends Specification{
         def fileLocation =  new BaseSpec().getClass().getClassLoader().getResource("browscap.csv").getFile()
 
         def file = new File(fileLocation)
-        if(file.size() > 100000){
+
+        if(file.size() == 0){
             def out = new BufferedOutputStream(new FileOutputStream(file))
             out << new URL(URL).openStream()
             out.close()
