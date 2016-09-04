@@ -1,4 +1,4 @@
-package com.browscap4j.lookup
+package in.ankushs.browscap4j
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -20,5 +20,4 @@ class BaseSpec extends Specification{
         log.info("Downloading finished")
         file
     }
-
 }

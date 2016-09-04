@@ -1,4 +1,4 @@
-package com.browscap4j.lookup
+package in.ankushs.browscap4j
 
 import in.ankushs.browscap4j.domain.Browscap;; 
 
