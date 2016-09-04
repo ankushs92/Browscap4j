@@ -1,5 +1,6 @@
 package in.ankushs.browscap4j
 import  in.ankushs.browscap4j.utils.PreConditions
+import in.ankushs.browscap4j.utils.Strings
 /**
  * Created by Ankush on 04/09/16.
  */
@@ -38,6 +39,24 @@ class UtilsSpec extends BaseSpec{
         then:
         thrown(IllegalArgumentException)
 
+    }
+
+    def "Pass null String.returns false"(){
+        given :
+            def str = null
+        when :
+            def bool = Strings.hasText(str)
+        then:
+            bool == false
+    }
+
+    def "Pass empty String.returns false"(){
+        given :
+        def str = " "
+        when :
+        def bool = Strings.hasText(str)
+        then:
+        bool == false
     }
 
 }
