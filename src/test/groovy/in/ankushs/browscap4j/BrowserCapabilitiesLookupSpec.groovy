@@ -43,7 +43,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		
 		
 		then:
-		browserCapabilities.browser=='Chrome'
+		browserCapabilities.browser=='Chroe'
 		browserCapabilities.browserType=='Browser'
 		browserCapabilities.deviceBrandName=='Apple'
 		browserCapabilities.deviceCodeName=='Macintosh'
