@@ -4,8 +4,8 @@ import in.ankushs.browscap4j.domain.Browscap;;
 
 class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
-	final String PATH_TO_BROWSCAP_FILE="/Users/Ankush/Downloads/browscap.csv"
-	final Browscap browscap =  new Browscap(new File(PATH_TO_BROWSCAP_FILE))
+	final String BROWSCAP_FILE_NAME="browscap.csv"
+	final Browscap browscap =  new Browscap( downloadBrowscapFile())
 
 	// Format: Test platform,platformMaker,deviceName,browser
 	def "Test MacOSX ,AppleInc , Macintosh,Chrome"(){
