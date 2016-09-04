@@ -1,8 +1,7 @@
 # Browscap4j
 
 ![travis!](https://travis-ci.org/ankushs92/Browscap4j.svg?branch=master "travis")
-![coveralls!](https://coveralls.io/repos/github/ankushs92/Browscap4j/badge.svg?branch=master "coveralls")
-
+[![Coverage Status](https://coveralls.io/repos/github/ankushs92/Browscap4j/badge.svg?branch=master)](https://coveralls.io/github/ankushs92/Browscap4j?branch=master)
 
 A simple to use Java library for the [Browscap project](http://browscap.org/).Uses the `browscap.csv` file , which can be found [here](http://browscap.org/stream?q=BrowsCapCSV) 
 
