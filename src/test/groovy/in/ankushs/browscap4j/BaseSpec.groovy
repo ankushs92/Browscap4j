@@ -9,7 +9,7 @@ class BaseSpec extends Specification{
     private static final String URL = "http://browscap.org/stream?q=BrowsCapCSV";
     private static final Logger log = LoggerFactory.getLogger(BaseSpec.class)
 
-    private static File downloadBrowscapFile(){
+    private File downloadBrowscapFile(){
         log.info("Downloading browscap.csv from $URL")
         def fileLocation =  new BaseSpec().getClass().getClassLoader().getResource("browscap.csv").getFile()
 
@@ -20,7 +20,6 @@ class BaseSpec extends Specification{
             out << new URL(URL).openStream()
             out.close()
             log.info("Downloading finished")
-
         }
         file
     }
