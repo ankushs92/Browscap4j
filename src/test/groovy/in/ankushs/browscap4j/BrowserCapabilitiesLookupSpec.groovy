@@ -1,12 +1,36 @@
 package in.ankushs.browscap4j
 
-import in.ankushs.browscap4j.domain.Browscap;; 
+import in.ankushs.browscap4j.domain.Browscap
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory;;
 
 class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
-	final String BROWSCAP_FILE_NAME="browscap.csv"
-	final Browscap browscap =  new Browscap( downloadBrowscapFile())
+	private static final String URL = "http://browscap.org/stream?q=BrowsCapCSV";
+	private static final Logger log = LoggerFactory.getLogger(BaseSpec.class)
 
+	private File downloadBrowscapFile(){
+		log.info("Downloading browscap.csv from $URL")
+		def fileLocation =  BaseSpec.class.getClassLoader()
+
+				.getResource("browscap.csv")
+				.getFile()
+		def file = new File(fileLocation)
+
+		def out = new BufferedOutputStream(new FileOutputStream(file))
+		out << new URL(URL).openStream()
+		out.close()
+		log.info("Downloading finished")
+
+		file
+	}
+
+	Browscap browscap
+	def setup(){
+
+		browscap =  new Browscap( downloadBrowscapFile())
+
+	}
 //	final Browscap browscap = new Browscap(new File("/Users/Ankush/Downloads/browscap.csv"))
 	// Format: Test platform,platformMaker,deviceName,browser
 	def "Test MacOSX ,AppleInc , Macintosh,Chrome"(){
