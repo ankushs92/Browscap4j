@@ -2,7 +2,6 @@
 
 ![travis!](https://travis-ci.org/ankushs92/Browscap4j.svg?branch=master "travis")
 [![Coverage Status](https://coveralls.io/repos/github/ankushs92/Browscap4j/badge.svg?branch=master)](https://coveralls.io/github/ankushs92/Browscap4j?branch=master)
-
 A simple to use Java library for the [Browscap project](http://browscap.org/).Uses the `browscap.csv` file , which can be found [here](http://browscap.org/stream?q=BrowsCapCSV) 
 
 **Note: This library and all of the unit tests have been updated for the latest Browscap csv file (version 6016), as on 4th August,2016**
