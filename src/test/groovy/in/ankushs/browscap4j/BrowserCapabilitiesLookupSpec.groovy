@@ -10,14 +10,14 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	private static final Logger log = LoggerFactory.getLogger(BaseSpec.class)
 
 	private File downloadBrowscapFile(){
-		log.info("Downloading browscap.csv from $URL")
 		def fileLocation =  BaseSpec.class.getClassLoader()
-
 				.getResource("browscap.csv")
 				.getFile()
 		def file = new File(fileLocation)
 
 		if(file.size() == 0 ){
+			log.info("Downloading browscap.csv from $URL")
+
 			def out = new BufferedOutputStream(new FileOutputStream(file))
 			out << new URL(URL).openStream()
 			out.close()
