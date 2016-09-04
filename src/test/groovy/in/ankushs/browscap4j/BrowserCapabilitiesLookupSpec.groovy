@@ -7,6 +7,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	final String BROWSCAP_FILE_NAME="browscap.csv"
 	final Browscap browscap =  new Browscap( downloadBrowscapFile())
 
+//	final Browscap browscap = new Browscap(new File("/Users/Ankush/Downloads/browscap.csv"))
 	// Format: Test platform,platformMaker,deviceName,browser
 	def "Test MacOSX ,AppleInc , Macintosh,Chrome"(){
 		given:
