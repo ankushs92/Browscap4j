@@ -176,7 +176,7 @@ public final class Browscap {
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
-//		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
+//		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n"); 
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
