@@ -161,6 +161,8 @@ public final class Browscap {
 		return browserCapabilities;
 	}
 
+
+//	private Stream<Entry<String,Pattern>> getStream()
 //	public static void main(String[] args) {
 //		Browscap browscap = new Browscap(new File("/Users/Ankush/Downloads/browscap.csv"));
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
@@ -176,7 +178,7 @@ public final class Browscap {
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
-//		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n"); 
+//		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
 //		browscap.lookup("BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)\n");
