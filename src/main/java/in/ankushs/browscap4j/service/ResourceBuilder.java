@@ -45,7 +45,8 @@ public final class ResourceBuilder {
 			throw new RuntimeException(ex);
 		}
 
-		return records.parallelStream()
+		return records
+				.stream()
 				// The NamePatterns should be first sorted based on ascending order of
 				// length.
 				.sorted((String[] record1,String[] record2)->{

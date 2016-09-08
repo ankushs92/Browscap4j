@@ -62,21 +62,7 @@ public final class Browscap {
 	 *             if {@code csvFile} does not exist.
 	 */
 	public Browscap(final File csvFile) {
-		PreConditions.checkNull(csvFile,"csvFile cannot be null");
-		PreConditions.checkExpression(!csvFile.exists(), "The csvFile does not exist");
-		this.enableParallel = false;
-		if (!allLoaded) {
-			resourceBuilder = new ResourceBuilder(csvFile);
-			logger.info("Loading data ");
-
-			namePatternToRegexMap = resourceBuilder.getRegexNamePatternsMap();
-			cache = resourceBuilder.getNamePatternsToBrowserCapabilitiesMap();
-
-			logger.info("Finished loading data");
-			allLoaded = true;
-		} else {
-			logger.debug("Data has already been loaded!");
-		}
+		this(csvFile,false);
 	}
 
 	/**
@@ -121,7 +107,7 @@ public final class Browscap {
 	 */
 	public BrowserCapabilities lookup(final String userAgent) {
 		PreConditions.checkNull(userAgent, "Cannot pass a null UserAgent String ! ");
-//		logger.debug("Attempting to find BrowserCapabilities for User Agent String {}", userAgent);
+		logger.debug("Attempting to find BrowserCapabilities for User Agent String {}", userAgent);
 		BrowserCapabilities browserCapabilities = resolve(userAgent);
 		if (browserCapabilities == null) {
 			browserCapabilities = new BrowserCapabilities.Builder().browser(UNKNOWN).deviceBrandName(UNKNOWN)
@@ -142,7 +128,7 @@ public final class Browscap {
 			stream = set.stream();
 		}
 		final Optional<Entry<String, Pattern>> namePatternRegexEntry =
-				stream
+				 stream
 				.filter(entry -> {
 					final Matcher matcher = entry.getValue().matcher(userAgent);
 					return matcher.matches();
