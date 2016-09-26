@@ -145,7 +145,4 @@ public class Browscap {
 		logger.debug("BrowserCapabilities {} found for user agent string {} ", browserCapabilities, userAgent);
 		return browserCapabilities;
 	}
-
-
-
 }

@@ -190,4 +190,40 @@ public final class BrowserCapabilities {
 				'}';
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		BrowserCapabilities that = (BrowserCapabilities) o;
+
+		if (isMobile != that.isMobile) return false;
+		if (isTablet != that.isTablet) return false;
+		if (!browser.equals(that.browser)) return false;
+		if (!deviceName.equals(that.deviceName)) return false;
+		if (!browserType.equals(that.browserType)) return false;
+		if (!deviceType.equals(that.deviceType)) return false;
+		if (!deviceCodeName.equals(that.deviceCodeName)) return false;
+		if (!deviceBrandName.equals(that.deviceBrandName)) return false;
+		if (!platform.equals(that.platform)) return false;
+		if (!platformMaker.equals(that.platformMaker)) return false;
+		return platformVersion.equals(that.platformVersion);
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = browser.hashCode();
+		result = 31 * result + deviceName.hashCode();
+		result = 31 * result + browserType.hashCode();
+		result = 31 * result + deviceType.hashCode();
+		result = 31 * result + deviceCodeName.hashCode();
+		result = 31 * result + deviceBrandName.hashCode();
+		result = 31 * result + platform.hashCode();
+		result = 31 * result + platformMaker.hashCode();
+		result = 31 * result + platformVersion.hashCode();
+		result = 31 * result + (isMobile ? 1 : 0);
+		result = 31 * result + (isTablet ? 1 : 0);
+		return result;
+	}
 }
