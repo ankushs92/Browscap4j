@@ -28,9 +28,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	Browscap browscap
 	def setup(){
-
 		browscap =  new Browscap( downloadBrowscapFile())
-
 	}
 
 
