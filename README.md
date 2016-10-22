@@ -5,7 +5,7 @@
 
 A simple to use Java library for the [Browscap project](http://browscap.org/).Uses the `browscap.csv` file , which can be found [here](http://browscap.org/stream?q=BrowsCapCSV)
 
-**Note: This library and all of the unit tests have been updated for the latest Browscap csv file (version 6016), as on 4th August,2016**
+**Note: This library and all of the unit tests have been updated for the latest Browscap csv file (version 6017), as on 26th Sep,2016**
 
 #Get 
 
@@ -39,6 +39,16 @@ In order to get Browser capabilities, you need to first provide Browscap4j with 
 File csvFile = new File(PATH_TO_BROWSCAP_CSV);
 Browscap browscap = new Browscap(csvFile);
 ```
+The default processing mechanism is serial . If you want to enable parallel processing, initiate like so :
+
+```java
+File csvFile = new File(PATH_TO_BROWSCAP_CSV);
+boolean enableParallel = true;
+Browscap browscap = new Browscap(csvFile,enableParallel);
+```
+
+Browscap4j uses Java 8 parallel streams are used for parallel processing.
+
 
 Once the data is loaded from the file into memory , any subsequent invocation of the above code **would not** re-load the data . 
 
@@ -106,12 +116,12 @@ I have written a detailed blog post on how to use browscap4j with Spring Boot. Y
 #Performance
 Performance testing was done on Macbook Pro,8 GM Ram , i5 2nd gen with SSD.
 Performance is pretty damn decent!Once you warm up the JVM for some time, the best case for resolving a user agent is about 20 ms ,the worst being 130-140 ms.
-However,most Strings are resolved around the 70-100ms mark.
+However,most Strings are resolved around the 70-100ms mark.This is when parallel processing is enabled.Expect more processing time for serial stream processing.
 That is a considerable performance improvement ,considering that the same program written using the data structures in Python takes ~ 7-10 sec (best case) to resolve a user agent String.
 
 #Testing
 This part is a bit tricky. With the guys at Browscap updating the csv file every now and then ,it is impossible for the tests written for a particular version of the file to be valid for the next version.
-The tests have been updated for the latest Browscap csv file as on 4th August,2016.
+The tests have been updated for the latest Browscap csv file as on 26th Sep,2016.
  
 Run the code and match the results by going [here](http://browscap.org/ua-lookup) .
 

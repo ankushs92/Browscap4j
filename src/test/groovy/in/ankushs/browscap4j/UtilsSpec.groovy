@@ -8,10 +8,10 @@ class UtilsSpec extends BaseSpec{
 
     def "Pass null . IllegalArgumentException to be thrown"(){
         when :
-           PreConditions.checkNull(null,"null object")
+        PreConditions.checkNull(null,"null object")
 
         then:
-            thrown(IllegalArgumentException)
+        thrown(IllegalArgumentException)
     }
 
     def "Pass null String. IllegalArgumentException to be thrown"(){
@@ -43,11 +43,11 @@ class UtilsSpec extends BaseSpec{
 
     def "Pass null String.returns false"(){
         given :
-            def str = null
+        def str = null
         when :
-            def bool = Strings.hasText(str)
+        def bool = Strings.hasText(str)
         then:
-            bool == false
+        bool == false
     }
 
     def "Pass empty String.returns false"(){
