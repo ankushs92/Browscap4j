@@ -29,7 +29,7 @@ compile('in.ankushs:browscap4j:1.4.4')
 
 ```
 
-The Javadocs for the latest release can be found [here](http://www.javadoc.io/doc/in.ankushs/browscap4j/1.4.3)
+The Javadocs for the latest release can be found [here](http://www.javadoc.io/doc/in.ankushs/browscap4j/1.4.4)
 
 #Instructions
 **Note : Browscap4j uses Java8** .
