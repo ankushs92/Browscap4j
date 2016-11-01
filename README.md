@@ -16,7 +16,7 @@ With maven :
 <dependency>
 	<groupId>in.ankushs</groupId>
 	<artifactId>browscap4j</artifactId>
-	<version>1.4.3</version>
+	<version>1.4.4</version>
 </dependency>
 
 ```
@@ -25,7 +25,7 @@ Or gradle:
 
 ```groovy
 
-compile('in.ankushs:browscap4j:1.4.3')
+compile('in.ankushs:browscap4j:1.4.4')
 
 ```
 
