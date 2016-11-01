@@ -10,7 +10,7 @@ apply plugin: "com.github.kt3k.coveralls"
 sourceCompatibility = 1.8
 group ="in.ankushs"
 archivesBaseName = "browscap4j"
-version = '1.4.3'
+version = '1.4.4'
 
 jar {
     baseName = "browscap4j"
@@ -72,24 +72,24 @@ eclipse {
   }
 }
 
-//  task javadocJar(type: Jar) {
-//  	classifier = 'javadoc'
-//  	from javadoc
-//  }
-//
-//  task sourcesJar(type: Jar) {
-//  	classifier = 'sources'
-//  	from sourceSets.main.allSource
-//  }
-//
-//  artifacts {
-//  	archives javadocJar, sourcesJar
-//  }
-//
-//  signing {
-//  	sign configurations.archives
-//  }
-//
+  task javadocJar(type: Jar) {
+  	classifier = 'javadoc'
+  	from javadoc
+  }
+
+  task sourcesJar(type: Jar) {
+  	classifier = 'sources'
+  	from sourceSets.main.allSource
+  }
+
+  artifacts {
+  	archives javadocJar, sourcesJar
+  }
+
+  signing {
+  	sign configurations.archives
+  }
+
 //
 //  uploadArchives {
 //      repositories {
