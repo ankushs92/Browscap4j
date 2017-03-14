@@ -10,7 +10,7 @@ apply plugin: "com.github.kt3k.coveralls"
 sourceCompatibility = 1.8
 group ="in.ankushs"
 archivesBaseName = "browscap4j"
-version = '1.4.4'
+version = '2.0-SNAPSHOT'
 
 jar {
     baseName = "browscap4j"
@@ -48,8 +48,14 @@ buildscript {
 }
 
  
-dependencies {  
-  compile('org.apache.commons:commons-lang3:3.4')
+dependencies {
+
+    // https://mvnrepository.com/artifact/net.sf.trove4j/trove4j
+// https://mvnrepository.com/artifact/net.sf.trove4j/trove4j
+    compile group: 'net.sf.trove4j', name: 'trove4j', version: '3.0.3'
+    compile group: 'com.google.re2j', name: 're2j', version: '1.1'
+
+    compile('org.apache.commons:commons-lang3:3.4')
   compile('com.opencsv:opencsv:3.7')
   compile('ch.qos.logback:logback-classic:1.1.4')
   compile('ch.qos.logback:logback-core:1.1.4')
@@ -90,54 +96,54 @@ eclipse {
   	sign configurations.archives
   }
 
-//
-//  uploadArchives {
-//      repositories {
-//  	   mavenDeployer{
-//  		   beforeDeployment{MavenDeployment deployment->
-//  			   signing.signPom(deployment)
-//  		   }
-//
-//  		   repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
-//  			   authentication(userName: ossrhUsername, password: ossrhPassword)
-//  			 }
-//
-//  		   pom{
-//  			   project{
-//  				   name 'browscap4j'
-//  				   description 'A Java library for the Browscap Project'
-//  				   packaging 'jar'
-//  				   url 'https://github.com/ankushs92/Browscap4j'
-//  			       inceptionYear '2016'
-//
-//  				   scm {
-//  					   connection 'scm:git:git@github.com:ankushs92/Browscap4j.git'
-//  					   developerConnection 'scm:git:git@github.com:ankushs92/Browscap4j.git'
-//  					   url 'git@github.com:ankushs92/Browscap4j.git'
-//  					 }
-//
-//  				   licenses {
-//  					   license {
-//  						 name 'The MIT License'
-//  						 url 'https://github.com/ankushs92/Browscap4j/blob/master/LICENSE.md'
-//  					   }
-//  				   }
-//  				   developers {
-//  					   developer {
-//  						 name 'Ankush Sharma'
-//  						 email 'ankush20058@gmail.com'
-//  					   }
-//  					}
-//  				   issueManagement{
-//  					   system 'Github'
-//  					   url 'https://github.com/ankushs92/Browscap4j/issues'
-//
-//  				   }
-//  			   }
-//  		   }
-//  	       flatDir {
-//  	           dirs 'repos'
-//  	       }
-//      }
-//    }
-//  }
+
+  uploadArchives {
+      repositories {
+  	   mavenDeployer{
+  		   beforeDeployment{MavenDeployment deployment->
+  			   signing.signPom(deployment)
+  		   }
+
+  		   repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+  			   authentication(userName: ossrhUsername, password: ossrhPassword)
+  			 }
+
+  		   pom{
+  			   project{
+  				   name 'browscap4j'
+  				   description 'A Java library for the Browscap Project'
+  				   packaging 'jar'
+  				   url 'https://github.com/ankushs92/Browscap4j'
+  			       inceptionYear '2016'
+
+  				   scm {
+  					   connection 'scm:git:git@github.com:ankushs92/Browscap4j.git'
+  					   developerConnection 'scm:git:git@github.com:ankushs92/Browscap4j.git'
+  					   url 'git@github.com:ankushs92/Browscap4j.git'
+  					 }
+
+  				   licenses {
+  					   license {
+  						 name 'The MIT License'
+  						 url 'https://github.com/ankushs92/Browscap4j/blob/master/LICENSE.md'
+  					   }
+  				   }
+  				   developers {
+  					   developer {
+  						 name 'Ankush Sharma'
+  						 email 'ankush20058@gmail.com'
+  					   }
+  					}
+  				   issueManagement{
+  					   system 'Github'
+  					   url 'https://github.com/ankushs92/Browscap4j/issues'
+
+  				   }
+  			   }
+  		   }
+  	       flatDir {
+  	           dirs 'repos'
+  	       }
+      }
+    }
+  }

@@ -23,11 +23,16 @@ public final class ResourceBuilder {
 	private static final Logger logger = LoggerFactory.getLogger(ResourceBuilder.class);
 	private final File file;
 	private final ParsingService parsingService = CsvParsingService.getInstance();
-
+	private  List<String[]> records;
 	private static final String UNKNOWN ="Unknown";
 
 	public ResourceBuilder(final File file) {
 		this.file = file;
+		try {
+			this.records = parsingService.getRecords(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -36,27 +41,20 @@ public final class ResourceBuilder {
 	 * object as value.
 	 * @return a LinkedHashMap with name pattern as key and regex as Pattern object as  value
 	 */
-	public Map<String, Pattern> getRegexNamePatternsMap() {
-		List<String[]> records = null;
-		try {
-			records = parsingService.getRecords(file);
-		} catch (final IOException ex) {
-			logger.error("", ex);
-			throw new RuntimeException(ex);
-		}
+//	com.google.re2j.Pattern
+	public List<String> getNamePatterns() {
 
 		return records
 				.stream()
 				// The NamePatterns should be first sorted based on ascending order of
 				// length.
-				.sorted((String[] record1,String[] record2)->{
-					return - Integer.compare(record1[0].length(), record2[0].length());
+				.map(array->{
+					return array[0];
 				})
-				.collect(Collectors.toMap(record -> record[0], record -> Pattern.compile(RegexResolver.toRegex(record[0]),Pattern.CASE_INSENSITIVE),
-						(n1,n2)->{
-							throw new IllegalStateException(String.format("Duplicate key %s", n1));
-						},
-						LinkedHashMap::new));
+				.sorted((record1,record2)->{
+					return - Integer.compare(record1.length(), record2.length());
+				})
+				.collect(Collectors.toList());
 	}
 
 	/**
@@ -65,26 +63,20 @@ public final class ResourceBuilder {
 	 * @return a HashMap with name pattern as key and BrowserCapabilities as value
 	 */
 	public Map<String, BrowserCapabilities> getNamePatternsToBrowserCapabilitiesMap() {
-		List<String[]> records = null;
-		try {
-			records = parsingService.getRecords(file);
-		} catch (final IOException ex) {
-			logger.error("", ex);
-			throw new RuntimeException(ex);
-		}
 		return records
 				.stream()
 				.collect(Collectors.toMap(record -> record[0], // Key
 						record -> {
-							final String browser = Strings.hasText(record[5]) ? record[5] : UNKNOWN;
-							final String browserType = Strings.hasText(record[6]) ? record[6]  : UNKNOWN;
-							final String deviceName = Strings.hasText(record[41]) ? record[41] : UNKNOWN;
-							final String deviceType = Strings.hasText(record[43]) ? record[43] : UNKNOWN;
-							final String deviceCodeName = Strings.hasText(record[45]) ? record[45] : UNKNOWN;
-							final String deviceBrandName = Strings.hasText(record[46]) ? record[46] : UNKNOWN;
-							final String platform = Strings.hasText( record[13]) ?  record[13] : UNKNOWN;
-							final String platformMaker = Strings.hasText( record[17]) ?  record[17] : UNKNOWN;
-							final String platformVersion = Strings.hasText(record[14]) ? record[14] : UNKNOWN;
+
+							final String browser = (Strings.hasText(record[5]) ? record[5] : UNKNOWN).intern();
+							final String browserType = (Strings.hasText(record[6]) ? record[6]  : UNKNOWN).intern();
+							final String deviceName = (Strings.hasText(record[41]) ? record[41] : UNKNOWN).intern();
+							final String deviceType = (Strings.hasText(record[43]) ? record[43] : UNKNOWN).intern();
+							final String deviceCodeName = (Strings.hasText(record[45]) ? record[45] : UNKNOWN).intern();
+							final String deviceBrandName = (Strings.hasText(record[46]) ? record[46] : UNKNOWN).intern();
+							final String platform = (Strings.hasText( record[13]) ?  record[13] : UNKNOWN).intern();
+							final String platformMaker = (Strings.hasText( record[17]) ?  record[17] : UNKNOWN).intern();
+							final String platformVersion = (Strings.hasText(record[14]) ? record[14] : UNKNOWN).intern();
 							final boolean isMobile = Boolean.valueOf(record[32]);
 							final boolean isTablet = Boolean.valueOf(record[33]);
 

@@ -27,8 +27,9 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	}
 
 	Browscap browscap
+
 	def setup(){
-		browscap =  new Browscap( downloadBrowscapFile())
+		browscap =  new Browscap(new File("/Users/Ankush/Downloads/browscap.csv"))
 	}
 
 
@@ -329,7 +330,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		def browserCapabilities = browscap.lookup(ua)
 	   
 	   then:
-		   browserCapabilities.browser=='Acoo Browser'
+			   browserCapabilities.browser=='Acoo Browser'
 	   		browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
@@ -1235,7 +1236,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		   browserCapabilities.isWindows()==false
 		   browserCapabilities.isAndroid()==false
 		   browserCapabilities.isiOS()==false
-	   browserCapabilities.platform=='Linux Smartphone OS'
+	   browserCapabilities.platform=='Maemo'
 		   browserCapabilities.platformMaker=='Linux Foundation'
 		   browserCapabilities.platformVersion=='Unknown'
 		   
