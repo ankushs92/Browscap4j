@@ -77,6 +77,7 @@ public final class ResourceBuilder {
 				.collect(Collectors.toMap(record -> record[0], // Key
 						record -> {
 							final String browser = Strings.hasText(record[5]) ? record[5] : UNKNOWN;
+							final String browserMajorVersion = Strings.hasText(record[11]) ? record[11] : UNKNOWN;
 							final String browserType = Strings.hasText(record[6]) ? record[6]  : UNKNOWN;
 							final String deviceName = Strings.hasText(record[41]) ? record[41] : UNKNOWN;
 							final String deviceType = Strings.hasText(record[43]) ? record[43] : UNKNOWN;
@@ -90,6 +91,7 @@ public final class ResourceBuilder {
 
 							return new BrowserCapabilities.Builder()
 									.browser(browser)
+									.browserMajorVersion(browserMajorVersion)
 									.browserType(browserType)
 									.deviceCodeName(deviceCodeName)
 									.deviceName(deviceName)

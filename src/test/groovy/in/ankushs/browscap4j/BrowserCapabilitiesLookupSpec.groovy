@@ -46,6 +46,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		then:
 		browserCapabilities.browser=='Chrome'
 		browserCapabilities.browserType=='Browser'
+		browserCapabilities.browserMajorVersion=='46'
 		browserCapabilities.deviceBrandName=='Apple'
 		browserCapabilities.deviceCodeName=='Macintosh'
 		browserCapabilities.deviceName=='Macintosh'
@@ -74,6 +75,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 		then:
 		browserCapabilities.browser=='Silk'
 		browserCapabilities.browserType=='Browser'
+		browserCapabilities.browserMajorVersion=='3'
 		browserCapabilities.deviceBrandName=='Amazon'
 		browserCapabilities.deviceCodeName=='KFAPWI'
 		browserCapabilities.deviceName=='Kindle Fire HDX 8.9'
@@ -509,6 +511,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   then:
 		   browserCapabilities.browser=='TenFourFox'
 	  	 browserCapabilities.browserType=='Browser'
+		 browserCapabilities.browserMajorVersion=='10'
 
 	   browserCapabilities.deviceBrandName=='Apple'
 		   browserCapabilities.deviceCodeName=='Macintosh'
@@ -539,6 +542,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   then:
 		   browserCapabilities.browser=='IE'
 	   		browserCapabilities.browserType=='Browser'
+		   browserCapabilities.browserMajorVersion=='8'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
@@ -627,6 +631,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   then:
 		   browserCapabilities.browser=='Opera'
 	   		browserCapabilities.browserType=='Browser'
+		   browserCapabilities.browserMajorVersion=='4'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
 		   browserCapabilities.deviceName=='Windows Desktop'
@@ -655,6 +660,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 
 	   then:
 		   browserCapabilities.browser=='Netscape'
+		   browserCapabilities.browserMajorVersion=='7'
 	      browserCapabilities.browserType=='Browser'
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Linux Desktop'
@@ -686,6 +692,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   then:
 		   browserCapabilities.browser=='Maxthon'
 	   		browserCapabilities.browserType=='Browser'
+		   browserCapabilities.browserMajorVersion=='2'
 
 		   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
@@ -775,6 +782,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   then:
 		   browserCapabilities.browser=='IE'
 	   browserCapabilities.browserType=='Browser'
+		   browserCapabilities.browserMajorVersion=='5'
 
 	   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='Windows Desktop'
@@ -864,6 +872,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	   then:
 		   browserCapabilities.browser=='YaCy Bot'
 	  		 browserCapabilities.browserType=='Bot/Crawler'
+		   browserCapabilities.browserMajorVersion=='0'
 
 	   browserCapabilities.deviceBrandName=='Unknown'
 		   browserCapabilities.deviceCodeName=='general Desktop'

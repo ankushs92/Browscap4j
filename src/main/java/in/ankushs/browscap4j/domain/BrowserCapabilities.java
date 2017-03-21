@@ -3,7 +3,7 @@ package in.ankushs.browscap4j.domain;
 import in.ankushs.browscap4j.utils.Strings;
 /**
  * Core object that represents the capabilities of an user agent.
- * 
+ *
  * @author Ankush Sharma
  *
  */
@@ -12,6 +12,7 @@ public final class BrowserCapabilities {
 	private final String browser;
 	private final String deviceName;
 	private final String browserType;
+	private final String browserMajorVersion;
 	private final String deviceType;
 	private final String deviceCodeName;
 	private final String deviceBrandName;
@@ -24,6 +25,7 @@ public final class BrowserCapabilities {
 	public BrowserCapabilities(final Builder builder){
 		this.browser = builder.browser;
 		this.browserType = builder.browserType;
+		this.browserMajorVersion = builder.browserMajorVersion;
 		this.deviceBrandName = builder.deviceBrandName;
 		this.deviceCodeName = builder.deviceCodeName;
 		this.deviceName = builder.deviceName;
@@ -38,6 +40,7 @@ public final class BrowserCapabilities {
    public static class Builder{
 		private  String browser;
 	    private  String browserType;
+	    private  String browserMajorVersion;
 		private  String deviceName;
 		private  String deviceType;
 		private  String deviceCodeName;
@@ -47,16 +50,21 @@ public final class BrowserCapabilities {
 		private  String platformVersion;
 		private  boolean isMobile;
 		private  boolean isTablet;
-		
-	   public Builder browser(final String browser){
+
+	    public Builder browser(final String browser){
 			this.browser = browser;
 			return this;
 		}
 
-	   public Builder browserType(final String browserType){
+	    public Builder browserType(final String browserType){
 		   this.browserType = browserType;
 		   return this;
-	   }
+	    }
+
+	    public Builder browserMajorVersion(final String browserMajorVersion){
+		   this.browserMajorVersion = browserMajorVersion;
+		   return this;
+	    }
 
 		public Builder deviceName(final String deviceName){
 			this.deviceName = deviceName;
@@ -82,17 +90,17 @@ public final class BrowserCapabilities {
 			this.platform = platform;
 			return this;
 		}
-		
+
 		public Builder platformMaker(final String platformMaker){
 			this.platformMaker = platformMaker;
 			return this;
 		}
-		
+
 		public Builder isMobile(final boolean isMobile){
 			this.isMobile = isMobile;
 			return this;
 		}
-		
+
 		public Builder isTablet(final boolean isTablet){
 			this.isTablet = isTablet;
 			return this;
@@ -102,7 +110,7 @@ public final class BrowserCapabilities {
 			return new BrowserCapabilities(this);
 		}
 	}
-	
+
 	public String getBrowser() {
 		return browser;
 	}
@@ -132,6 +140,10 @@ public final class BrowserCapabilities {
 	}
 
 	public String getBrowserType() {return browserType;}
+
+	public String getBrowserMajorVersion() {
+		return browserMajorVersion;
+	}
 
 	public boolean isMobile() {
 		return isMobile;
@@ -179,6 +191,7 @@ public final class BrowserCapabilities {
 				"browser='" + browser + '\'' +
 				", deviceName='" + deviceName + '\'' +
 				", browserType='" + browserType + '\'' +
+				", browserMajorVersion='" + browserMajorVersion + '\'' +
 				", deviceType='" + deviceType + '\'' +
 				", deviceCodeName='" + deviceCodeName + '\'' +
 				", deviceBrandName='" + deviceBrandName + '\'' +
