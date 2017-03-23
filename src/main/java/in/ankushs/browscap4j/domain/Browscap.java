@@ -176,13 +176,13 @@ public class Browscap {
                     logger.debug("Moving {} to {} ", browscapFile.getAbsolutePath(), oldFile.getAbsolutePath());
                     FileUtils.moveFile(browscapFile, oldFile);
                     logger.debug("Moved {} to {} ", browscapFile.getAbsolutePath(), oldFile.getAbsolutePath());
-                    logger.debug("Deleting {}", browscapFile.getAbsolutePath());
-                    browscapFile.delete();
-                    logger.debug("Deleted {}", browscapFile.getAbsolutePath());
                     logger.debug("Moving {} to {}", tmpFile.getAbsolutePath(), browscapFile.getAbsolutePath());
                     FileUtils.moveFile(tmpFile, browscapFile);
                     browscapFile.setLastModified(System.currentTimeMillis());
                     logger.debug("Moved {} to {}", tmpFile.getAbsolutePath(), browscapFile.getAbsolutePath());
+                    logger.debug("Deleting {}", oldFile.getAbsolutePath());
+                    oldFile.delete();
+                    logger.debug("Deleted {}", oldFile.getAbsolutePath());
                     return true;
                 } catch (IOException e) {
                     logger.error("Failed to move from {}, to  {}  with {}", tmpFile.getAbsolutePath(),
