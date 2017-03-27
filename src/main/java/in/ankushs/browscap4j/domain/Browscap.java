@@ -98,7 +98,9 @@ public class Browscap {
         logger.info("Loading data ");
         Map<String, BrowserCapabilities> localCache;
         Trie localTree = new Trie();
-        localTree.makeTrie(resourceBuilder.getNamePatterns());
+        List< String> patterns = resourceBuilder.getNamePatterns();
+        logger.debug("Loaded {} patterns", patterns.size());
+        localTree.makeTrie(patterns);
         localCache = resourceBuilder.getNamePatternsToBrowserCapabilitiesMap();
         logger.info("Finished loading local data");
         tree = localTree;
@@ -582,10 +584,10 @@ public class Browscap {
 
 
 
-//
-//    public static void main(String[] args) throws Exception{
-//        Browscap b = new Browscap(new File("/Users/Ankush/Downloads/browscap.csv"));
-//        System.out.println(b.lookup("HotJava/1.1.2 FCS"));
-//    }
+
+    public static void main(String[] args) throws Exception{
+        Browscap b = new Browscap(new File("D:\\source\\Browscap4j\\src\\test\\resources\\browscap.xml"));
+        b.lookup("HotJava/1.1.2 FCS");
+    }
 
 }

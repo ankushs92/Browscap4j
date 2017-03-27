@@ -29,7 +29,7 @@ class BrowserCapabilitiesLookupSpec extends BaseSpec{
 	Browscap browscap
 
 	def setup(){
-		browscap =  new Browscap(new File("/Users/Ankush/Downloads/browscap.csv"))
+		browscap =  new Browscap(new File("D:\\source\\Browscap4j\\src\\test\\resources\\browscap.csv"))
 	}
 
 
