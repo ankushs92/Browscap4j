@@ -78,11 +78,12 @@ public class Browscap {
     public Browscap(final File csvFile, boolean doAutoUpdate) {
         PreConditions.checkNull(csvFile, "file cannot be null");
         browscapFile = csvFile;
+        this.doAutoUpdate = doAutoUpdate;
         if (doAutoUpdate) {
-            this.doAutoUpdate = doAutoUpdate;
             BrowscapFileType type = BrowscapFileType.findByFileName(csvFile.getAbsolutePath());
             this.remoteURL = type.getUrl();
             updateFile();
+            allLoaded = false;
         }
         PreConditions.checkExpression(!browscapFile.exists(), "The file does not exist");
         if (!allLoaded) {
@@ -144,9 +145,10 @@ public class Browscap {
     }
 
     public boolean isOutDated() {
-        boolean updateIntervalElapsed = System.currentTimeMillis() - browscapFile.lastModified() >= UPDATE_INTERVAL;
-        boolean versionHasChanged = currentVersion != null && currentVersion < getRemoteVersion();
-        return updateIntervalElapsed && versionHasChanged;
+        if (System.currentTimeMillis() - browscapFile.lastModified() >= UPDATE_INTERVAL) {
+            return currentVersion != null && currentVersion < getRemoteVersion();
+        }
+        return false;
     }
 
     /**
@@ -155,7 +157,6 @@ public class Browscap {
      * @return true when the file has been updated
      */
     private boolean updateFile() {
-
         if (!isFileNotEmpty(browscapFile)) {
             try {
                 logger.debug("Downloading {}", browscapFile.getAbsolutePath());
@@ -213,9 +214,7 @@ public class Browscap {
         }
         BrowserCapabilities browserCapabilities = resolve(userAgent);
         if (browserCapabilities == null) {
-            browserCapabilities = new BrowserCapabilities.Builder().browser(UNKNOWN).deviceBrandName(UNKNOWN)
-                    .deviceCodeName(UNKNOWN).deviceName(UNKNOWN).deviceType(UNKNOWN).isMobile(false).isTablet(false)
-                    .platform(UNKNOWN).platformMaker(UNKNOWN).platformVersion(UNKNOWN).build();
+            browserCapabilities = new BrowserCapabilities.Builder().build();
         }
         return browserCapabilities;
     }
@@ -560,7 +559,7 @@ public class Browscap {
     }
 
     public static void main(String[] args) throws Exception {
-        Browscap b = new Browscap(new File("D:\\source\\Browscap4j\\src\\test\\resources\\browscap.csv"),false);
+        Browscap b = new Browscap(new File("D:\\source\\Browscap4j\\src\\test\\resources\\browscap.csv"), true);
         b.lookup("HotJava/1.1.2 FCS");
     }
 

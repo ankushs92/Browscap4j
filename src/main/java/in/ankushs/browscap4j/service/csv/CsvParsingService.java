@@ -1,7 +1,7 @@
 package in.ankushs.browscap4j.service.csv;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -15,13 +15,14 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.opencsv.CSVParser;
-import com.opencsv.CSVReader;
-import com.opencsv.bean.CsvToBean;
-import com.opencsv.bean.HeaderColumnNameMappingStrategy;
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvParser;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
 import in.ankushs.browscap4j.domain.BrowserCapabilities;
 import in.ankushs.browscap4j.service.ParsingService;
+import in.ankushs.browscap4j.service.json.JsonBrowserCapabilities;
 
 /**
  * Singleton class for parsing csv files.
@@ -31,7 +32,7 @@ import in.ankushs.browscap4j.service.ParsingService;
 public final class CsvParsingService implements ParsingService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CsvParsingService.class);
-    
+
     private static CsvParsingService service;
 
     private File file;
@@ -50,18 +51,18 @@ public final class CsvParsingService implements ParsingService {
         return service;
     }
 
-    private List<CsvBrowserCapabilities> getRecords() {
-        try (CSVReader csvReader = new CSVReader(new FileReader(file), CSVParser.DEFAULT_SEPARATOR,
-                CSVParser.DEFAULT_QUOTE_CHARACTER, 2);) {
-            HeaderColumnNameMappingStrategy<CsvBrowserCapabilities> strategy = new HeaderColumnNameMappingStrategy<>();
-            strategy.setType(CsvBrowserCapabilities.class);
-
-            CsvToBean<CsvBrowserCapabilities> csvToBean = new CsvToBean<>();
-            return csvToBean.parse(strategy, csvReader);
-        } catch (FileNotFoundException e) {
-            LOGGER.error("Couldn't find file {}", file.getAbsoluteFile());
+    private List<JsonBrowserCapabilities> getRecords() {
+        try {
+            CsvMapper mapper = new CsvMapper();
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            for (int i = 0; i < 2; i++) {
+                reader.readLine();
+            }
+            MappingIterator<JsonBrowserCapabilities> it = mapper.readerFor(JsonBrowserCapabilities.class)
+                    .with(CsvSchema.emptySchema().withHeader()).readValues(reader);
+            return it.readAll();
         } catch (IOException e) {
-            LOGGER.error("Couldn't read file {}", file.getAbsoluteFile());
+            LOGGER.error("Failed to Parse csv file {}", file);
         }
         return Collections.emptyList();
     }
@@ -82,10 +83,13 @@ public final class CsvParsingService implements ParsingService {
     }
 
     private String[] getSecondLine() {
-        try (CSVReader reader = new CSVReader(new FileReader(file), CSVParser.DEFAULT_SEPARATOR,
-                CSVParser.DEFAULT_QUOTE_CHARACTER, 1);) {
-            String[] nextLine = reader.readNext();
-            return nextLine;
+        try {
+            CsvMapper mapper = new CsvMapper();
+            mapper.enable(CsvParser.Feature.WRAP_AS_ARRAY);
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            MappingIterator<String[]> it = mapper.readerFor(String[].class).readValues(reader);
+            it.next();
+            return it.next();
         } catch (IOException e) {
             LOGGER.error("Couldn't parse CSV file {}", file.getAbsoluteFile());
         }

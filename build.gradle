@@ -51,10 +51,10 @@ buildscript {
 dependencies {
   compile ('net.sf.trove4j:trove4j:3.0.3')
   compile ('com.google.re2j:re2j:1.1')
+  compile ('com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.8.7')
   compile ('com.fasterxml.jackson.core:jackson-databind:2.8.7')
   compile('commons-io:commons-io:2.5')
   compile('org.apache.commons:commons-lang3:3.4')
-  compile('com.opencsv:opencsv:3.9')
   compile('ch.qos.logback:logback-classic:1.1.4')
   compile('ch.qos.logback:logback-core:1.1.4')
   compile('org.slf4j:slf4j-api:1.7.18')

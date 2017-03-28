@@ -21,7 +21,7 @@ import in.ankushs.browscap4j.service.ParsingService;
 public class XmlParsingService implements ParsingService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XmlParsingService.class);
-    
+
     private static XmlParsingService service;
 
     private File file;
