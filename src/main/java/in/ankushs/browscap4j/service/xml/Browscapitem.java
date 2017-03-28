@@ -1,4 +1,4 @@
-package in.ankushs.browscap4j.xml;
+package in.ankushs.browscap4j.service.xml;
 
 import java.util.List;
 import java.util.Map;
@@ -24,8 +24,12 @@ public class Browscapitem {
         return name;
     }
 
-    public Map<String, Item> getItems() {
+    private Map<String, Item> getItems() {
         return items.stream().collect(Collectors.toMap(item -> item.getName(), item -> item));
+    }
+
+    public String get(String key) {
+        return getItems().containsKey(key) ? getItems().get(key).getValue() : "Unknown";
     }
 
 }

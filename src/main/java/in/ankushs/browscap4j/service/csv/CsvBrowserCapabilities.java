@@ -1,110 +1,160 @@
-package in.ankushs.browscap4j.csv;
+package in.ankushs.browscap4j.service.csv;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class BrowserCapabilitiesCSV {
+public class CsvBrowserCapabilities {
 
     @CsvBindByName(column = "PropertyName")
     private String propertyName;
+
     @CsvBindByName(column = "MasterParent")
-    private String masterParent;
-    @CsvBindByName(column = "LiteMode")
-    private String liteMode;
+    private boolean masterParent;
+
+//    @CsvBindByName(column = "LiteMode")
+    private boolean liteMode;
+
     @CsvBindByName(column = "Parent")
     private String parent;
+
     @CsvBindByName(column = "Comment")
     private String comment;
+
     @CsvBindByName(column = "Browser")
     private String browser;
+
     @CsvBindByName(column = "Browser_Type")
     private String browserType;
-    @CsvBindByName(column = "Browser_Bits")
-    private String browserBits;
+
+//    @CsvBindByName(column = "Browser_Bits")
+    private int browserBits;
+
     @CsvBindByName(column = "Browser_Maker")
     private String browserMaker;
-    @CsvBindByName(column = "Browser_Modus")
+
+//    @CsvBindByName(column = "Browser_Modus")
     private String browserModus;
+
     @CsvBindByName(column = "Version")
     private String version;
+
     @CsvBindByName(column = "MajorVer")
     private String majorVer;
+
     @CsvBindByName(column = "MinorVer")
     private String minorVer;
+
     @CsvBindByName(column = "Platform")
     private String platform;
+
     @CsvBindByName(column = "Platform_Version")
     private String platformVersion;
+
     @CsvBindByName(column = "Platform_Description")
     private String platformDescription;
-    @CsvBindByName(column = "Platform_Bits")
-    private String platformBits;
-    @CsvBindByName(column = "Platform_Maker")
+
+//    @CsvBindByName(column = "Platform_Bits")
+    private double platformBits;
+
+//    @CsvBindByName(column = "Platform_Maker")
     private String platformMaker;
-    @CsvBindByName(column = "Alpha")
-    private String alpha;
-    @CsvBindByName(column = "Beta")
-    private String beta;
-    @CsvBindByName(column = "Win16")
-    private String win16;
-    @CsvBindByName(column = "Win32")
-    private String win32;
-    @CsvBindByName(column = "Win64")
-    private String win64;
-    @CsvBindByName(column = "Frames")
-    private String frames;
-    @CsvBindByName(column = "IFrames")
-    private String iFrames;
-    @CsvBindByName(column = "Tables")
-    private String tables;
-    @CsvBindByName(column = "Cookies")
-    private String cookies;
-    @CsvBindByName(column = "BackgroundSounds")
-    private String backgroundSounds;
-    @CsvBindByName(column = "JavaScript")
-    private String javaScript;
-    @CsvBindByName(column = "VBScript")
-    private String vBScript;
-    @CsvBindByName(column = "JavaApplets")
-    private String javaApplets;
-    @CsvBindByName(column = "ActiveXControls")
-    private String activeXControls;
+
+//    @CsvBindByName(column = "Alpha")
+    private boolean alpha;
+
+//    @CsvBindByName(column = "Beta")
+    private boolean beta;
+
+//    @CsvBindByName(column = "Win16")
+    private boolean win16;
+
+//    @CsvBindByName(column = "Win32")
+    private boolean win32;
+
+//    @CsvBindByName(column = "Win64")
+    private boolean win64;
+
+//    @CsvBindByName(column = "Frames")
+    private boolean frames;
+
+//    @CsvBindByName(column = "IFrames")
+    private boolean iFrames;
+
+//    @CsvBindByName(column = "Tables")
+    private boolean tables;
+
+//    @CsvBindByName(column = "Cookies")
+    private boolean cookies;
+
+//    @CsvBindByName(column = "BackgroundSounds")
+    private boolean backgroundSounds;
+
+//    @CsvBindByName(column = "JavaScript")
+    private boolean javaScript;
+
+//    @CsvBindByName(column = "VBScript")
+    private boolean vBScript;
+
+//    @CsvBindByName(column = "JavaApplets")
+    private boolean javaApplets;
+
+//    @CsvBindByName(column = "ActiveXControls")
+    private boolean activeXControls;
+
     @CsvBindByName(column = "isMobileDevice")
     private boolean mobileDevice;
+
     @CsvBindByName(column = "isTablet")
     private boolean tablet;
-    @CsvBindByName(column = "isSyndicationReader")
+
+//    @CsvBindByName(column = "isSyndicationReader")
     private boolean syndicationReader;
-    @CsvBindByName(column = "Crawler")
-    private String crawler;
-    @CsvBindByName(column = "isFake")
+
+//    @CsvBindByName(column = "Crawler")
+    private boolean crawler;
+
+//    @CsvBindByName(column = "isFake")
     private boolean fake;
-    @CsvBindByName(column = "isAnonymized")
+
+//    @CsvBindByName(column = "isAnonymized")
     private boolean anonymized;
-    @CsvBindByName(column = "isModified")
+
+//    @CsvBindByName(column = "isModified")
     private boolean modified;
-    @CsvBindByName(column = "CssVersion")
+
+//    @CsvBindByName(column = "CssVersion")
     private String cssVersion;
-    @CsvBindByName(column = "AolVersion")
+
+//    @CsvBindByName(column = "AolVersion")
     private String aolVersion;
-    @CsvBindByName(column = "Device_Name")
+
+//    @CsvBindByName(column = "Device_Name")
     private String deviceName;
-    @CsvBindByName(column = "Device_Maker")
+
+//    @CsvBindByName(column = "Device_Maker")
     private String deviceMaker;
-    @CsvBindByName(column = "Device_Type")
+
+//    @CsvBindByName(column = "Device_Type")
     private String deviceType;
-    @CsvBindByName(column = "Device_Pointing_Method")
+
+//    @CsvBindByName(column = "Device_Pointing_Method")
     private String devicePointingMethod;
-    @CsvBindByName(column = "Device_Code_Name")
+
+//    @CsvBindByName(column = "Device_Code_Name")
     private String deviceCodeName;
-    @CsvBindByName(column = "Device_Brand_Name")
+
+//    @CsvBindByName(column = "Device_Brand_Name")
     private String deviceBrandName;
-    @CsvBindByName(column = "RenderingEngine_Name")
+
+//    @CsvBindByName(column = "RenderingEngine_Name")
     private String renderingEngineName;
-    @CsvBindByName(column = "RenderingEngine_Version")
+
+//    @CsvBindByName(column = "RenderingEngine_Version")
     private String renderingEngineVersion;
-    @CsvBindByName(column = "RenderingEngine_Description")
+
+//    @CsvBindByName(column = "RenderingEngine_Description")
     private String renderingEngineDescription;
-    @CsvBindByName(column = "RenderingEngine_Maker")
+
+//    @CsvBindByName(column = "RenderingEngine_Maker")
     private String renderingEngineMaker;
 
     public String getPropertyName() {
@@ -115,20 +165,20 @@ public class BrowserCapabilitiesCSV {
         this.propertyName = propertyName;
     }
 
-    public String getMasterParent() {
+    public boolean getMasterParent() {
         return masterParent;
     }
 
     public void setMasterParent(String masterParent) {
-        this.masterParent = masterParent;
+        this.masterParent = Boolean.parseBoolean(masterParent);
     }
 
-    public String getLiteMode() {
+    public boolean getLiteMode() {
         return liteMode;
     }
 
     public void setLiteMode(String liteMode) {
-        this.liteMode = liteMode;
+        this.liteMode = Boolean.parseBoolean(liteMode);
     }
 
     public String getParent() {
@@ -163,12 +213,12 @@ public class BrowserCapabilitiesCSV {
         this.browserType = browserType;
     }
 
-    public String getBrowserBits() {
+    public int getBrowserBits() {
         return browserBits;
     }
 
     public void setBrowserBits(String browserBits) {
-        this.browserBits = browserBits;
+        this.browserBits = Integer.parseInt(browserBits);
     }
 
     public String getBrowserMaker() {
@@ -235,12 +285,12 @@ public class BrowserCapabilitiesCSV {
         this.platformDescription = platformDescription;
     }
 
-    public String getPlatformBits() {
+    public double getPlatformBits() {
         return platformBits;
     }
 
     public void setPlatformBits(String platformBits) {
-        this.platformBits = platformBits;
+        this.platformBits = Double.parseDouble(platformBits);
     }
 
     public String getPlatformMaker() {
@@ -251,116 +301,116 @@ public class BrowserCapabilitiesCSV {
         this.platformMaker = platformMaker;
     }
 
-    public String getAlpha() {
+    public boolean isAlpha() {
         return alpha;
     }
 
     public void setAlpha(String alpha) {
-        this.alpha = alpha;
+        this.alpha = Boolean.parseBoolean(alpha);
     }
 
-    public String getBeta() {
+    public boolean isBeta() {
         return beta;
     }
 
     public void setBeta(String beta) {
-        this.beta = beta;
+        this.beta = Boolean.parseBoolean(beta);
     }
 
-    public String getWin16() {
+    public boolean getWin16() {
         return win16;
     }
 
     public void setWin16(String win16) {
-        this.win16 = win16;
+        this.win16 = Boolean.parseBoolean(win16);
     }
 
-    public String getWin32() {
+    public boolean getWin32() {
         return win32;
     }
 
     public void setWin32(String win32) {
-        this.win32 = win32;
+        this.win32 = Boolean.parseBoolean(win32);
     }
 
-    public String getWin64() {
+    public boolean getWin64() {
         return win64;
     }
 
     public void setWin64(String win64) {
-        this.win64 = win64;
+        this.win64 = Boolean.parseBoolean(win64);
     }
 
-    public String getFrames() {
+    public boolean getFrames() {
         return frames;
     }
 
     public void setFrames(String frames) {
-        this.frames = frames;
+        this.frames = Boolean.parseBoolean(frames);
     }
 
-    public String getiFrames() {
+    public boolean getiFrames() {
         return iFrames;
     }
 
     public void setiFrames(String iFrames) {
-        this.iFrames = iFrames;
+        this.iFrames = Boolean.parseBoolean(iFrames);
     }
 
-    public String getTables() {
+    public boolean getTables() {
         return tables;
     }
 
     public void setTables(String tables) {
-        this.tables = tables;
+        this.tables = Boolean.parseBoolean(tables);
     }
 
-    public String getCookies() {
+    public boolean getCookies() {
         return cookies;
     }
 
     public void setCookies(String cookies) {
-        this.cookies = cookies;
+        this.cookies = Boolean.parseBoolean(cookies);
     }
 
-    public String getBackgroundSounds() {
+    public boolean getBackgroundSounds() {
         return backgroundSounds;
     }
 
     public void setBackgroundSounds(String backgroundSounds) {
-        this.backgroundSounds = backgroundSounds;
+        this.backgroundSounds = Boolean.parseBoolean(backgroundSounds);
     }
 
-    public String getJavaScript() {
+    public boolean getJavaScript() {
         return javaScript;
     }
 
     public void setJavaScript(String javaScript) {
-        this.javaScript = javaScript;
+        this.javaScript = Boolean.parseBoolean(javaScript);
     }
 
-    public String getvBScript() {
+    public boolean getvBScript() {
         return vBScript;
     }
 
     public void setvBScript(String vBScript) {
-        this.vBScript = vBScript;
+        this.vBScript = Boolean.parseBoolean(vBScript);
     }
 
-    public String getJavaApplets() {
+    public boolean getJavaApplets() {
         return javaApplets;
     }
 
     public void setJavaApplets(String javaApplets) {
-        this.javaApplets = javaApplets;
+        this.javaApplets = Boolean.parseBoolean(javaApplets);
     }
 
-    public String getActiveXControls() {
+    public boolean getActiveXControls() {
         return activeXControls;
     }
 
     public void setActiveXControls(String activeXControls) {
-        this.activeXControls = activeXControls;
+        this.activeXControls = Boolean.parseBoolean(activeXControls);
     }
 
     public boolean isMobileDevice() {
@@ -399,12 +449,12 @@ public class BrowserCapabilitiesCSV {
         this.syndicationReader = Boolean.parseBoolean(syndicationReader);
     }
 
-    public String getCrawler() {
+    public boolean getCrawler() {
         return crawler;
     }
 
     public void setCrawler(String crawler) {
-        this.crawler = crawler;
+        this.crawler = Boolean.parseBoolean(crawler);
     }
 
     public boolean isFake() {
@@ -537,6 +587,104 @@ public class BrowserCapabilitiesCSV {
 
     public void setRenderingEngineMaker(String renderingEngineMaker) {
         this.renderingEngineMaker = renderingEngineMaker;
+    }
+
+    public void setMasterParent(boolean masterParent) {
+        this.masterParent = masterParent;
+    }
+
+    public void setLiteMode(boolean liteMode) {
+        this.liteMode = liteMode;
+    }
+
+    public void setBrowserBits(int browserBits) {
+        this.browserBits = browserBits;
+    }
+
+    public void setPlatformBits(double platformBits) {
+        this.platformBits = platformBits;
+    }
+
+    public void setAlpha(boolean alpha) {
+        this.alpha = alpha;
+    }
+
+    public void setBeta(boolean beta) {
+        this.beta = beta;
+    }
+
+    public void setWin16(boolean win16) {
+        this.win16 = win16;
+    }
+
+    public void setWin32(boolean win32) {
+        this.win32 = win32;
+    }
+
+    public void setWin64(boolean win64) {
+        this.win64 = win64;
+    }
+
+    public void setFrames(boolean frames) {
+        this.frames = frames;
+    }
+
+    public void setiFrames(boolean iFrames) {
+        this.iFrames = iFrames;
+    }
+
+    public void setTables(boolean tables) {
+        this.tables = tables;
+    }
+
+    public void setCookies(boolean cookies) {
+        this.cookies = cookies;
+    }
+
+    public void setBackgroundSounds(boolean backgroundSounds) {
+        this.backgroundSounds = backgroundSounds;
+    }
+
+    public void setJavaScript(boolean javaScript) {
+        this.javaScript = javaScript;
+    }
+
+    public void setvBScript(boolean vBScript) {
+        this.vBScript = vBScript;
+    }
+
+    public void setJavaApplets(boolean javaApplets) {
+        this.javaApplets = javaApplets;
+    }
+
+    public void setActiveXControls(boolean activeXControls) {
+        this.activeXControls = activeXControls;
+    }
+
+    public void setCrawler(boolean crawler) {
+        this.crawler = crawler;
+    }
+
+    @Override
+    public String toString() {
+        return "JsonBrowserCapabilities [propertyName=" + propertyName + ", masterParent=" + masterParent
+                + ", liteMode=" + liteMode + ", parent=" + parent + ", comment=" + comment + ", browser=" + browser
+                + ", browserType=" + browserType + ", browserBits=" + browserBits + ", browserMaker=" + browserMaker
+                + ", browserModus=" + browserModus + ", version=" + version + ", majorVer=" + majorVer + ", minorVer="
+                + minorVer + ", platform=" + platform + ", platformVersion=" + platformVersion
+                + ", platformDescription=" + platformDescription + ", platformBits=" + platformBits + ", platformMaker="
+                + platformMaker + ", alpha=" + alpha + ", beta=" + beta + ", win16=" + win16 + ", win32=" + win32
+                + ", win64=" + win64 + ", frames=" + frames + ", iFrames=" + iFrames + ", tables=" + tables
+                + ", cookies=" + cookies + ", backgroundSounds=" + backgroundSounds + ", javaScript=" + javaScript
+                + ", vBScript=" + vBScript + ", javaApplets=" + javaApplets + ", activeXControls=" + activeXControls
+                + ", mobileDevice=" + mobileDevice + ", tablet=" + tablet + ", syndicationReader=" + syndicationReader
+                + ", crawler=" + crawler + ", fake=" + fake + ", anonymized=" + anonymized + ", modified=" + modified
+                + ", cssVersion=" + cssVersion + ", aolVersion=" + aolVersion + ", deviceName=" + deviceName
+                + ", deviceMaker=" + deviceMaker + ", deviceType=" + deviceType + ", devicePointingMethod="
+                + devicePointingMethod + ", deviceCodeName=" + deviceCodeName + ", deviceBrandName=" + deviceBrandName
+                + ", renderingEngineName=" + renderingEngineName + ", renderingEngineVersion=" + renderingEngineVersion
+                + ", renderingEngineDescription=" + renderingEngineDescription + ", renderingEngineMaker="
+                + renderingEngineMaker + "]";
     }
 
 }

@@ -1,4 +1,4 @@
-package in.ankushs.browscap4j.xml;
+package in.ankushs.browscap4j.service.xml;
 
 import java.util.List;
 import java.util.Map;

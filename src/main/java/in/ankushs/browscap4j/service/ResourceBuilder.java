@@ -16,7 +16,6 @@ public final class ResourceBuilder {
     private final LocalDateTime releaseDate;
     private final Long version;
     private final ParsingService parsingService;
-    private static final String UNKNOWN = "Unknown";
 
     public ResourceBuilder(final File file) {
         this.parsingService = ParsingServiceFactory.getParsingService(file);

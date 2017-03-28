@@ -1,4 +1,4 @@
-package in.ankushs.browscap4j.service;
+package in.ankushs.browscap4j.service.csv;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,48 +20,48 @@ import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.HeaderColumnNameMappingStrategy;
 
-import in.ankushs.browscap4j.csv.BrowserCapabilitiesCSV;
 import in.ankushs.browscap4j.domain.BrowserCapabilities;
+import in.ankushs.browscap4j.service.ParsingService;
 
 /**
  * Singleton class for parsing csv files.
  * 
  * @author Ankush Sharma
  */
-public final class CSVParsingService implements ParsingService {
+public final class CsvParsingService implements ParsingService {
 
-    private static final Logger logger = LoggerFactory.getLogger(CSVParsingService.class);
-
-    private static CSVParsingService service;
+    private static final Logger LOGGER = LoggerFactory.getLogger(CsvParsingService.class);
+    
+    private static CsvParsingService service;
 
     private File file;
 
-    private CSVParsingService(File file) {
+    private CsvParsingService(File file) {
         this.file = file;
     }
 
     /**
      * Creates a Singelton object.
      */
-    public static CSVParsingService getInstance(File file) {
+    public static CsvParsingService getInstance(File file) {
         if (service == null) {
-            return new CSVParsingService(file);
+            return new CsvParsingService(file);
         }
         return service;
     }
 
-    private List<BrowserCapabilitiesCSV> getRecords() {
+    private List<CsvBrowserCapabilities> getRecords() {
         try (CSVReader csvReader = new CSVReader(new FileReader(file), CSVParser.DEFAULT_SEPARATOR,
                 CSVParser.DEFAULT_QUOTE_CHARACTER, 2);) {
-            HeaderColumnNameMappingStrategy<BrowserCapabilitiesCSV> strategy = new HeaderColumnNameMappingStrategy<>();
-            strategy.setType(BrowserCapabilitiesCSV.class);
+            HeaderColumnNameMappingStrategy<CsvBrowserCapabilities> strategy = new HeaderColumnNameMappingStrategy<>();
+            strategy.setType(CsvBrowserCapabilities.class);
 
-            CsvToBean<BrowserCapabilitiesCSV> csvToBean = new CsvToBean<>();
+            CsvToBean<CsvBrowserCapabilities> csvToBean = new CsvToBean<>();
             return csvToBean.parse(strategy, csvReader);
         } catch (FileNotFoundException e) {
-            logger.error("Couldn't find file {}", file.getAbsoluteFile());
+            LOGGER.error("Couldn't find file {}", file.getAbsoluteFile());
         } catch (IOException e) {
-            logger.error("Couldn't read file {}", file.getAbsoluteFile());
+            LOGGER.error("Couldn't read file {}", file.getAbsoluteFile());
         }
         return Collections.emptyList();
     }
@@ -86,10 +86,8 @@ public final class CSVParsingService implements ParsingService {
                 CSVParser.DEFAULT_QUOTE_CHARACTER, 1);) {
             String[] nextLine = reader.readNext();
             return nextLine;
-        } catch (FileNotFoundException e) {
-            logger.error("Couldn't find file {}", file.getAbsoluteFile());
         } catch (IOException e) {
-            logger.error("Couldn't read file {}", file.getAbsoluteFile());
+            LOGGER.error("Couldn't parse CSV file {}", file.getAbsoluteFile());
         }
         return new String[2];
     }
@@ -112,18 +110,19 @@ public final class CSVParsingService implements ParsingService {
      */
     @Override
     public Map<String, BrowserCapabilities> getNamePatternsToBrowserCapabilitiesMap() {
-      return  getRecords().stream().collect(
-                    Collectors.toMap(browserCapability -> browserCapability.getPropertyName(), browserCapability -> {
-                        return new BrowserCapabilities.Builder().browser(browserCapability.getBrowser())
-                                .browserType(browserCapability.getBrowserType())
-                                .deviceCodeName(browserCapability.getDeviceCodeName())
-                                .deviceName(browserCapability.getDeviceName())
-                                .deviceBrandName(browserCapability.getDeviceBrandName())
-                                .deviceType(browserCapability.getDeviceType()).platform(browserCapability.getPlatform())
-                                .platformMaker(browserCapability.getPlatformMaker())
-                                .platformVersion(browserCapability.getPlatformVersion())
-                                .isTablet(browserCapability.isTablet()).isMobile(browserCapability.isMobileDevice()).build();
-                    }));
+        return getRecords().stream().collect(
+                Collectors.toMap(browserCapability -> browserCapability.getPropertyName(), browserCapability -> {
+                    return new BrowserCapabilities.Builder().browser(browserCapability.getBrowser())
+                            .browserType(browserCapability.getBrowserType())
+                            .deviceCodeName(browserCapability.getDeviceCodeName())
+                            .deviceName(browserCapability.getDeviceName())
+                            .deviceBrandName(browserCapability.getDeviceBrandName())
+                            .deviceType(browserCapability.getDeviceType()).platform(browserCapability.getPlatform())
+                            .platformMaker(browserCapability.getPlatformMaker())
+                            .platformVersion(browserCapability.getPlatformVersion())
+                            .isTablet(browserCapability.isTablet()).isMobile(browserCapability.isMobileDevice())
+                            .build();
+                }));
     }
 
 }

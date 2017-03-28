@@ -1,4 +1,4 @@
-package in.ankushs.browscap4j.xml;
+package in.ankushs.browscap4j.service.xml;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
@@ -8,7 +8,7 @@ public class Item {
     private String name;
 
     @XmlAttribute
-    private String value;
+    private String value = "Unknown";
 
     @Override
     public String toString() {
