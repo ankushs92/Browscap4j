@@ -76,17 +76,17 @@ public class XmlParsingService implements ParsingService {
         return readXML().getBrowscapitems().stream().collect(Collectors.toMap(browscapitem -> {
             return browscapitem.getName();
         }, browscapitem -> {
-            final String browser = (browscapitem.get("Browser")).intern();
-            final String browserType = (browscapitem.get("Browser_Type")).intern();
-            final String deviceName = (browscapitem.get("Device_Name")).intern();
-            final String deviceType = (browscapitem.get("Device_Type")).intern();
-            final String deviceCodeName = (browscapitem.get("Device_Code_Name")).intern();
-            final String deviceBrandName = (browscapitem.get("Device_Brand_Name")).intern();
-            final String platform = (browscapitem.get("Platform")).intern();
-            final String platformMaker = (browscapitem.get("Platform_Maker")).intern();
-            final String platformVersion = (browscapitem.get("Platform_Version")).intern();
-            final boolean isMobile = Boolean.valueOf(browscapitem.get("isMobileDevice"));
-            final boolean isTablet = Boolean.valueOf(browscapitem.get("isTablet"));
+            final String browser = (browscapitem.getString("Browser")).intern();
+            final String browserType = (browscapitem.getString("Browser_Type")).intern();
+            final String deviceName = (browscapitem.getString("Device_Name")).intern();
+            final String deviceType = (browscapitem.getString("Device_Type")).intern();
+            final String deviceCodeName = (browscapitem.getString("Device_Code_Name")).intern();
+            final String deviceBrandName = (browscapitem.getString("Device_Brand_Name")).intern();
+            final String platform = (browscapitem.getString("Platform")).intern();
+            final String platformMaker = (browscapitem.getString("Platform_Maker")).intern();
+            final String platformVersion = browscapitem.getString("Platform_Version");
+            final boolean isMobile = browscapitem.getBoolean("isMobileDevice");
+            final boolean isTablet = browscapitem.getBoolean("isTablet");
             return new BrowserCapabilities.Builder().browser(browser).browserType(browserType)
                     .deviceCodeName(deviceCodeName).deviceName(deviceName).deviceBrandName(deviceBrandName)
                     .deviceType(deviceType).platform(platform).platformMaker(platformMaker)

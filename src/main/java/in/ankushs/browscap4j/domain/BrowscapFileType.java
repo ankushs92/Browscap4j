@@ -5,8 +5,10 @@ import java.net.URL;
 
 public enum BrowscapFileType {
 
-    XML(".xml", "http://browscap.org/stream?q=BrowsCapXML"), JSON(".json",
-            "http://browscap.org/stream?q=BrowsCapJSON"), CSV(".csv", "http://browscap.org/stream?q=BrowsCapCSV");
+    INI(".ini", "http://browscap.org/stream?q=BrowsCapINI"),
+    XML(".xml", "http://browscap.org/stream?q=BrowsCapXML"),
+    JSON(".json", "http://browscap.org/stream?q=BrowsCapJSON"),
+    CSV(".csv", "http://browscap.org/stream?q=BrowsCapCSV");
 
     private String extension;
     private URL url;

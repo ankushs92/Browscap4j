@@ -1,10 +1,11 @@
 package in.ankushs.browscap4j.domain;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -29,8 +30,7 @@ import in.ankushs.browscap4j.utils.PreConditions;
  */
 public class Browscap {
 
-    private static final Logger logger = LoggerFactory.getLogger(Browscap.class);
-    private static final String UNKNOWN = "Unknown";
+    private static final Logger LOGGER = LoggerFactory.getLogger(Browscap.class);
 
     /*
      * update interval of 5 days
@@ -90,7 +90,7 @@ public class Browscap {
             loadData();
             allLoaded = true;
         } else {
-            logger.debug("Data has already been loaded!");
+            LOGGER.debug("Data has already been loaded!");
         }
 
     }
@@ -100,18 +100,18 @@ public class Browscap {
      */
     private void loadData() {
         ResourceBuilder resourceBuilder = new ResourceBuilder(browscapFile);
-        logger.info("Loading data ");
+        LOGGER.info("Loading data ");
         Map<String, BrowserCapabilities> localCache;
         Trie localTree = new Trie();
         List<String> patterns = resourceBuilder.getNamePatterns();
-        logger.debug("Loaded {} patterns", patterns.size());
+        LOGGER.debug("Loaded {} patterns", patterns.size());
         localTree.makeTrie(patterns);
         localCache = resourceBuilder.getNamePatternsToBrowserCapabilitiesMap();
-        logger.info("Finished loading local data");
+        LOGGER.info("Finished loading local data");
         tree = localTree;
         cache = localCache;
         currentVersion = resourceBuilder.getVersion();
-        logger.info("Finished loading data");
+        LOGGER.info("Finished loading data");
     }
 
     /**
@@ -121,10 +121,10 @@ public class Browscap {
      * @return true if the file exists and has content
      */
     public static boolean isFileNotEmpty(final File file) {
-        try {
-            return file.exists() && !FileUtils.readFileToString(file, Charset.defaultCharset()).trim().isEmpty();
+        try (BufferedReader br = new BufferedReader(new FileReader(file));) {
+            return file.exists() && br.readLine() != null;
         } catch (IOException e) {
-            logger.error("Failed to check validity of {}", file.getAbsolutePath());
+            LOGGER.error("Failed to check validity of {}", file.getAbsolutePath());
         }
         return true;
     }
@@ -138,7 +138,7 @@ public class Browscap {
                 remoteVersion = Long.valueOf(IOUtils.toString(versionNumberCon.getInputStream(), "UTF-8"));
             }
         } catch (IOException e) {
-            logger.error("Failed to get remote version with error {}", e.getMessage());
+            LOGGER.error("Failed to get remote version with error {}", e.getMessage());
         }
         PreConditions.checkNull(remoteVersion, "Could'nt get remote version");
         return remoteVersion;
@@ -159,40 +159,40 @@ public class Browscap {
     private boolean updateFile() {
         if (!isFileNotEmpty(browscapFile)) {
             try {
-                logger.debug("Downloading {}", browscapFile.getAbsolutePath());
+                LOGGER.debug("Downloading {}", browscapFile.getAbsolutePath());
                 FileUtils.copyURLToFile(remoteURL, browscapFile);
                 browscapFile.setLastModified(System.currentTimeMillis());
-                logger.debug("Downloaded {}", browscapFile.getAbsolutePath());
+                LOGGER.debug("Downloaded {}", browscapFile.getAbsolutePath());
                 return true;
             } catch (IOException e) {
-                logger.error("Failed to download from {}, to  {}  with {}", remoteURL, browscapFile.getAbsolutePath(),
+                LOGGER.error("Failed to download from {}, to  {}  with {}", remoteURL, browscapFile.getAbsolutePath(),
                         e.getMessage());
             }
         } else if (isOutDated()) {
             File tmpFile = new File(browscapFile.getAbsolutePath() + ".tmp");
             File oldFile = new File(browscapFile.getAbsolutePath() + ".old");
             try {
-                logger.debug("Downloading {}", tmpFile.getAbsolutePath());
+                LOGGER.debug("Downloading {}", tmpFile.getAbsolutePath());
                 FileUtils.copyURLToFile(remoteURL, tmpFile);
-                logger.debug("Downloaded {}", tmpFile.getAbsolutePath());
+                LOGGER.debug("Downloaded {}", tmpFile.getAbsolutePath());
             } catch (IOException e) {
-                logger.error("Failed to download from {}, to  {}  with {}", remoteURL, browscapFile.getAbsolutePath(),
+                LOGGER.error("Failed to download from {}, to  {}  with {}", remoteURL, browscapFile.getAbsolutePath(),
                         e.getMessage());
             }
             try {
-                logger.debug("Moving {} to {} ", browscapFile.getAbsolutePath(), oldFile.getAbsolutePath());
+                LOGGER.debug("Moving {} to {} ", browscapFile.getAbsolutePath(), oldFile.getAbsolutePath());
                 FileUtils.moveFile(browscapFile, oldFile);
-                logger.debug("Moved {} to {} ", browscapFile.getAbsolutePath(), oldFile.getAbsolutePath());
-                logger.debug("Moving {} to {}", tmpFile.getAbsolutePath(), browscapFile.getAbsolutePath());
+                LOGGER.debug("Moved {} to {} ", browscapFile.getAbsolutePath(), oldFile.getAbsolutePath());
+                LOGGER.debug("Moving {} to {}", tmpFile.getAbsolutePath(), browscapFile.getAbsolutePath());
                 FileUtils.moveFile(tmpFile, browscapFile);
                 browscapFile.setLastModified(System.currentTimeMillis());
-                logger.debug("Moved {} to {}", tmpFile.getAbsolutePath(), browscapFile.getAbsolutePath());
-                logger.debug("Deleting {}", oldFile.getAbsolutePath());
+                LOGGER.debug("Moved {} to {}", tmpFile.getAbsolutePath(), browscapFile.getAbsolutePath());
+                LOGGER.debug("Deleting {}", oldFile.getAbsolutePath());
                 oldFile.delete();
-                logger.debug("Deleted {}", oldFile.getAbsolutePath());
+                LOGGER.debug("Deleted {}", oldFile.getAbsolutePath());
                 return true;
             } catch (IOException e) {
-                logger.error("Failed to move from {}, to  {}  with {}", tmpFile.getAbsolutePath(),
+                LOGGER.error("Failed to move from {}, to  {}  with {}", tmpFile.getAbsolutePath(),
                         browscapFile.getAbsolutePath(), e.getMessage());
             }
         }
@@ -208,7 +208,7 @@ public class Browscap {
      */
     public BrowserCapabilities lookup(final String userAgent) throws Exception {
         PreConditions.checkNull(userAgent, "Cannot pass a null UserAgent String ! ");
-        logger.debug("Attempting to find BrowserCapabilities for User Agent String {}", userAgent);
+        LOGGER.debug("Attempting to find BrowserCapabilities for User Agent String {}", userAgent);
         if (doAutoUpdate && updateFile()) {
             loadData();
         }
@@ -222,7 +222,7 @@ public class Browscap {
     private BrowserCapabilities resolve(final String userAgent) throws Exception {
         final String namePattern = getPattern(userAgent);
         final BrowserCapabilities browserCapabilities = cache.get(namePattern);
-        logger.debug("BrowserCapabilities {} found for user agent string {} ", browserCapabilities, userAgent);
+        LOGGER.debug("BrowserCapabilities {} found for user agent string {} ", browserCapabilities, userAgent);
         return browserCapabilities;
     }
 

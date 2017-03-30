@@ -25,7 +25,7 @@ import in.ankushs.browscap4j.service.csv.CsvParsingService;
 public class JsonParsingService implements ParsingService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CsvParsingService.class);
-    
+
     private static final List<String> EXCLUDED_PATH = Arrays.asList("comments", "GJK_Browscap_Version");
 
     private static JsonParsingService service;
@@ -48,13 +48,8 @@ public class JsonParsingService implements ParsingService {
 
     public JsonNode getJsonRoot() {
         try {
-            // read json file data to String
             byte[] jsonData = Files.readAllBytes(file.toPath());
-
-            // create ObjectMapper instance
             ObjectMapper objectMapper = new ObjectMapper();
-
-            // read JSON like DOM Parser
             return objectMapper.readTree(jsonData);
         } catch (IOException ioe) {
             LOGGER.error("Couldn't parse Json file {}", file.getAbsolutePath());
@@ -93,15 +88,21 @@ public class JsonParsingService implements ParsingService {
             JsonBrowserCapabilities browserCapability = null;
             try {
                 browserCapability = mapper.readValue(entry.getValue().asText(), JsonBrowserCapabilities.class);
-                return new BrowserCapabilities.Builder().browser(browserCapability.getBrowser())
-                        .browserType(browserCapability.getBrowserType())
-                        .deviceCodeName(browserCapability.getDeviceCodeName())
-                        .deviceName(browserCapability.getDeviceName())
-                        .deviceBrandName(browserCapability.getDeviceBrandName())
-                        .deviceType(browserCapability.getDeviceType()).platform(browserCapability.getPlatform())
-                        .platformMaker(browserCapability.getPlatformMaker())
-                        .platformVersion(browserCapability.getPlatformVersion()).isTablet(browserCapability.isTablet())
-                        .isMobile(browserCapability.isMobileDevice()).build();
+                final String browser = (browserCapability.getBrowser()).intern();
+                final String browserType = (browserCapability.getBrowserType()).intern();
+                final String deviceName = (browserCapability.getDeviceName()).intern();
+                final String deviceType = (browserCapability.getDeviceType()).intern();
+                final String deviceCodeName = (browserCapability.getDeviceCodeName()).intern();
+                final String deviceBrandName = (browserCapability.getDeviceBrandName()).intern();
+                final String platform = (browserCapability.getPlatform()).intern();
+                final String platformMaker = (browserCapability.getPlatformMaker()).intern();
+                final String platformVersion = (browserCapability.getPlatformVersion()).intern();
+                final boolean isMobile = browserCapability.isMobileDevice();
+                final boolean isTablet = browserCapability.isTablet();
+                return new BrowserCapabilities.Builder().browser(browser).browserType(browserType)
+                        .deviceCodeName(deviceCodeName).deviceName(deviceName).deviceBrandName(deviceBrandName)
+                        .deviceType(deviceType).platform(platform).platformMaker(platformMaker)
+                        .platformVersion(platformVersion).isTablet(isTablet).isMobile(isMobile).build();
             } catch (IOException e) {
                 LOGGER.error("Couldn't parse {}", entry.getValue().asText());
             }

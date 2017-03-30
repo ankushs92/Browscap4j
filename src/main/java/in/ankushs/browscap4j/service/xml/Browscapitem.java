@@ -28,8 +28,16 @@ public class Browscapitem {
         return items.stream().collect(Collectors.toMap(item -> item.getName(), item -> item));
     }
 
-    public String get(String key) {
+    public String getString(String key) {
         return getItems().containsKey(key) ? getItems().get(key).getValue() : "Unknown";
+    }
+
+    public boolean getBoolean(String key) {
+        return getItems().containsKey(key) ? Boolean.parseBoolean(getItems().get(key).getValue()) : false;
+    }
+    
+    public Double getDouble(String key) {
+        return getItems().containsKey(key) ? Double.valueOf(getItems().get(key).getValue()) : 0d;
     }
 
 }

@@ -3,6 +3,7 @@ package in.ankushs.browscap4j.service;
 import java.io.File;
 
 import in.ankushs.browscap4j.service.csv.CsvParsingService;
+import in.ankushs.browscap4j.service.ini.IniParsingService;
 import in.ankushs.browscap4j.service.json.JsonParsingService;
 import in.ankushs.browscap4j.service.xml.XmlParsingService;
 
@@ -13,6 +14,8 @@ public class ParsingServiceFactory {
             return XmlParsingService.getInstance(file);
         } else if (file.getAbsolutePath().endsWith(".json")) {
             return JsonParsingService.getInstance(file);
+        } else if (file.getAbsolutePath().endsWith(".ini")) {
+            return IniParsingService.getInstance(file);
         } else {
             return CsvParsingService.getInstance(file);
         }

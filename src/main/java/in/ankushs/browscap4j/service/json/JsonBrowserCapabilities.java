@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class JsonBrowserCapabilities {
 
     @JsonProperty("PropertyName")
-    private String propertyName;
+    private String propertyName ="";
 
     @JsonProperty("MasterParent")
     private boolean masterParent;
@@ -14,16 +14,16 @@ public class JsonBrowserCapabilities {
     private boolean liteMode;
 
     @JsonProperty("Parent")
-    private String parent;
+    private String parent ="";
 
     @JsonProperty("Comment")
-    private String comment;
+    private String comment ="";
 
     @JsonProperty("Browser")
-    private String browser;
+    private String browser ="";
 
     @JsonProperty("Browser_Type")
-    private String browserType;
+    private String browserType ="";
 
     @JsonProperty("Browser_Bits")
     private int browserBits;
@@ -32,31 +32,31 @@ public class JsonBrowserCapabilities {
     private String browserMaker;
 
     @JsonProperty("Browser_Modus")
-    private String browserModus;
+    private String browserModus ="";
 
     @JsonProperty("Version")
-    private String version;
+    private String version ="";
 
     @JsonProperty("MajorVer")
-    private String majorVer;
+    private String majorVer ="";
 
     @JsonProperty("MinorVer")
-    private String minorVer;
+    private String minorVer ="";
 
     @JsonProperty("Platform")
-    private String platform;
+    private String platform ="";
 
     @JsonProperty("Platform_Version")
-    private String platformVersion;
+    private String platformVersion ="";
 
     @JsonProperty("Platform_Description")
-    private String platformDescription;
+    private String platformDescription ="";
 
     @JsonProperty("Platform_Bits")
     private double platformBits;
 
     @JsonProperty("Platform_Maker")
-    private String platformMaker;
+    private String platformMaker ="";
 
     @JsonProperty("Alpha")
     private boolean alpha;
@@ -122,40 +122,40 @@ public class JsonBrowserCapabilities {
     private boolean modified;
 
     @JsonProperty("CssVersion")
-    private String cssVersion;
+    private String cssVersion ="";
 
     @JsonProperty("AolVersion")
-    private String aolVersion;
+    private String aolVersion ="";
 
     @JsonProperty("Device_Name")
-    private String deviceName;
+    private String deviceName ="";
 
     @JsonProperty("Device_Maker")
-    private String deviceMaker;
+    private String deviceMaker ="";
 
     @JsonProperty("Device_Type")
-    private String deviceType;
+    private String deviceType ="";
 
     @JsonProperty("Device_Pointing_Method")
-    private String devicePointingMethod;
+    private String devicePointingMethod ="";
 
     @JsonProperty("Device_Code_Name")
-    private String deviceCodeName;
+    private String deviceCodeName ="";
 
     @JsonProperty("Device_Brand_Name")
-    private String deviceBrandName;
+    private String deviceBrandName ="";
 
     @JsonProperty("RenderingEngine_Name")
-    private String renderingEngineName;
+    private String renderingEngineName ="";
 
     @JsonProperty("RenderingEngine_Version")
-    private String renderingEngineVersion;
+    private String renderingEngineVersion ="";
 
     @JsonProperty("RenderingEngine_Description")
-    private String renderingEngineDescription;
+    private String renderingEngineDescription ="";
 
     @JsonProperty("RenderingEngine_Maker")
-    private String renderingEngineMaker;
+    private String renderingEngineMaker ="";
 
     public String getPropertyName() {
         return propertyName;
