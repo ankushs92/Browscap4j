@@ -1,11 +1,6 @@
 package in.ankushs.browscap4j.domain;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,16 +26,6 @@ public class Browscap {
     private static final Logger LOGGER = LoggerFactory.getLogger(Browscap.class);
 
     /*
-     * update interval of 5 days
-     */
-    private static final Long UPDATE_INTERVAL = 432000000L;
-
-    /*
-     * don't autoUpdate by default
-     */
-    private boolean doAutoUpdate = false;
-
-    /*
      * A flag for indicating whether the browscap.csv file has been loaded into
      * memory. Its value is true if data has been loaded,and false otherwise
      */
@@ -54,17 +37,9 @@ public class Browscap {
      */
     private static Map<String, BrowserCapabilities> cache;
 
+    private static ResourceBuilder resourceBuilder;
+
     private static Trie tree = new Trie();
-
-    private File browscapFile;
-
-    private URL remoteURL;
-
-    private Long currentVersion;
-
-    public Browscap(final File file) {
-        this(file, false);
-    }
 
     /**
      * Create a new Browscap instance. Once an instance has been created, the
@@ -75,18 +50,15 @@ public class Browscap {
      * @param csvFile The browscap.csv file as a File object.
      * @throws IllegalArgumentException if {@code csvFile} does not exist.
      */
-    public Browscap(final File csvFile, boolean doAutoUpdate) {
-        PreConditions.checkNull(csvFile, "file cannot be null");
-        browscapFile = csvFile;
-        this.doAutoUpdate = doAutoUpdate;
-        if (doAutoUpdate) {
-            BrowscapFileType type = BrowscapFileType.findByFileName(csvFile.getAbsolutePath());
-            this.remoteURL = type.getUrl();
-            updateFile();
-            allLoaded = false;
-        }
-        PreConditions.checkExpression(!browscapFile.exists(), "The file does not exist");
+    public Browscap(final File file) {
+        this(new BrowsCapConfig(file));
+    }
+
+    public Browscap(BrowsCapConfig config) {
+        config.afterPropertiesSet();
+        resourceBuilder = new ResourceBuilder(config);
         if (!allLoaded) {
+            resourceBuilder.checkFile();
             loadData();
             allLoaded = true;
         } else {
@@ -99,7 +71,6 @@ public class Browscap {
      * Load data from the BrowscapFile
      */
     private void loadData() {
-        ResourceBuilder resourceBuilder = new ResourceBuilder(browscapFile);
         LOGGER.info("Loading data ");
         Map<String, BrowserCapabilities> localCache;
         Trie localTree = new Trie();
@@ -110,93 +81,7 @@ public class Browscap {
         LOGGER.info("Finished loading local data");
         tree = localTree;
         cache = localCache;
-        currentVersion = resourceBuilder.getVersion();
         LOGGER.info("Finished loading data");
-    }
-
-    /**
-     * Check if the file exists and has content
-     * 
-     * @param file
-     * @return true if the file exists and has content
-     */
-    public static boolean isFileNotEmpty(final File file) {
-        try (BufferedReader br = new BufferedReader(new FileReader(file));) {
-            return file.exists() && br.readLine() != null;
-        } catch (IOException e) {
-            LOGGER.error("Failed to check validity of {}", file.getAbsolutePath());
-        }
-        return true;
-    }
-
-    private Long getRemoteVersion() {
-        Long remoteVersion = null;
-        try {
-            URL versionNumberUrl = new URL("http://browscap.org/version-number");
-            HttpURLConnection versionNumberCon = (HttpURLConnection) versionNumberUrl.openConnection();
-            if (versionNumberCon.getResponseCode() == 200) {
-                remoteVersion = Long.valueOf(IOUtils.toString(versionNumberCon.getInputStream(), "UTF-8"));
-            }
-        } catch (IOException e) {
-            LOGGER.error("Failed to get remote version with error {}", e.getMessage());
-        }
-        PreConditions.checkNull(remoteVersion, "Could'nt get remote version");
-        return remoteVersion;
-    }
-
-    public boolean isOutDated() {
-        if (System.currentTimeMillis() - browscapFile.lastModified() >= UPDATE_INTERVAL) {
-            return currentVersion != null && currentVersion < getRemoteVersion();
-        }
-        return false;
-    }
-
-    /**
-     * Update the browscapFile when the autoUpdate is allowed
-     * 
-     * @return true when the file has been updated
-     */
-    private boolean updateFile() {
-        if (!isFileNotEmpty(browscapFile)) {
-            try {
-                LOGGER.debug("Downloading {}", browscapFile.getAbsolutePath());
-                FileUtils.copyURLToFile(remoteURL, browscapFile);
-                browscapFile.setLastModified(System.currentTimeMillis());
-                LOGGER.debug("Downloaded {}", browscapFile.getAbsolutePath());
-                return true;
-            } catch (IOException e) {
-                LOGGER.error("Failed to download from {}, to  {}  with {}", remoteURL, browscapFile.getAbsolutePath(),
-                        e.getMessage());
-            }
-        } else if (isOutDated()) {
-            File tmpFile = new File(browscapFile.getAbsolutePath() + ".tmp");
-            File oldFile = new File(browscapFile.getAbsolutePath() + ".old");
-            try {
-                LOGGER.debug("Downloading {}", tmpFile.getAbsolutePath());
-                FileUtils.copyURLToFile(remoteURL, tmpFile);
-                LOGGER.debug("Downloaded {}", tmpFile.getAbsolutePath());
-            } catch (IOException e) {
-                LOGGER.error("Failed to download from {}, to  {}  with {}", remoteURL, browscapFile.getAbsolutePath(),
-                        e.getMessage());
-            }
-            try {
-                LOGGER.debug("Moving {} to {} ", browscapFile.getAbsolutePath(), oldFile.getAbsolutePath());
-                FileUtils.moveFile(browscapFile, oldFile);
-                LOGGER.debug("Moved {} to {} ", browscapFile.getAbsolutePath(), oldFile.getAbsolutePath());
-                LOGGER.debug("Moving {} to {}", tmpFile.getAbsolutePath(), browscapFile.getAbsolutePath());
-                FileUtils.moveFile(tmpFile, browscapFile);
-                browscapFile.setLastModified(System.currentTimeMillis());
-                LOGGER.debug("Moved {} to {}", tmpFile.getAbsolutePath(), browscapFile.getAbsolutePath());
-                LOGGER.debug("Deleting {}", oldFile.getAbsolutePath());
-                oldFile.delete();
-                LOGGER.debug("Deleted {}", oldFile.getAbsolutePath());
-                return true;
-            } catch (IOException e) {
-                LOGGER.error("Failed to move from {}, to  {}  with {}", tmpFile.getAbsolutePath(),
-                        browscapFile.getAbsolutePath(), e.getMessage());
-            }
-        }
-        return false;
     }
 
     /**
@@ -209,7 +94,7 @@ public class Browscap {
     public BrowserCapabilities lookup(final String userAgent) throws Exception {
         PreConditions.checkNull(userAgent, "Cannot pass a null UserAgent String ! ");
         LOGGER.debug("Attempting to find BrowserCapabilities for User Agent String {}", userAgent);
-        if (doAutoUpdate && updateFile()) {
+        if (resourceBuilder.checkFile()) {
             loadData();
         }
         BrowserCapabilities browserCapabilities = resolve(userAgent);
