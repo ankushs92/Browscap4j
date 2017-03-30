@@ -36,6 +36,7 @@ public final class ResourceBuilder {
 
     public ResourceBuilder(BrowsCapConfig config) {
         this.config = config;
+        checkFile();
         this.parsingService = ParsingServiceFactory.getParsingService(config.getFile());
         this.version = parsingService.getVersion();
         this.releaseDate = parsingService.getReleaseDate();
@@ -48,12 +49,14 @@ public final class ResourceBuilder {
      * @return true if the file exists and has content
      */
     public static boolean isFileNotEmpty(final File file) {
-        try (BufferedReader br = new BufferedReader(new FileReader(file));) {
-            return file.exists() && br.readLine() != null;
-        } catch (IOException e) {
-            LOGGER.error("Failed to check validity of {}", file.getAbsolutePath());
+        if (file.exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(file));) {
+                return br.readLine() != null;
+            } catch (IOException e) {
+                LOGGER.error("Failed to check validity of {}", file.getAbsolutePath());
+            }
         }
-        return true;
+        return false;
     }
 
     private Long getRemoteVersion() {

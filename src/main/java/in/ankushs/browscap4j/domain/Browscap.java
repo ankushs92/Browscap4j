@@ -58,7 +58,6 @@ public class Browscap {
         config.afterPropertiesSet();
         resourceBuilder = new ResourceBuilder(config);
         if (!allLoaded) {
-            resourceBuilder.checkFile();
             loadData();
             allLoaded = true;
         } else {
