@@ -46,7 +46,7 @@ public class PreConditions {
      * @throws IllegalArgumentException if {@code expression} is expression
 	 */
 	public static  void checkExpression(final boolean expression , final String errorMsg){
-		if(expression){
+		if(!expression){
 			throw new IllegalArgumentException(errorMsg);
 		}
 	}

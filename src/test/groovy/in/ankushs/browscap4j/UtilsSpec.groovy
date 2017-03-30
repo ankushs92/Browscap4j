@@ -34,7 +34,7 @@ class UtilsSpec extends BaseSpec{
 
     def "Pass expression that evaluates to false.IllegalArgumentException to be thrown"(){
         when :
-        PreConditions.checkExpression(1!=2,"null object")
+        PreConditions.checkExpression(1==2,"null object")
 
         then:
         thrown(IllegalArgumentException)
