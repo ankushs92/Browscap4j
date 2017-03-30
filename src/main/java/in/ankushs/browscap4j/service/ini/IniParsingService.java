@@ -25,10 +25,18 @@ public class IniParsingService implements ParsingService {
 
     private static IniParsingService service;
 
-    private File file;
+    private Ini ini;
 
     private IniParsingService(File file) {
-        this.file = file;
+        try {
+            Config config = new Config();
+            config.setTree(false);
+            ini = new Ini();
+            ini.setConfig(config);
+            ini.load(new FileReader(file));
+        } catch (IOException ioe) {
+            LOGGER.error("Couldn't parse ini file", file.getAbsolutePath());
+        }
     }
 
     /**
@@ -42,17 +50,7 @@ public class IniParsingService implements ParsingService {
     }
 
     private Ini getIni() {
-        try {
-            Config config = new Config();
-            config.setTree(false);
-            Ini ini = new Ini();
-            ini.setConfig(config);
-            ini.load(new FileReader(file));
-            return ini;
-        } catch (IOException ioe) {
-            LOGGER.error("Couldn't parse ini file", file.getAbsolutePath());
-        }
-        return null;
+        return ini;
     }
 
     @Override
@@ -105,6 +103,10 @@ public class IniParsingService implements ParsingService {
         if (section.containsKey(search)) {
             return section.get(search).replaceAll("\"", "");
         }
+        String parentSection = getString(section, "Parent");
+        if (parentSection != null) {
+            return getString(ini.get(parentSection), search);
+        }
         return defaultValue;
     }
 
@@ -115,6 +117,10 @@ public class IniParsingService implements ParsingService {
     private boolean getBoolean(Section section, String search, boolean defaultValue) {
         if (section.containsKey(search)) {
             return Boolean.parseBoolean(section.get(search).replaceAll("\"", ""));
+        }
+        String parentSection = getString(section, "Parent");
+        if (parentSection != null) {
+            return getBoolean(ini.get(parentSection), search);
         }
         return defaultValue;
     }

@@ -29,15 +29,15 @@ public class Browscapitem {
     }
 
     public String getString(String key) {
-        return getItems().containsKey(key) ? getItems().get(key).getValue() : "Unknown";
+        return getItems().containsKey(key) ? getItems().get(key).getValue() : null;
     }
 
-    public boolean getBoolean(String key) {
-        return getItems().containsKey(key) ? Boolean.parseBoolean(getItems().get(key).getValue()) : false;
+    public Boolean getBoolean(String key) {
+        return getItems().containsKey(key) ? Boolean.parseBoolean(getItems().get(key).getValue()) : null;
     }
     
     public Double getDouble(String key) {
-        return getItems().containsKey(key) ? Double.valueOf(getItems().get(key).getValue()) : 0d;
+        return getItems().containsKey(key) ? Double.valueOf(getItems().get(key).getValue()) : null;
     }
 
 }

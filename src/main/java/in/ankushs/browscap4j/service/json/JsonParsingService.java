@@ -30,10 +30,18 @@ public class JsonParsingService implements ParsingService {
 
     private static JsonParsingService service;
 
-    private File file;
+    private JsonNode root;
+
+    private ObjectMapper mapper = new ObjectMapper();
 
     private JsonParsingService(File file) {
-        this.file = file;
+        try {
+            byte[] jsonData = Files.readAllBytes(file.toPath());
+            ObjectMapper objectMapper = new ObjectMapper();
+            root = objectMapper.readTree(jsonData);
+        } catch (IOException ioe) {
+            LOGGER.error("Couldn't parse Json file {}", file.getAbsolutePath());
+        }
     }
 
     /**
@@ -47,14 +55,7 @@ public class JsonParsingService implements ParsingService {
     }
 
     public JsonNode getJsonRoot() {
-        try {
-            byte[] jsonData = Files.readAllBytes(file.toPath());
-            ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.readTree(jsonData);
-        } catch (IOException ioe) {
-            LOGGER.error("Couldn't parse Json file {}", file.getAbsolutePath());
-        }
-        return null;
+        return root;
     }
 
     @Override
@@ -81,24 +82,23 @@ public class JsonParsingService implements ParsingService {
     @Override
     public Map<String, BrowserCapabilities> getNamePatternsToBrowserCapabilitiesMap() {
         Iterable<Map.Entry<String, JsonNode>> iterable = () -> getJsonRoot().fields();
-        ObjectMapper mapper = new ObjectMapper();
         return StreamSupport.stream(iterable.spliterator(), false).filter(node -> {
             return !EXCLUDED_PATH.contains(node.getKey());
         }).collect(Collectors.toMap(entry -> entry.getKey(), entry -> {
-            JsonBrowserCapabilities browserCapability = null;
+            JsonNode browscapitem = null;
             try {
-                browserCapability = mapper.readValue(entry.getValue().asText(), JsonBrowserCapabilities.class);
-                final String browser = (browserCapability.getBrowser()).intern();
-                final String browserType = (browserCapability.getBrowserType()).intern();
-                final String deviceName = (browserCapability.getDeviceName()).intern();
-                final String deviceType = (browserCapability.getDeviceType()).intern();
-                final String deviceCodeName = (browserCapability.getDeviceCodeName()).intern();
-                final String deviceBrandName = (browserCapability.getDeviceBrandName()).intern();
-                final String platform = (browserCapability.getPlatform()).intern();
-                final String platformMaker = (browserCapability.getPlatformMaker()).intern();
-                final String platformVersion = (browserCapability.getPlatformVersion()).intern();
-                final boolean isMobile = browserCapability.isMobileDevice();
-                final boolean isTablet = browserCapability.isTablet();
+                browscapitem = mapper.readTree(entry.getValue().asText());
+                final String browser = (getString(browscapitem, "Browser")).intern();
+                final String browserType = (getString(browscapitem, "Browser_Type")).intern();
+                final String deviceName = (getString(browscapitem, "Device_Name")).intern();
+                final String deviceType = (getString(browscapitem, "Device_Type")).intern();
+                final String deviceCodeName = (getString(browscapitem, "Device_Code_Name")).intern();
+                final String deviceBrandName = (getString(browscapitem, "Device_Brand_Name")).intern();
+                final String platform = (getString(browscapitem, "Platform")).intern();
+                final String platformMaker = (getString(browscapitem, "Platform_Maker")).intern();
+                final String platformVersion = (getString(browscapitem, "Platform_Version")).intern();
+                final boolean isMobile = getBoolean(browscapitem, "isMobileDevice");
+                final boolean isTablet = getBoolean(browscapitem, "isTablet");
                 return new BrowserCapabilities.Builder().browser(browser).browserType(browserType)
                         .deviceCodeName(deviceCodeName).deviceName(deviceName).deviceBrandName(deviceBrandName)
                         .deviceType(deviceType).platform(platform).platformMaker(platformMaker)
@@ -110,4 +110,46 @@ public class JsonParsingService implements ParsingService {
         }));
     }
 
+    private String getString(JsonNode browscapitem, String search) {
+        return getString(browscapitem, search, "Unknown");
+    }
+
+    private String getString(JsonNode browscapitem, String search, String defaultValue) {
+        JsonNode property = browscapitem.get(search);
+        if (property != null) {
+            return property.asText();
+        }
+        String parent = browscapitem.get("Parent").asText();
+        if (parent != null) {
+            try {
+                return getString(mapper.readTree(getJsonRoot().get(parent).asText()), search);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return defaultValue;
+    }
+
+    private boolean getBoolean(JsonNode browscapitem, String search) {
+        return getBoolean(browscapitem, search, false);
+    }
+
+    private boolean getBoolean(JsonNode browscapitem, String search, boolean defaultValue) {
+        JsonNode property = browscapitem.get(search);
+        if (property != null) {
+            return property.asBoolean();
+        }
+        String parent = browscapitem.get("Parent").asText();
+        if (parent != null) {
+            try {
+                return getBoolean(mapper.readTree(getJsonRoot().get(parent).asText()), search);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return defaultValue;
+
+    }
 }

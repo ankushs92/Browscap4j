@@ -22,7 +22,6 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
 import in.ankushs.browscap4j.domain.BrowserCapabilities;
 import in.ankushs.browscap4j.service.ParsingService;
-import in.ankushs.browscap4j.service.json.JsonBrowserCapabilities;
 
 /**
  * Singleton class for parsing csv files.
@@ -51,14 +50,14 @@ public final class CsvParsingService implements ParsingService {
         return service;
     }
 
-    private List<JsonBrowserCapabilities> getRecords() {
+    private List<CsvBrowserCapabilities> getRecords() {
         try {
             CsvMapper mapper = new CsvMapper();
             BufferedReader reader = new BufferedReader(new FileReader(file));
             for (int i = 0; i < 2; i++) {
                 reader.readLine();
             }
-            MappingIterator<JsonBrowserCapabilities> it = mapper.readerFor(JsonBrowserCapabilities.class)
+            MappingIterator<CsvBrowserCapabilities> it = mapper.readerFor(CsvBrowserCapabilities.class)
                     .with(CsvSchema.emptySchema().withHeader()).readValues(reader);
             return it.readAll();
         } catch (IOException e) {

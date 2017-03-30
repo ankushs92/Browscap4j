@@ -2,9 +2,7 @@ package in.ankushs.browscap4j.service.xml;
 
 import java.io.File;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -24,10 +22,16 @@ public class XmlParsingService implements ParsingService {
 
     private static XmlParsingService service;
 
-    private File file;
+    private Browsercaps browsercaps;
 
     private XmlParsingService(File file) {
-        this.file = file;
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Browsercaps.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            browsercaps = (Browsercaps) jaxbUnmarshaller.unmarshal(file);
+        } catch (JAXBException e) {
+            LOGGER.error("Couldn't parse xml file {}", file.getAbsolutePath());
+        }
     }
 
     /**
@@ -42,56 +46,78 @@ public class XmlParsingService implements ParsingService {
 
     @Override
     public Long getVersion() {
-        Item versionItem = readXML().getBrowscapVersion().get("Version");
-        return Long.valueOf(versionItem.getValue());
+        return getBrowsercaps().getVersion();
     }
 
     @Override
     public LocalDateTime getReleaseDate() {
-        Item releaseItem = readXML().getBrowscapVersion().get("Released");
-        DateTimeFormatter f = DateTimeFormatter.ofPattern(RELEASE_DATE_FORMAT, Locale.ENGLISH);
-        return LocalDateTime.parse(releaseItem.getValue(), f);
+        return getBrowsercaps().getReleaseDate();
     }
 
     @Override
     public List<String> getNamePatterns() {
-        return readXML().getBrowscapitems().stream().map(browscapitem -> {
-            return browscapitem.getName();
-        }).collect(Collectors.toList());
+        return getBrowsercaps().getBrowscapitems();
     }
 
-    private Browsercaps readXML() {
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Browsercaps.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            return (Browsercaps) jaxbUnmarshaller.unmarshal(file);
-        } catch (JAXBException e) {
-            LOGGER.error("Couldn't parse xml file {}", file.getAbsolutePath());
-        }
-        return null;
+    private Browsercaps getBrowsercaps() {
+        return browsercaps;
     }
 
     @Override
     public Map<String, BrowserCapabilities> getNamePatternsToBrowserCapabilitiesMap() {
-        return readXML().getBrowscapitems().stream().collect(Collectors.toMap(browscapitem -> {
-            return browscapitem.getName();
-        }, browscapitem -> {
-            final String browser = (browscapitem.getString("Browser")).intern();
-            final String browserType = (browscapitem.getString("Browser_Type")).intern();
-            final String deviceName = (browscapitem.getString("Device_Name")).intern();
-            final String deviceType = (browscapitem.getString("Device_Type")).intern();
-            final String deviceCodeName = (browscapitem.getString("Device_Code_Name")).intern();
-            final String deviceBrandName = (browscapitem.getString("Device_Brand_Name")).intern();
-            final String platform = (browscapitem.getString("Platform")).intern();
-            final String platformMaker = (browscapitem.getString("Platform_Maker")).intern();
-            final String platformVersion = browscapitem.getString("Platform_Version");
-            final boolean isMobile = browscapitem.getBoolean("isMobileDevice");
-            final boolean isTablet = browscapitem.getBoolean("isTablet");
+        return getBrowsercaps().getBrowscapitemsMap().entrySet().stream().collect(Collectors.toMap(entry -> {
+            return entry.getKey();
+        }, entry -> {
+            Browscapitem browscapitem = entry.getValue();
+            final String browser = (getString(browscapitem, "Browser")).intern();
+            final String browserType = (getString(browscapitem, "Browser_Type")).intern();
+            final String deviceName = (getString(browscapitem, "Device_Name")).intern();
+            final String deviceType = (getString(browscapitem, "Device_Type")).intern();
+            final String deviceCodeName = (getString(browscapitem, "Device_Code_Name")).intern();
+            final String deviceBrandName = (getString(browscapitem, "Device_Brand_Name")).intern();
+            final String platform = (getString(browscapitem, "Platform")).intern();
+            final String platformMaker = (getString(browscapitem, "Platform_Maker")).intern();
+            final String platformVersion = getString(browscapitem, "Platform_Version");
+            final boolean isMobile = getBoolean(browscapitem, "isMobileDevice");
+            final boolean isTablet = getBoolean(browscapitem, "isTablet");
             return new BrowserCapabilities.Builder().browser(browser).browserType(browserType)
                     .deviceCodeName(deviceCodeName).deviceName(deviceName).deviceBrandName(deviceBrandName)
                     .deviceType(deviceType).platform(platform).platformMaker(platformMaker)
                     .platformVersion(platformVersion).isTablet(isTablet).isMobile(isMobile).build();
         }));
+    }
+
+    private String getString(Browscapitem browscapitem, String search) {
+        return getString(browscapitem, search, "Unknown");
+    }
+
+    private String getString(Browscapitem browscapitem, String search, String defaultValue) {
+        String property = browscapitem.getString(search);
+        if (property != null) {
+            return property;
+        }
+        String parent = browscapitem.getString("Parent");
+        if (parent != null) {
+            return getString(getBrowsercaps().getBrowscapitemsMap().get(parent), search);
+        }
+        return defaultValue;
+    }
+
+    private boolean getBoolean(Browscapitem browscapitem, String search) {
+        return getBoolean(browscapitem, search, false);
+    }
+
+    private boolean getBoolean(Browscapitem browscapitem, String search, boolean defaultValue) {
+        Boolean property = browscapitem.getBoolean(search);
+        if (property != null) {
+            return property.booleanValue();
+        }
+        String parent = browscapitem.getString("Parent");
+        if (parent != null) {
+            return getBoolean(getBrowsercaps().getBrowscapitemsMap().get(parent), search);
+        }
+        return defaultValue;
+
     }
 
 }

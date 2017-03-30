@@ -443,8 +443,9 @@ public class Browscap {
     }
 
     public static void main(String[] args) throws Exception {
-        Browscap b = new Browscap(new File("D:\\source\\Browscap4j\\src\\test\\resources\\browscap.csv"), true);
-        b.lookup("HotJava/1.1.2 FCS");
+        BrowsCapConfig config = new BrowsCapConfig(new File("D:\\source\\Browscap4j\\src\\test\\resources\\browscap.json"));
+        Browscap b = new Browscap(config);
+        b.lookup("Mozilla/5.0 (iPad; CPU OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53");
     }
 
 }
