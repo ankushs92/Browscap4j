@@ -42,7 +42,6 @@ buildscript {
         }
     }
     dependencies {
-
         classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.6.3"
     }
 }
@@ -55,14 +54,14 @@ dependencies {
   compile ('com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.8.7')
   compile ('com.fasterxml.jackson.core:jackson-databind:2.8.7')
   compile('commons-io:commons-io:2.5')
-  compile('org.apache.commons:commons-lang3:3.4')
-  compile('ch.qos.logback:logback-classic:1.1.4')
-  compile('ch.qos.logback:logback-core:1.1.4')
-  compile('org.slf4j:slf4j-api:1.7.18')
+  compile('org.apache.commons:commons-lang3:3.5')
+  compile('ch.qos.logback:logback-classic:1.2.2')
+  compile('ch.qos.logback:logback-core:1.2.2')
+  compile('org.slf4j:slf4j-api:1.7.25')
 
   testCompile('junit:junit:4.12')
   testCompile('org.spockframework:spock-core:1.0-groovy-2.4')
-  testCompile('org.codehaus.groovy:groovy-all:2.4.5')
+  testCompile('org.codehaus.groovy:groovy-all:2.4.10')
 }
 
 
