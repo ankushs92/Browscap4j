@@ -76,7 +76,7 @@ public class IniParsingService implements ParsingService {
     @Override
     public Map<String, BrowserCapabilities> getNamePatternsToBrowserCapabilitiesMap() {
         return getIni().entrySet().stream().filter(entry -> !entry.getKey().equals("GJK_Browscap_Version"))
-                .collect(Collectors.toMap(entry -> entry.getKey(), entry -> {
+                .collect(Collectors.toConcurrentMap(entry -> entry.getKey(), entry -> {
                     Section browscapitem = entry.getValue();
                     final String browser = (getString(browscapitem, "Browser")).intern();
                     final String browserType = (getString(browscapitem, "Browser_Type")).intern();

@@ -66,7 +66,7 @@ public class XmlParsingService implements ParsingService {
 
     @Override
     public Map<String, BrowserCapabilities> getNamePatternsToBrowserCapabilitiesMap() {
-        return getBrowsercaps().getBrowscapitemsMap().entrySet().stream().collect(Collectors.toMap(entry -> {
+        return getBrowsercaps().getBrowscapitemsMap().entrySet().stream().collect(Collectors.toConcurrentMap(entry -> {
             return entry.getKey();
         }, entry -> {
             Browscapitem browscapitem = entry.getValue();

@@ -85,7 +85,7 @@ public class JsonParsingService implements ParsingService {
         Iterable<Map.Entry<String, JsonNode>> iterable = () -> getJsonRoot().fields();
         return StreamSupport.stream(iterable.spliterator(), false).filter(node -> {
             return !EXCLUDED_PATH.contains(node.getKey());
-        }).collect(Collectors.toMap(entry -> entry.getKey(), entry -> {
+        }).collect(Collectors.toConcurrentMap(entry -> entry.getKey(), entry -> {
             JsonNode browscapitem = null;
             try {
                 browscapitem = mapper.readTree(entry.getValue().asText());
