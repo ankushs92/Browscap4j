@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -107,7 +108,9 @@ public class JsonParsingService implements ParsingService {
                 LOGGER.error("Couldn't parse {}", entry.getValue().asText());
             }
             return null;
-        }));
+        }, (v1, v2) -> {
+            throw new IllegalStateException("Duplicated key");
+        }, ConcurrentHashMap::new));
     }
 
     private String getString(JsonNode browscapitem, String search) {

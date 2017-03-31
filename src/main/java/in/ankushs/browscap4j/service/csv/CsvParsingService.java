@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -113,8 +114,8 @@ public final class CsvParsingService implements ParsingService {
      */
     @Override
     public Map<String, BrowserCapabilities> getNamePatternsToBrowserCapabilitiesMap() {
-        return getRecords().stream().collect(
-                Collectors.toMap(browserCapability -> browserCapability.getPropertyName(), browserCapability -> {
+        return getRecords().stream().collect(Collectors
+                .toConcurrentMap(browserCapability -> browserCapability.getPropertyName(), browserCapability -> {
                     return new BrowserCapabilities.Builder().browser(browserCapability.getBrowser())
                             .browserType(browserCapability.getBrowserType())
                             .deviceCodeName(browserCapability.getDeviceCodeName())
@@ -125,7 +126,9 @@ public final class CsvParsingService implements ParsingService {
                             .platformVersion(browserCapability.getPlatformVersion())
                             .isTablet(browserCapability.isTablet()).isMobile(browserCapability.isMobileDevice())
                             .build();
-                }));
+                }, (v1, v2) -> {
+                    throw new IllegalStateException("Duplicated key");
+                }, ConcurrentHashMap::new));
     }
 
 }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
@@ -84,7 +85,9 @@ public class XmlParsingService implements ParsingService {
                     .deviceCodeName(deviceCodeName).deviceName(deviceName).deviceBrandName(deviceBrandName)
                     .deviceType(deviceType).platform(platform).platformMaker(platformMaker)
                     .platformVersion(platformVersion).isTablet(isTablet).isMobile(isMobile).build();
-        }));
+        }, (v1, v2) -> {
+            throw new IllegalStateException("Duplicated key");
+        }, ConcurrentHashMap::new));
     }
 
     private String getString(Browscapitem browscapitem, String search) {

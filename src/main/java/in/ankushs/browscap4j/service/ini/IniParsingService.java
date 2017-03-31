@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import org.ini4j.Config;
@@ -92,7 +93,9 @@ public class IniParsingService implements ParsingService {
                             .deviceCodeName(deviceCodeName).deviceName(deviceName).deviceBrandName(deviceBrandName)
                             .deviceType(deviceType).platform(platform).platformMaker(platformMaker)
                             .platformVersion(platformVersion).isTablet(isTablet).isMobile(isMobile).build();
-                }));
+                }, (v1, v2) -> {
+                    throw new IllegalStateException("Duplicated key");
+                }, ConcurrentHashMap::new));
     }
 
     private String getString(Section section, String search) {
