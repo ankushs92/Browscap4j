@@ -127,7 +127,7 @@ public final class CsvParsingService implements ParsingService {
                             .isTablet(browserCapability.isTablet()).isMobile(browserCapability.isMobileDevice())
                             .build();
                 }, (v1, v2) -> {
-                    throw new IllegalStateException("Duplicated key");
+                    throw new IllegalStateException(String.format("Duplicate key %s", v1));
                 }, ConcurrentHashMap::new));
     }
 

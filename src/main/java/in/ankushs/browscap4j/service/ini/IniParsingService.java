@@ -94,7 +94,7 @@ public class IniParsingService implements ParsingService {
                             .deviceType(deviceType).platform(platform).platformMaker(platformMaker)
                             .platformVersion(platformVersion).isTablet(isTablet).isMobile(isMobile).build();
                 }, (v1, v2) -> {
-                    throw new IllegalStateException("Duplicated key");
+                    throw new IllegalStateException(String.format("Duplicate key %s", v1));
                 }, ConcurrentHashMap::new));
     }
 

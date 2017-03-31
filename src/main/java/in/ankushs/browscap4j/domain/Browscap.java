@@ -254,9 +254,9 @@ public class Browscap {
                 if (child.children.size() == 1) {
                     final SingleChildNode singleChildNode = new SingleChildNode(child);
                     children.put(c, singleChildNode);
-                    if (c == '*') {
+                    if (c == ASTERIX) {
                         this.asterixNode = singleChildNode;
-                    } else if (c == '?') {
+                    } else if (c == QUESTION) {
                         this.questionNode = singleChildNode;
                     }
                 }
@@ -294,7 +294,7 @@ public class Browscap {
                 nextToCheck.add(questionNode);
             }
 
-            if (nodeChar == '*') {
+            if (nodeChar == ASTERIX) {
                 nextToCheck.add(this);
             }
         }
@@ -323,7 +323,7 @@ public class Browscap {
             if (StringUtils.isNotBlank(this.leaf)) {
                 result.add(leaf);
             }
-            if (this.child.nodeChar == '*') {
+            if (this.child.nodeChar == ASTERIX) {
                 result.addAll(this.child.getLeafs());
             }
             return result;
@@ -335,15 +335,15 @@ public class Browscap {
         }
 
         public void populateNextCheckNodes(final char c, final Collection<AbstractNode> nextToCheck) {
-            if (this.child.nodeChar == c || this.child.nodeChar == '?') {
+            if (this.child.nodeChar == c || this.child.nodeChar == QUESTION) {
                 nextToCheck.add(this.child);
             }
 
-            if (this.child.nodeChar == '*') {
+            if (this.child.nodeChar == ASTERIX) {
                 this.child.populateNextCheckNodes(c, nextToCheck);
             }
 
-            if (nodeChar == '*') {
+            if (nodeChar == ASTERIX) {
                 nextToCheck.add(this);
             }
         }
