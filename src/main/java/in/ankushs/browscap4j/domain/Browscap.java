@@ -1,6 +1,7 @@
 package in.ankushs.browscap4j.domain;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.*;
@@ -59,17 +60,40 @@ public class Browscap {
         PreConditions.checkExpression(!csvFile.exists(), "The csvFile does not exist");
         if (!allLoaded) {
             ResourceBuilder resourceBuilder = new ResourceBuilder(csvFile);
-            logger.info("Loading data ");
-
-            tree.makeTrie(resourceBuilder.getNamePatterns());
-            cache = resourceBuilder.getNamePatternsToBrowserCapabilitiesMap();
-
-            logger.info("Finished loading data");
-            allLoaded = true;
+            loadData(resourceBuilder);
         } else {
             logger.debug("Data has already been loaded!");
         }
 
+    }
+
+    /**
+     * Create a new Browscap instance. Once an instance has been created, the
+     * allLoaded flag is set to true. Any futher initializations of the Browscap
+     * object will not load data into memory again.Processing will be parallel
+     * if @param enableParalle is true
+     *
+     * @param csvInputStream        The browscap.csv file as a InputStream object.
+     */
+    public Browscap(final InputStream csvInputStream) {
+        PreConditions.checkNull(csvInputStream, "csvInputStream cannot be null");
+        if (!allLoaded) {
+            ResourceBuilder resourceBuilder = new ResourceBuilder(csvInputStream);
+            loadData(resourceBuilder);
+        } else {
+            logger.debug("Data has already been loaded!");
+        }
+
+    }
+
+    private void loadData(final ResourceBuilder resourceBuilder) {
+        logger.info("Loading data ");
+
+        tree.makeTrie(resourceBuilder.getNamePatterns());
+        cache = resourceBuilder.getNamePatternsToBrowserCapabilitiesMap();
+
+        logger.info("Finished loading data");
+        allLoaded = true;
     }
 
     /**
