@@ -2,6 +2,7 @@ package in.ankushs.browscap4j.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,15 +22,21 @@ import in.ankushs.browscap4j.utils.Strings;
  */
 public final class ResourceBuilder {
 	private static final Logger logger = LoggerFactory.getLogger(ResourceBuilder.class);
-	private final File file;
 	private final ParsingService parsingService = CsvParsingService.getInstance();
 	private  List<String[]> records;
 	private static final String UNKNOWN ="Unknown";
 
 	public ResourceBuilder(final File file) {
-		this.file = file;
 		try {
 			this.records = parsingService.getRecords(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public ResourceBuilder(final InputStream inputStream) {
+		try {
+			this.records = parsingService.getRecords(inputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
