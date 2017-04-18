@@ -2,9 +2,9 @@ package in.ankushs.browscap4j.service.xml;
 
 import java.io.File;
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import javax.xml.bind.JAXBContext;
@@ -87,7 +87,7 @@ public class XmlParsingService implements ParsingService {
                     .platformVersion(platformVersion).isTablet(isTablet).isMobile(isMobile).build();
         }, (v1, v2) -> {
             throw new IllegalStateException(String.format("Duplicate key %s", v1));
-        }, ConcurrentHashMap::new));
+        }, LinkedHashMap::new));
     }
 
     private String getString(Browscapitem browscapitem, String search) {

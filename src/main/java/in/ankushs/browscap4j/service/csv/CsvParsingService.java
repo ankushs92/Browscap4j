@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -115,7 +115,7 @@ public final class CsvParsingService implements ParsingService {
     @Override
     public Map<String, BrowserCapabilities> getNamePatternsToBrowserCapabilitiesMap() {
         return getRecords().stream().collect(Collectors
-                .toConcurrentMap(browserCapability -> browserCapability.getPropertyName(), browserCapability -> {
+                .toMap(browserCapability -> browserCapability.getPropertyName(), browserCapability -> {
                     return new BrowserCapabilities.Builder().browser(browserCapability.getBrowser())
                             .browserType(browserCapability.getBrowserType())
                             .deviceCodeName(browserCapability.getDeviceCodeName())
@@ -128,7 +128,7 @@ public final class CsvParsingService implements ParsingService {
                             .build();
                 }, (v1, v2) -> {
                     throw new IllegalStateException(String.format("Duplicate key %s", v1));
-                }, ConcurrentHashMap::new));
+                }, LinkedHashMap::new));
     }
 
 }
