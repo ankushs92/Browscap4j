@@ -105,11 +105,11 @@ boolean isBot = browserCapabilities.isBot(); //Bot or crawler
 **Important** 
 Browscap4j does not cache the results that it returns.The developer using Browscap4j is adviced to use their own Caching solution.
 
-#Performance
+**Performance**
 Performance testing was done on Macbook Pro,8 GM Ram , i5 2nd gen with SSD. The performance is decent. I'm currently on a much faster solution. The best case for resolving a user agent is about 20 ms ,the worst being 130-140 ms.
 However, most Strings are resolved around the 70-100ms mark.
 
-#Testing
+**Testing**
 This part is a bit tricky. With the guys at Browscap updating the csv file every now and then ,it is impossible for the tests written for a particular version of the file to be valid for the next version.
 The tests have been updated for the latest Browscap csv file as on 26th Sep,2016.
  
