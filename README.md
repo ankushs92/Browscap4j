@@ -7,7 +7,7 @@ A simple to use Java library for the [Browscap project](http://browscap.org/).Us
 
 **Note: This library and all of the unit tests have been updated for the latest Browscap csv file (version 6017), as on 26th Sep,2016**
 
-#Get it 
+**Get it 
 
 With maven :
 
@@ -113,10 +113,8 @@ Browscap4j does not cache the results that it returns.The developer using Browsc
 I have written a detailed blog post on how to use browscap4j with Spring Boot. You can read the tutorial [here](http://ankushs92.github.io/libraries/2016/05/12/browscap4j.html) and get the Spring-Boot-browscap4j app [here](https://github.com/ankushs92/Spring-Boot-browscap4j) .
 
 #Performance
-Performance testing was done on Macbook Pro,8 GM Ram , i5 2nd gen with SSD.
-Performance is pretty  decent! Once you warm up the JVM for some time, the best case for resolving a user agent is about 20 ms ,the worst being 130-140 ms.
-However,most Strings are resolved around the 70-100ms mark.This is when parallel processing is enabled.Expect more processing time for serial stream processing.
-That is a considerable performance improvement ,considering that the same program written using the data structures in Python takes ~ 7-10 sec (best case) to resolve a user agent String.
+Performance testing was done on Macbook Pro,8 GM Ram , i5 2nd gen with SSD. The performance is decent. I'm currently on a much faster solution. The best case for resolving a user agent is about 20 ms ,the worst being 130-140 ms.
+However, most Strings are resolved around the 70-100ms mark.
 
 #Testing
 This part is a bit tricky. With the guys at Browscap updating the csv file every now and then ,it is impossible for the tests written for a particular version of the file to be valid for the next version.
