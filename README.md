@@ -5,8 +5,6 @@
 
 A simple to use Java library for the [Browscap project](http://browscap.org/).Uses the `browscap.csv` file , which can be found [here](http://browscap.org/stream?q=BrowsCapCSV)
 
-**Note: This library and all of the unit tests have been updated for the latest Browscap csv file (version 6017), as on 26th Sep,2016**
-
 **GET**
 
 With maven :
@@ -33,18 +31,12 @@ The Javadocs for the latest release can be found [here](http://www.javadoc.io/do
 
 **USAGE**
 **Note : Browscap4j uses Java 8** .
+
 In order to get Browser capabilities, you need to first provide Browscap4j with the path of the csv file, like so :
 
 ```java
 File csvFile = new File(PATH_TO_BROWSCAP_CSV);
 Browscap browscap = new Browscap(csvFile);
-```
-The default processing mechanism is serial . If you want to enable parallel processing, initiate like so :
-
-```java
-File csvFile = new File(PATH_TO_BROWSCAP_CSV);
-boolean enableParallel = true;
-Browscap browscap = new Browscap(csvFile,enableParallel);
 ```
 
 Once the data is loaded from the file into memory , any subsequent invocation of the above code **would not** re-load the data . 
@@ -79,6 +71,7 @@ System.out.println("isTablet ::: " + isTablet);
 ```
 
 This prints : 
+
 ```
 Browser ::: Safari
 deviceBrandName ::: Apple
@@ -102,20 +95,13 @@ boolean isAndroid = browserCapabilities.isAndroid();
 boolean isBot = browserCapabilities.isBot(); //Bot or crawler
 ```
 
-**Important** 
-Browscap4j does not cache the results that it returns.The developer using Browscap4j is adviced to use their own Caching solution.
-
 **Performance**
-Performance testing was done on Macbook Pro,8 GM Ram , i5 2nd gen with SSD. The performance is decent. I'm currently on a much faster solution. The best case for resolving a user agent is about 20 ms ,the worst being 130-140 ms.
+
+Performance testing was done on Macbook Pro, 8 GM Ram , i5 2nd gen. The performance is decent. I'm currently on a much faster solution. The best case for resolving a user agent is about 20 ms ,the worst being 130-140 ms.
 However, most Strings are resolved around the 70-100ms mark.
 
-**Testing**
-This part is a bit tricky. With the guys at Browscap updating the csv file every now and then ,it is impossible for the tests written for a particular version of the file to be valid for the next version.
-The tests have been updated for the latest Browscap csv file as on 26th Sep,2016.
- 
-Run the code and match the results by going [here](http://browscap.org/ua-lookup) .
 
-#Supported By
+**Supported By**
 
 ![yourkit!](https://www.yourkit.com/images/yklogo.png "yourkit")
 
