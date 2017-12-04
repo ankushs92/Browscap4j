@@ -1,8 +1,8 @@
 package in.ankushs.browscap4j
 
-import in.ankushs.browscap4j.domain.Browscap
 import org.slf4j.Logger
-import org.slf4j.LoggerFactory;;
+import org.slf4j.LoggerFactory
+;
 
 class BrowserCapabilitiesLookupSpec extends BaseSpec{
 

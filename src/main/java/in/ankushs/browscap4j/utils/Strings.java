@@ -1,8 +1,6 @@
 package in.ankushs.browscap4j.utils;
 
-import java.io.File;
 
-import in.ankushs.browscap4j.domain.Browscap;
 /**
  * 
  * String utilities.
@@ -18,10 +16,15 @@ public class Strings {
 	 * @return false if {@code str} is null or empty(after trimming),and true otherwise
 	 */
 	public static boolean hasText(final String str){
-		if(str==null){
+		if(str == null){
 			return false;
 		}
-		return str.trim().length()>0;
+		for(final char ch : str.toCharArray()){
+			if(!Character.isWhitespace(ch)){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

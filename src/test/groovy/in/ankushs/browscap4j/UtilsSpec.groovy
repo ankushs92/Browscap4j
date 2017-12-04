@@ -1,6 +1,8 @@
 package in.ankushs.browscap4j
-import  in.ankushs.browscap4j.utils.PreConditions
+
+import in.ankushs.browscap4j.utils.PreConditions
 import in.ankushs.browscap4j.utils.Strings
+
 /**
  * Created by Ankush on 04/09/16.
  */

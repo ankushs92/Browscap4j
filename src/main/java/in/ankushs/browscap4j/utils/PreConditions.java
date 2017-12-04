@@ -18,7 +18,7 @@ public class PreConditions {
    * @param errorMsg The message to throw in case {@code t} turns out to be null.
    * @throws IllegalArgumentException if {@code t} is null
    */
-	public static <T> void checkNull(final T  t , final String errorMsg){
+	public static <T> void notNull(final T  t , final String errorMsg){
 		if(t==null){
 			throw new IllegalArgumentException(errorMsg);
 		}
@@ -26,13 +26,13 @@ public class PreConditions {
 	
 	/**
 	  * Ensures the string passed to the method is not empty .
-	  * The string will be considered empty if it is null or has no text after being trimmed.
+	  * The string will be considered empty if it is null or has no text(including whitespace).
 	  *
 	  * @param str The string against which the validation will be performed
       * @param errorMsg The message to throw in case {@code str} turns out to have no text.
       * @throws IllegalArgumentException if {@code str} has no text
 	 */
-	public static void checkEmptyString(final String str , final String errorMsg){
+	public static void notEmptyString(final String str , final String errorMsg){
 		if(!Strings.hasText(str)){
 			throw new IllegalArgumentException(errorMsg);
 		}

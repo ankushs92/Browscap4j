@@ -1,7 +1,4 @@
 package in.ankushs.browscap4j
-
-import in.ankushs.browscap4j.domain.Browscap
-
 /**
  * Created by Ankush on 04/09/16.
  */
