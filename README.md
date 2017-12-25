@@ -1,6 +1,6 @@
 # Browscap4j
 
-![travis!](https://travis-ci.org/ankushs92/Browscap4j.svg?branch=master "travis")
+![travis!](https://travis-ci.org/ankushs92/linode4j.svg?branch=master "travis")
 
 
 A simple to use Java library for the [Browscap project](http://browscap.org/).Uses the `browscap.csv` file , which can be found [here](http://browscap.org/stream?q=BrowsCapCSV)
@@ -30,6 +30,7 @@ compile group: 'in.ankushs', name: 'browscap4j', version: '2.0-PRE'
 The Javadocs for the latest release can be found [here](http://www.javadoc.io/doc/in.ankushs/browscap4j/1.4.4)
 
 **USAGE**
+
 **Note : Browscap4j uses Java 8** .
 
 In order to get Browser capabilities, you need to first provide Browscap4j with the path of the csv file, like so :
@@ -96,6 +97,7 @@ boolean isBot = browserCapabilities.isBot(); // Or crawler
 ```
 
 **Performance**
+
 For version '2.0-PRE', the parsing and searching of Ua strings is resolved within 1 ms.
 For the stable `1.4.4` version, expect result to be returned within 70ms average case.
 
