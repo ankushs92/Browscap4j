@@ -1,7 +1,7 @@
 # Browscap4j
 
 ![travis!](https://travis-ci.org/ankushs92/Browscap4j.svg?branch=master "travis")
-[![Coverage Status](https://coveralls.io/repos/github/ankushs92/Browscap4j/badge.svg?branch=master)](https://coveralls.io/github/ankushs92/Browscap4j?branch=master)
+
 
 A simple to use Java library for the [Browscap project](http://browscap.org/).Uses the `browscap.csv` file , which can be found [here](http://browscap.org/stream?q=BrowsCapCSV)
 
@@ -12,9 +12,9 @@ With maven :
 ```xml
 
 <dependency>
-	<groupId>in.ankushs</groupId>
-	<artifactId>browscap4j</artifactId>
-	<version>1.4.4</version>
+    <groupId>in.ankushs</groupId>
+    <artifactId>browscap4j</artifactId>
+    <version>2.0-PRE</version>
 </dependency>
 
 ```
@@ -23,7 +23,7 @@ Or gradle:
 
 ```groovy
 
-compile('in.ankushs:browscap4j:1.4.4')
+compile group: 'in.ankushs', name: 'browscap4j', version: '2.0-PRE'
 
 ```
 
@@ -92,13 +92,12 @@ boolean isDesktop = browserCapabilities.isDesktop();
 boolean isWindows = browserCapabilities.isWindows();
 boolean isiOS = browserCapabilities.isiOS();
 boolean isAndroid = browserCapabilities.isAndroid();
-boolean isBot = browserCapabilities.isBot(); //Bot or crawler
+boolean isBot = browserCapabilities.isBot(); // Or crawler
 ```
 
 **Performance**
-
-Performance testing was done on Macbook Pro, 8 GM Ram , i5 2nd gen. The performance is decent. I'm currently on a much faster solution. The best case for resolving a user agent is about 20 ms ,the worst being 130-140 ms.
-However, most Strings are resolved around the 70-100ms mark.
+For version '2.0-PRE', the parsing and searching of Ua strings is resolved within 1 ms.
+For the stable `1.4.4` version, expect result to be returned within 70ms average case.
 
 
 **Supported By**
