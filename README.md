@@ -1,3 +1,8 @@
+# No longer maintained
+
+This library is no longer maintained, and hasn't been for some time now. Use [blueconic's](https://github.com/blueconic/browscap-java) great library. Its fast and has everything you need.
+
+
 # Browscap4j
 
 ![travis!](https://travis-ci.org/ankushs92/Browscap4j.svg?branch=master "travis")
